@@ -1,26 +1,26 @@
 const { Router } = require('express');
 
 const {
-    createVideogameHandler,
-    getVideogameHandler,
-    getVideogamesHandler,
-    putVideogameHandler,
-    deleteVideogameHandler,
+    createGameHandler,
+    getGameHandler,
+    getGamesHandler,
+    putGameHandler,
+    deleteGameHandler,
 } = require ("../handlers/VideogamesHandlers");
 
-const VGrouter = Router();
+const videogamesRouter = Router();
 
 // Post
-VGrouter.post('/', createVideogameHandler);
+videogamesRouter.post('/', createGameHandler);
 
 // Gets
-VGrouter.get('/', getVideogamesHandler);
-VGrouter.get('/:id', getVideogameHandler);
+videogamesRouter.get('/', getGamesHandler);
+videogamesRouter.get('/:id', getGameHandler);
 
 // Put
-VGrouter.put('/:id', putVideogameHandler);
+videogamesRouter.put('/:id', putGameHandler);
 
 // Delete
-VGrouter.delete('/:id', deleteVideogameHandler);
+videogamesRouter.delete('/delete/:id', deleteGameHandler);
 
-module.exports = VGrouter;
+module.exports = videogamesRouter;

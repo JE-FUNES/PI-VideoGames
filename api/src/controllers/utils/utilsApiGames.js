@@ -1,11 +1,16 @@
-const apiAllCleaner = (apiGames) => {
-    return apiGames.results.map(game => {
+// Información relevante de la api: lo filtro para descartar lo que no necesito
+
+
+// Tomo la lista de todos los games y devuelvo un array de obj con la info que necesito
+
+const apiAllCleaner = (dataApi) => {
+    return dataApi.results.map(game => {
         return {
             id: game.id,
             name: game.name,
             image: game.background_image,
-            parent_platforms: game.parent_platforms.map(platforms => platforms.platform.name),
-            releaseDate: game.released,
+            platforms: game.parent_platforms.map(platforms => platforms.platform.name),
+            released: game.released,
             rating: game.rating,
             genres: game.genres.map(genre => {
                 return {
@@ -17,16 +22,19 @@ const apiAllCleaner = (apiGames) => {
     })
 }
 
-const apiIdCleaner = (apiGames) => {
+
+// info de un game en particular
+
+const apiIdCleaner = (dataApi) => {
     return {
-        id: apiGames.id,
-        name: apiGames.name,
-        image: apiGames.background_image,
-        description: apiGames.description,
-        parent_platforms: apiGames.parent_platforms.map(platforms => platforms.platform.name),
-        releaseDate: apiGames.released,
-        rating: apiGames.rating,
-        genres: apiGames.genres.map(genre => {
+        id: dataApi.id,
+        name: dataApi.name,
+        image: dataApi.background_image,
+        description: dataApi.description,
+        platforms: dataApi.parent_platforms.map(platforms => platforms.platform.name),
+        released: dataApi.released,
+        rating: dataApi.rating,
+        genres: dataApi.genres.map(genre => {
             return {
                 id: genre.id,
                 name: genre.name
@@ -35,8 +43,10 @@ const apiIdCleaner = (apiGames) => {
     }
     }
 
-    const apiGenresCleaner = (apiGames) => {
-        let games = apiGames.results;
+    // info de los genres
+
+    const apiGenresCleaner = (dataApi) => {
+        let games = dataApi.results;
 
         const genres = games.map(game => game.name);
         return genres;

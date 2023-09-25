@@ -2,7 +2,7 @@ const {
     apiGenres, 
     createGenres, 
     getAllGenres, 
-    getGenresById, 
+    getGenreById, 
     getGenresByName, 
     updateGenre, 
     deleteGenre 
@@ -13,6 +13,7 @@ const {
 const apiGenresHandler = async (req, res) => {
     try {
         const Genres = await apiGenres();
+        // trae los géneros de la api
         res.status(201).json(Genres);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -22,8 +23,9 @@ const apiGenresHandler = async (req, res) => {
 const createGenreHandler = async (req, res) => {
     const { name } = req.body;
     try {
-        const Genre = await createGenres({name});
-        res.status(201).json(Genre);
+        const response = await createGenres({name});
+        // recibe el nombre del nuevo género por body
+        res.status(201).json(response);
 
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -35,8 +37,9 @@ const createGenreHandler = async (req, res) => {
 const getGenresHandler = async (req, res) => {
     const { name } = req.query;
     try {
-        const Genres = name ? await getGenresByName(name) : await getAllGenres();
-        res.status(200).json(Genres);
+        const response = name ? await getGenresByName(name) : await getAllGenres();
+        // busca por nombre o trae todos
+        res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
@@ -45,8 +48,9 @@ const getGenresHandler = async (req, res) => {
 const getGenreHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const Genre = await getGenresById(id);
-        res.status(200).json(Genre);
+        const response = await getGenreById(id);
+        // busca por id, que recibe por params
+        res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
@@ -58,8 +62,9 @@ const putGenreHandler = async (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
     try {
-        const Genre = await updateGenre(id, name);
-        res.status(200).json(Genre);
+        const response = await updateGenre(id, name);
+        // actualiza un género existente por id, que recibe por params, cambiando su nombre
+        res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
@@ -70,8 +75,8 @@ const putGenreHandler = async (req, res) => {
 const deleteGenreHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const Genre = await deleteGenre(id);
-        res.status(200).json(Genre);
+        const response = await deleteGenre(id);
+        res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -16,19 +16,19 @@ module.exports = (sequelize) => {
     },
 
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, // Cambiar el tipo de dato a STRING
       allowNull: false,
-      unique: true,
     },
+    
 
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
 
-    parent_plataforms: {
-      type: DataTypes.ARRAY(DataTypes.ENUM('PlayStation', 'Xbox', 'Nintendo', 'Android', 'PC')),  
-      allowNull: false,
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING),  
+      allowNull: true,
     },
 
     image: {
@@ -39,27 +39,18 @@ module.exports = (sequelize) => {
         defaultValue: 'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/26TZ62LNNNHFLM5YYVOXEHM7HQ.jpg',
       },
 
-        releaseDate: {
+        released: {
         type: DataTypes.DATEONLY,
         validate: {
             isDate: true,
         },
-        allowNull: false,
-    },
+        defaultValue: DataTypes.NOW,
+       },
 
-    rating: {
+        rating: {
         type: DataTypes.FLOAT,
-        validate: {
-          max: 5,
-          min: 0,
-        },
-        allowNull: false,
-    },
-
-    created: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-    },
+        
+       },
   },
   {
     timestamps: false,

@@ -1,23 +1,38 @@
 const axios = require('axios');
 const { Genre} = require('../db');
 const { Op } = require("sequelize");
-const { apiGenresCleaner } = require('../controllers/utils/utilsApiGames');
+const { apiGenresCleaner } = require('../controllers/utils/utilsApiGames.js');
 
 // .env
 require('dotenv').config();
 const { YOUR_API_KEY } = process.env;
 
-// Get
+//Get desde la API y los guarda en la base de datos
+
+const apiGenres = async () => {
+    const url = `https://api.rawg.io/api/genres?key=${YOUR_API_KEY}`;
+    return await axios
+        .get(url)
+        .then( dataApi => apiGenresCleaner(dataApi.data))
+        .then ( genres => {
+            genres.forEach( genreName => {
+                createGenres({name: genreName});
+            });
+            return "Temperaments of the API saved in the database";
+        });
+};
+
+// Get desde la base de datos
 
 const getAllGenres = async () => {
     const getGenres = await Genre.findAll();
-    if ( !getGenres.length ) throw new Error('Database is empty');
+    if ( !getGenres.length ) throw Error('Database is empty');
     return getGenres;
 };
 
-const getGenresById = async (id) => {
+const getGenreById = async (id) => {
     const getGenres = await Genre.findByPk(id);
-    if ( !getGenres ) throw new Error(`The id: ${id} does not exist`);
+    if ( !getGenres ) throw Error(`The id: ${id} does not exist`);
     return getGenres;
 }
 
@@ -29,36 +44,23 @@ const getGenresByName = async (name) => {
             }
         }
     });
-    if ( !getGenres.length ) throw new Error(`The name: ${name} does not exist`);
+    if ( !getGenres.length ) throw Error(`The name: ${name} does not exist`);
     return getGenres;
 };
 
-// Post
-
-const apiGenres = async () => {
-    const url = `https://api.rawg.io/api/genres?key=${YOUR_API_KEY}`;
-    return await axios
-        .get(url)
-        .then( apiData => apiGenresCleaner(apiData.data))
-        .then ( genres => {
-            genres.forEach( genreName => {
-                createGenres({name: genreName});
-            });
-            return "Temperaments of the API saved in the database";
-        });
-};
 
 const createGenres = async (name) => {
     const createGenre = await Genre.create(name);
+    // lo crea en la base de datos
     return createGenre;
 };
 
-// Put
+// lo actualiza en la base de datos
 
 const updateGenre = async (id, name) => {
-    const updateG = await Genre.findByPk(id);
-    if ( !updateG ) throw new Error(`The id: ${id} does not exist`);
-    if ( !name ) throw new Error(`The name is required`);
+    const genre = await Genre.findByPk(id);
+    if ( !genre ) throw Error(`The id: ${id} does not exist`);
+    if ( !name ) throw Error(`The name is required`);
     await Genre.update(
         {name}, 
         {where: {id}
@@ -66,20 +68,20 @@ const updateGenre = async (id, name) => {
     return `The genre ${name} has been updated`;
 };
 
-// Delete
+// Delete de la base de datos
 
 const deleteGenre = async (id) => {
-    const deleteG = await Genre.findByPk(id);
-    if ( !deleteG ) throw new Error(`The id: ${id} does not exist`);
-    await deleteG.destroy();
-    return `The genre with id: ${id} has been deleted`;
+    const genreToDelete = await Genre.findByPk(id);
+    if ( !genreToDelete ) throw Error(`The id: ${id} does not exist`);
+    await genreToDelete.destroy();
+    return `${genreToDelete} has been deleted`;
 };
 
 module.exports = {
     apiGenres,
     createGenres,
     getAllGenres,
-    getGenresById,
+    getGenreById,
     getGenresByName,
     updateGenre,
     deleteGenre,

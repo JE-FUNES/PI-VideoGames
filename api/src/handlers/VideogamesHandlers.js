@@ -1,18 +1,18 @@
 const {
-    getAllVideogames,
-    getVideogameById,
-    getVideogameByName,
-    createVideogame,
-    updateVideogame,
-    deleteVideogame
+    getAllGames,
+    getGameById,
+    getGamesByName,
+    createGame,
+    updateGame,
+    deleteGame
 } = require('../controllers/VideogamesController');
 
-// Post
+// manejador de ruta Post para crear un nuevo videojuego
 
-const createVideogameHandler = async (req, res) => {
-    const { name, description, releaseDate, rating, parent_platforms, genres } = req.body;
+const createGameHandler = async (req, res) => {
+    const { name, description, image, released, rating, platforms, genres } = req.body;
     try {
-        const newGame = await createVideogame({ name, description, releaseDate, rating, parent_platforms, genres });
+        const newGame = await createGame(name, description, image, released, rating, platforms, genres );
         res.status(201).json(newGame);
 
     } catch (error) {
@@ -20,58 +20,59 @@ const createVideogameHandler = async (req, res) => {
     }
 };
 
-// Get
+// manejador de ruta Get para traer todos los videojuegos o filtrar por nombre
 
-const getVideogamesHandler = async (req, res) => {
+const getGamesHandler = async (req, res) => {
     const { name } = req.query;
     try {
-        const videogames = name ? await getVideogameByName(name) : await getAllVideogames();
-        res.status(200).json(videogames);
+        const response = name ? await getGamesByName(name) : await getAllGames();
+        res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
 };
 
-const getVideogameHandler = async (req, res) => {
+// manejador de ruta Get para traer un videojuego por id
+const getGameHandler = async (req, res) => {
     const { id } = req.params;
-    const isNum = isNaN(id) ? "db" : "api";
+    const source = isNaN(id) ? "db" : "api";
     try {
-        const videogame = await getVideogameById(id, isNum);
-        res.status(200).json(videogame);
+        const response = await getGameById(id, source);
+        res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: `The id: ${id} does not exist` });
     }
 };
 
-// Put
+// manejador de ruta Put para actualizar un videojuego por id
 
-const putVideogameHandler = async (req, res) => {
+const putGameHandler = async (req, res) => {
     const { id } = req.params;
-    const { name, description, image, releaseDate, rating, parent_platforms, genres } = req.body;
+    const { name, description, image, released, rating, platforms } = req.body;
     try {
-        const videogame = await updateVideogame(id, name, description, image, releaseDate, rating, parent_platforms, genres );
-        res.status(200).json(videogame);
+        const response = await updateGame(id, name, description, image, released, rating, platforms, genres );
+        res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-// Delete
+// maneja la ruta Delete para eliminar un videojuego por id
 
-const deleteVideogameHandler = async (req, res) => {
+const deleteGameHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const videogame = await deleteVideogame(id);
-        res.status(200).json(videogame);
+        const response = await deleteGame(id);
+        res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
 module.exports = {
-    createVideogameHandler,
-    getVideogamesHandler,
-    getVideogameHandler,
-    putVideogameHandler,
-    deleteVideogameHandler,
+    createGameHandler,
+    getGamesHandler,
+    getGameHandler,
+    putGameHandler,
+    deleteGameHandler,
 };
