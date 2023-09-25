@@ -5,33 +5,52 @@ import {
     GET_DETAILS,
     CREATE_GAME,
     DELETE_GAME,
+    UPGRADE_GAME,
 } from './actionTypes';
 
 import axios from 'axios';
 
 
+// MODIFICAR GAME
+export const upgradeGame = (id, name, description, image, released, rating, platforms, genres) => {
+    const url = `/games/${id}`;
+    return async function (dispatch) {
+        try {
+            await axios.put(url, {name, description, image, released, rating, platforms, genres});
+            return dispatch({
+                type: UPGRADE_GAME,
+            });
+        } catch (error) {
+            console.log(error);
+            alert(`The game ${name} could not be updated`)
+        }
+    }
+}
+
+
 // search games
 export const searchGames = (name) => {
-    const url = `/videogames?name=${name}`;
-    return async (dispatch) => {
+    const url = `/games?name=${name}`;
+    return async function (dispatch) {
         try {
             const games = await axios.get(url);
             return dispatch({
                 type: SEARCH_GAMES,
                 payload: games.data
             });
+
         } catch (error) {
             console.log(error);
 
         }
-    };
-};
+    }
+}
 
 // get games
 
 export const getGames = () => {
-    const url = `/videogames`;
-    return async (dispatch) => {
+    const url = "/games";
+    return async function (dispatch) {
         try {
             const games = await axios.get(url);
             return dispatch({
@@ -48,8 +67,8 @@ export const getGames = () => {
 // get genres
 
 export const getGenres = () => {
-    const url = `/genres`;
-    return async (dispatch) => {
+    const url = "/genres";
+    return async function (dispatch) {
         try {
             const genres = await axios.get(url);
             return dispatch({
@@ -66,13 +85,13 @@ export const getGenres = () => {
 // get details
 
 export const getDetails = (id) => {
-    const url = `/videogames/${id}`;
-    return async (dispatch) => {
+    const url = `/games/${id}`;
+    return async function (dispatch) {
         try {
-            const details = await axios.get(url);
+            const detail = await axios.get(url);
             return dispatch({
                 type: GET_DETAILS,
-                payload: details.data
+                payload: detail.data
             });
         } catch (error) {
             console.log(error);
@@ -84,13 +103,12 @@ export const getDetails = (id) => {
 // create game
 
 export const createGame = (game) => {
-    const url = `/videogames`;
-    return async (dispatch) => {
+    const url = "/games";
+    return async function (dispatch) {
         try {
-            const newGame = await axios.post(url, game);
+            await axios.post(url, game);
             return dispatch({
                 type: CREATE_GAME,
-                payload: newGame.data
             });
         } catch (error) {
             console.log(error);
@@ -103,8 +121,8 @@ export const createGame = (game) => {
 // delete game
 
 export const deleteGame = (id) => {
-    const url = `/videogames/delete/${id}`;
-    return async (dispatch) => {
+    const url = `/games/delete/${id}`;
+    return async function (dispatch) {
         try {
             await axios.delete(url);
             return dispatch({
