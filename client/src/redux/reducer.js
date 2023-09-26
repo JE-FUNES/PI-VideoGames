@@ -6,7 +6,7 @@ import {
     GET_GENRES,
     GET_DETAILS,
     UPGRADE_GAME,
-} from "./actions";
+} from "./actionTypes";
 
 const initialState = {
     // create Game

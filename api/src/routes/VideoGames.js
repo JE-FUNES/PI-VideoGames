@@ -6,6 +6,7 @@ const {
     getGamesHandler,
     putGameHandler,
     deleteGameHandler,
+    getAllGamesHandler
 } = require ("../handlers/VideogamesHandlers");
 
 const videogamesRouter = Router();
@@ -15,8 +16,8 @@ videogamesRouter.post('/', createGameHandler);
 
 // Gets
 videogamesRouter.get('/', getGamesHandler);
+videogamesRouter.get('/all', getAllGamesHandler);
 videogamesRouter.get('/:id', getGameHandler);
-
 // Put
 videogamesRouter.put('/:id', putGameHandler);
 

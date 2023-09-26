@@ -69,10 +69,25 @@ const deleteGameHandler = async (req, res) => {
     }
 };
 
+// maneja la ruta para trer todos los videojuegos
+// getAllGames
+// `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`
+
+const getAllGamesHandler = async (req, res) => {
+    try {
+        const response = await getAllGames();
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+};
+
+
 module.exports = {
     createGameHandler,
     getGamesHandler,
     getGameHandler,
     putGameHandler,
     deleteGameHandler,
+    getAllGamesHandler
 };

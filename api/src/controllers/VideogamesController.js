@@ -28,7 +28,7 @@ const createGame = async ( name, description, image, released, rating, platforms
 };
 
 // Get
-
+/*
 const getAllGames = async () => {
     // vars
     let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`;
@@ -67,6 +67,54 @@ const getAllGames = async () => {
     // combinamos los juegos de la api y los de la base de datos
     return [...bdGames, ...apiGames];
 }
+*/
+
+// traer todos los juegos de la api y la base de datos, máximo 15 juegos
+
+const getAllGames = async () => {
+    // vars
+    let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`;
+    let apiGames = []; // almacenará los juegos de la API
+
+    // obtiene los juegos de la base de datos
+    const bdGames = await Videogame.findAll({
+        include: {
+            model: Genre,
+            as: 'genres',
+            attributes: ['id', 'name'],
+            through: {
+                attributes: [],
+            },
+            order: [
+                ['ASC']
+            ],
+        },
+    });
+
+    // obtiene los juegos de la API páginas 1 a 5
+    let nextPage = api; // Inicializa nextPage con la URL de la primera página
+    for (let i = 1; i <= 5; i++) {
+        let response = await axios.get(nextPage);
+        let dataApi = response.data;
+        if (dataApi.results && dataApi.results.length > 0) {
+            const apiG = apiAllCleaner(dataApi);
+            // concatena los juegos de la API
+            apiGames = apiGames.concat(apiG);
+            // actualiza nextPage con la URL de la siguiente página
+            nextPage = dataApi.next;
+        } else {
+            // Si no hay resultados en esta página, termina el bucle
+            break;
+        }
+    }
+
+    // combina los juegos de la API y los de la base de datos
+    return [...bdGames, ...apiGames];
+}
+
+
+
+
 
 
 // Get by id

@@ -6,14 +6,14 @@ import {
     CREATE_GAME,
     DELETE_GAME,
     UPGRADE_GAME,
-} from './actionTypes';
+} from './actionTypes.js';
 
 import axios from 'axios';
 
 
 // MODIFICAR GAME
 export const upgradeGame = (id, name, description, image, released, rating, platforms, genres) => {
-    const url = `/games/${id}`;
+    const url = `http://localhost:3001/games/${id}`;
     return async function (dispatch) {
         try {
             await axios.put(url, {name, description, image, released, rating, platforms, genres});
@@ -30,7 +30,7 @@ export const upgradeGame = (id, name, description, image, released, rating, plat
 
 // search games
 export const searchGames = (name) => {
-    const url = `/games?name=${name}`;
+    const url = `http://localhost:3001/games?name=${name}`;
     return async function (dispatch) {
         try {
             const games = await axios.get(url);
@@ -49,7 +49,7 @@ export const searchGames = (name) => {
 // get games
 
 export const getGames = () => {
-    const url = "/games";
+    const url = "http://localhost:3001/games";
     return async function (dispatch) {
         try {
             const games = await axios.get(url);
@@ -67,7 +67,7 @@ export const getGames = () => {
 // get genres
 
 export const getGenres = () => {
-    const url = "/genres";
+    const url = "http://localhost:3001/genres";
     return async function (dispatch) {
         try {
             const genres = await axios.get(url);
@@ -85,7 +85,7 @@ export const getGenres = () => {
 // get details
 
 export const getDetails = (id) => {
-    const url = `/games/${id}`;
+    const url = `http://localhost:3001/games/${id}`;
     return async function (dispatch) {
         try {
             const detail = await axios.get(url);
@@ -103,7 +103,7 @@ export const getDetails = (id) => {
 // create game
 
 export const createGame = (game) => {
-    const url = "/games";
+    const url = "http://localhost:3001/games";
     return async function (dispatch) {
         try {
             await axios.post(url, game);
@@ -121,7 +121,7 @@ export const createGame = (game) => {
 // delete game
 
 export const deleteGame = (id) => {
-    const url = `/games/delete/${id}`;
+    const url = `http://localhost:3001/games/delete/${id}`;
     return async function (dispatch) {
         try {
             await axios.delete(url);
