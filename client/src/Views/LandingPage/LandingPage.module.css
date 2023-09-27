@@ -1,140 +1,61 @@
-.landingPageBloquePpal {
-    display: grid;
-    position: absolute;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    padding-top: 40px;
-    margin: 50px 50px 10px 10px;
-    border-radius: 15px;
-    box-shadow: blue 0px 0px 0px 2px inset, 
-        rgb(21 21 21) 10px -10px 0px -3px, 
-        rgb(31, 193, 27) 10px -10px, 
-        rgb(21 21 21) 20px -20px 0px -3px, 
-        rgb(255, 217, 19) 20px -20px, 
-        rgb(21 21 21) 30px -30px 0px -3px, 
-        rgb(255, 156, 85) 30px -30px, 
-        rgb(21 21 21) 40px -40px 0px -3px, 
-        rgb(255, 85, 85) 40px -40px
-    ;
-    background-image: linear-gradient( 
-            rgba(15, 15, 15, 0), 
-            rgb(21, 21, 21)
-        ),
-        linear-gradient(
-            rgba(21, 21, 21, 0.8), 
-            rgba(21, 21, 21, 0.5)
-        ),
-        url("https://i.pinimg.com/originals/d0/e0/e2/d0e0e259bf0aba4da742bedff1d4b8a5.gif")
-    ;
-    background-position: center;
+.generalContainer{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height:47em;
+    margin: -1em 0 0 0 ;
+    display: inline-block;
+    padding: 0;
+
+    background-image: url('../../Images/gifs animados/pacman.gif');
     background-repeat: no-repeat;
     background-size: cover;
-    background-blend-mode: multiply;
+    background-position: top;
 }
 
-.info {
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+
+.formContainer{
+   display: flex;
+   width: 100vw;
+   height: 100vh;
+   justify-content: center;
+   align-items: center;
+   margin: -350px 0 0 -94px;
 }
 
-.logo {
-display: flex;
-align-items: center;
-justify-content: center;
-}
+/*
+.landingContainer {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 800px;
+        height: 50%;
+        margin: 10px;
+        display: inline-block;
+        padding: 10px;
+        border-radius: 200px 50px;
+        box-shadow: 0 0 10px #17e305, 0 0 20px #6ce142, 0 0 15px #07f31a, 0 0 5px #1ef906;
 
-.logoImg {
-    width: 150px;
-    margin: 0;
-    transition: all 2s;
-}
+        background-image: url('../../Images/gifs animados/city.gif');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
 
-.logoTitle {
-    font-family: 'Rampart One', cursive;
-    font-size: 72px;
-    background: -webkit-linear-gradient(#30E3DF, #FCE22A);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-}
+       background-color: rgba(95, 13, 103, 0.5);
+        overflow: visible;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        background-size: 400px 800px;
 
-.decription {
-    display: flex;
-    flex-direction: column;
-    font-size: 30px;
-    padding: 5px;
-}
+    }*/
 
-.description1 {
-    margin-bottom: 40px;
-}
-
-.infoList {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.infoList2 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-evenly;
-    padding-top: 10px;
-    padding-left: 0 ;
-}
-
-.infoCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    width: 25%;
-    height: 175px;
-    padding-bottom: 10px;
-    border-radius: 25px;
-    background-color: #69c2f229;
-    transition: all 1s;
-}
-
-.icons {
-    width: 128px;
-}
-
-.img_btn{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.imgLanding{
-    width: 90%;
-    border-radius: 5%;
-    box-shadow: rgba(46, 240, 224, 0.4) 5px 5px, 
-        rgba(46, 240, 224, 0.3) 10px 10px, 
-        rgba(46, 240, 224, 0.2) 15px 15px, 
-        rgba(46, 240, 224, 0.1) 20px 20px, 
-        rgba(46, 240, 224, 0.05) 25px 25px
-    ;
-    transition: all 1s;
-}
-
-.btnLanding{
-    font-family: 'Tilt Neon', cursive;
-    font-size: 30px;
-    padding: 10px 0;
-    margin-top: 50px;
-    width: 500px;
-    appearance: none;
-    background-color: #01a71d;
-    color: #ffffff;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 25px rgba(140, 255, 0, 0.5);
-    transition: all 1s;
-}
+    .footer {
+        text-align: center;
+        font-size: 0.6rem;
+        color: #f49c28;
+        z-index: 1000;
+        margin: 28em 0 0 0.5em ;
+        
+    }
 

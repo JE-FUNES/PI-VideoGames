@@ -17,15 +17,15 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== '/' && <NavBar />}
-      <Routes>
-      <Route path="/" component={<LandingPage />} />
-      <Route path="/home" component={<Home />} />
-      <Route path="/games/:name" component={< SearchBar />} />
-      <Route path="/detail/:id" component={< Detail />} />
-      <Route path="/creategame" component={ <CreateGame />} />
-      <Route path="/updategame/:id" component={<UpdateGame />} />
+      {location.pathname !== '/' && <NavBar  />}
       {location.pathname !== '/' && <Footer />}
+      <Routes>
+      <Route path='/' element={<LandingPage />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/games/:name' element={< SearchBar />} />
+      <Route path='/detail/:id' element={< Detail />} />
+      <Route path='/creategame' element={ <CreateGame />} />
+      <Route path='/updategame/:id' element={<UpdateGame />} />
       </Routes>
     </div>
   );

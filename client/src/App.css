@@ -1,4 +1,22 @@
 #App {
   text-align: center;
+  overflow: hidden;
   color: #ffffff;  
+}
+
+.root {
+  z-index: 0;
+}
+
+html {
+  height: 100%;
+}	
+
+body {
+  background-color: #000000;
+}
+
+h1 {
+  color: aliceblue;
+  font-size: 50px;
 }

@@ -1,0 +1,56 @@
+.contenedorInput {
+    margin: 30em 0 0 -1em ;
+}
+
+.contenedorInput input {
+    width: 24em;
+    padding: 0 0 0 1em;
+    height: 1.5em;
+    border-radius: 1em 1em;
+    font-size: 1.1em;
+    color:yellow;
+    font-weight: 100;
+    margin: 2.85em 0 0 9em;
+    border-color: blue;
+    background-color: black;
+    
+}
+
+.contenedorInput ::placeholder {
+    color: yellow;
+    text-align: center;
+    font-size: 1em;
+}
+
+.error {
+    font-size: smaller;
+    color: yellow;
+    margin: 0 0 0 25em;
+}
+
+
+.boton {
+    width: 9em;
+    height: 10em;
+    z-index: 1000;
+    background-image: url('../../Images/pacman_letsGo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    margin: 1.5em 0 0 25em;
+    border: none;
+
+}
+
+.boton:hover {
+    width: 9em;
+    height: 10em;
+    z-index: 1000;
+    background-image: url('../../Images/pacman_letsGo_onMO.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    margin: 1.5em 0 0 25em;
+    border: none;
+    cursor: pointer;
+}
