@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState,  useEffect } from "react";
-import styles from "./Detail.module.css";                  
+import styles from "./Detail.module.css";
+
+
 const Detail = () => {
-    
 
     const {id} = useParams();
     const [game, setGame] = useState({});
     useEffect(() => {
-        axios(`http://localhost:3001/games/${id}`)
+        axios(`https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`)
         .then(({ data }) => {
            if (data.name) {
               setGame(data);

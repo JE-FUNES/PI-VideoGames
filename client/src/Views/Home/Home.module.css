@@ -480,7 +480,7 @@
   }
 
 .Bienvenida {
-    margin: -2em 0 1.5em 30em;
+    margin: -2em 0 1.5em 40em;
     padding: 0.5em;
     z-index: 100;
     background-image: black ;
@@ -497,5 +497,6 @@
 
 .Bienvenida p {
     color: white;
-    margin: -0.25em 0 0 -4.5em;
+    margin: -0.25em 0 0 -8em;
+    font-weight: lighter;
 }

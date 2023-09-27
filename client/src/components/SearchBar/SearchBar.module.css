@@ -1,0 +1,46 @@
+.SearchBar {
+    align-items: baseline;
+    display: inline-block;
+    margin: 5px;
+}
+
+.SearchBar input {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 50;
+    cursor: text;
+    z-index: 200;
+    width: 20em;
+    height: 2em;
+    padding: 0 0 0 20px; /* es espacio dentro de la caja*/
+}
+
+.buttonS {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 200;
+    height: 2em;
+    background-color: white;
+    margin: 10px 0 0 -15.5px;
+    border-radius: 0 80px 20px 0; 
+    
+}
+   
+
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    align-items: center;
+}
+li {
+    display: flex;
+    justify-content: space-around;
+    display: inline-block;
+}

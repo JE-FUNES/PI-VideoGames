@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./Home.module.css";
+import Cards from '../../components/Cards/Cards';
 
 const Home = () => {
   const [userName, setUserName] = useState('');
+
+  //paginado
+    //  Estados
+    const [ currentPage, setCurrentPage ] = useState( 1 );
+    const [ gamesPerPage ] = useState( 15 );
+    
+    // Index del ultimo juego que se ve en la pagina → pag1 => 15 || pag2 => 30
+    const indexOfLastGame = currentPage * gamesPerPage;
+    
+    // Index del primer juego que se ve en la pagina → pag1 => 0 || pag2 => 15
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+
+  
 
   useEffect(() => {
     // Obtener el nombre del localStorage o de un estado global si es necesario
@@ -15,7 +29,7 @@ const Home = () => {
   return (
     <div className={styles.general}>
         <div className={styles.Bienvenida}>
-      <h2>Welcome {userName} ! I was waiting for you 🧡. 
+      <h2>Welcome {userName} !  
       <p>Search for your favorite video game, or create your own!</p>
       </h2>
       </div>

@@ -1,0 +1,71 @@
+.contenedor {
+    position: fixed;
+    z-index: 100;
+    margin: 8em 0 0 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    display: inline-block;
+    height: 5em;
+    padding: 0.5em 0 0 5em;
+    background-color: black;
+}
+
+.divStyles {
+    position: static;
+    display: inline-block;
+    z-index: 102;
+    padding: 1em 0 1em 4em ;
+    width: 100%;
+    justify-content: space-around; /*alineado horizontal de los hijos*/
+    align-items: center; /*centrado vertical*/
+    box-shadow: 0 5px 5px 0 rgb(107, 16, 117);
+    margin: 20em 0 0 30em;
+    opacity: 0;
+    transition: opacity 3s;
+}
+
+.divStyles.visible {
+    opacity: 1;
+    margin: 20em 0 0 30em;
+} 
+
+
+
+.boton {
+    width: 10em;
+    height: 4em;
+    font-size: 1rem;   
+    font-weight: 600;
+    box-shadow: 0 5px 5px 0 rgb(107, 16, 117);
+    margin: 0 5px 0 0;
+    
+    
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 2.5em 0 0;
+        display: inline-block;
+    }
+    li {
+        display: flex;
+        justify-content: space-around;
+        display: inline-block;
+        margin: 0 1em 0 0;
+    }
+
+    .redes {
+        display: inline-block;
+        justify-content: space-around;
+        padding: 0 ;
+        margin: 0 0 0 0.5em;
+        border-radius: 50%;
+        width: 4em;
+        height: 4em;
+    }
+
+    .searchBar {
+    margin: 0 2.5em 0 3.5em;
+}
