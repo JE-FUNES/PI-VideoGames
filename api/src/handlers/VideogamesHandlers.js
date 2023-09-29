@@ -24,6 +24,7 @@ const createGameHandler = async (req, res) => {
 
 const getGamesHandler = async (req, res) => {
     const { name } = req.query;
+    console.log(name);
     try {
         const response = name ? await getGamesByName(name) : await getAllGames();
         res.status(200).json(response);

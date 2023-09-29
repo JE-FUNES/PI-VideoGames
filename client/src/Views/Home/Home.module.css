@@ -6,6 +6,44 @@
     position: relative;
     overflow: hidden;
   }
+
+  .CardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100; 
+    background-color: rgb(205, 225, 204);
+    opacity: 0.95;
+    margin-top: 4em;
+  }
+
+  .Bienvenida {
+    margin: -2em 0 1.5em 40em;
+    padding: 0.7em 0 0.5em 0;
+    z-index: 100;
+    background-image: black ;
+    align-items: center;
+    justify-content: center;
+}
+
+.Bienvenida h2 {
+    font-size: 1.5em;
+    color: rgb(187, 255, 0);
+    z-index: 1000;
+    background-color: black;
+}
+
+.Bienvenida p {
+    color: white;
+    margin: -0.25em 0 0 -8em;
+    font-weight: lighter;
+}
   
   .overlay {
     width: 100vw;
@@ -479,24 +517,3 @@
     transform: translate(-50%, -125%);
   }
 
-.Bienvenida {
-    margin: -2em 0 1.5em 40em;
-    padding: 0.5em;
-    z-index: 100;
-    background-image: black ;
-    align-items: center;
-    justify-content: center;
-}
-
-.Bienvenida h2 {
-    font-size: 2em;
-    color: rgb(187, 255, 0);
-    z-index: 1000;
-    background-color: black;
-}
-
-.Bienvenida p {
-    color: white;
-    margin: -0.25em 0 0 -8em;
-    font-weight: lighter;
-}

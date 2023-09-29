@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./Home.module.css";
 import Cards from '../../components/Cards/Cards';
+import { useSelector } from 'react-redux';
 
-const Home = () => {
+const Home = (searchValue) => {
   const [userName, setUserName] = useState('');
-
-  //paginado
-    //  Estados
-    const [ currentPage, setCurrentPage ] = useState( 1 );
-    const [ gamesPerPage ] = useState( 15 );
-    
-    // Index del ultimo juego que se ve en la pagina → pag1 => 15 || pag2 => 30
-    const indexOfLastGame = currentPage * gamesPerPage;
-    
-    // Index del primer juego que se ve en la pagina → pag1 => 0 || pag2 => 15
-    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-
+  const games = useSelector((state) => state.games);
+// los filtro para eliminar esos juegos "basura" que me estan apareciendo
+  const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
   
-
+// obtiene el nombre para el saludo personalizado
   useEffect(() => {
     // Obtener el nombre del localStorage o de un estado global si es necesario
     const storedName = localStorage.getItem('userName');
@@ -26,6 +18,9 @@ const Home = () => {
     }
   }, []);
 
+
+  const areGamesAvailable = games.length > 0;
+
   return (
     <div className={styles.general}>
         <div className={styles.Bienvenida}>
@@ -33,839 +28,844 @@ const Home = () => {
       <p>Search for your favorite video game, or create your own!</p>
       </h2>
       </div>
+      {areGamesAvailable && (
+      <div className={styles.CardsContainer}>
+        <Cards games={filteredGames} searchValue={searchValue} />
+      </div>
+      )}
     <div className={styles.overlay}>
     <div className={styles.container}>
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg>  
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg>  
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg>  
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg>  
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg>  
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
@@ -873,120 +873,120 @@ const Home = () => {
 
     
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
 
       <svg className={styles.shape} viewBox="0 0 100 115" preserveAspectRatio='xMidYMin slice' >
-        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(320,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="0s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(240,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="1s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(160,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="2s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
-        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' stroke-width="5" >
+        <polygon points="" fill='none' stroke='hsl(80,100%,70%)' strokeWidth="5" >
           <animate attributeName="points" dur="4s" repeatCount="indefinite" begin="3s" from="50 57.5, 50 57.5, 50 57,5" to="50 -75, 175 126, -75 126" >
           </animate>
         </polygon>
       </svg> 
-      </div>
-    </div>
+      </div> 
+  </div> 
     </div>
   );
 };

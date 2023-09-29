@@ -27,49 +27,7 @@ const createGame = async ( name, description, image, released, rating, platforms
     return newGame;
 };
 
-// Get
-/*
-const getAllGames = async () => {
-    // vars
-    let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`;
-    let apiGames = []; // almacenara los juegos de la api
 
-    // obtiene los juegos de la base de datos
-    const bdGames = await Videogame.findAll({
-        include: {
-            model: Genre,
-            as: 'genres',
-            attributes: ['id', 'name'],
-            through: { // atravez de la tabla intermedia
-                attributes: [],
-            },
-            order: [
-                ['ASC']
-            ],
-        },
-    });
-
-    // obtiene los juegos de la api paginas 1 a 5
-    for (let i = 1; i <= 5; i++) {
-        let dataApi = await axios.get(api).data;
-
-        // filtra y limpia los datos de la api
-
-        const apiG = apiAllCleaner(dataApi);
-
-        // concatena los juegos de la api
-        apiGames = apiGames.concat(apiG);
-
-        // ccambia la url para la siguiente pagina
-        api = dataApi.next;
-    }
-
-    // combinamos los juegos de la api y los de la base de datos
-    return [...bdGames, ...apiGames];
-}
-*/
-
-// traer todos los juegos de la api y la base de datos, máximo 15 juegos
 
 const getAllGames = async () => {
     // vars
@@ -119,14 +77,26 @@ const getAllGames = async () => {
 
 // Get by id
 const getGameById = async (id, source) => {
-    // url
+
     const url = `https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`;
 
     if (source === "api") {
         // otiene el game de la api
         const dataApi = (await axios.get(url)).data;
-        const apiGames = apiIdCleaner(dataApi);
-        return apiGames;
+        const filteredData = {
+            id: dataApi.id,
+            name: dataApi.name,
+            original_name: dataApi.name_original,
+            description: dataApi.description_raw,
+            released: dataApi.released,
+            updated: dataApi.updated,
+            rating: dataApi.rating,
+            image: dataApi.background_image,
+            platforms: dataApi.platforms.map((p) => p.platform.name),
+            genres: dataApi.genres.map((g) => g.name),
+            stores: dataApi.stores.map((s) => s.store.name),
+        };
+        return filteredData;
     } else {
         // lo obtiene de la base de datos
         const response = await Videogame.findByPk(id, {
@@ -143,15 +113,24 @@ const getGameById = async (id, source) => {
             },
         });
         if (!response)  
-            throw Error(`not exist`);
-            return response;
+            throw Error(`The id: ${id} does not exist`);
+            const filteredData = {
+                id: response.id,
+                name: response.name,
+                // Agrega aquí las propiedades adicionales que deseas obtener de la base de datos
+            };
+    
+            return filteredData;
+        }
     };
-};
 
     // Get by name
 const getGamesByName = async (name) => {
+    if (!name) {
+        throw Error("Name is required");
+    }
     // url para buscar por nombre
-    const url = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&search=${name}`;
+    const url = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&search=${name}&limit=15`;
    
     // busca en la base de datos
     const bdGame = await Videogame.findAll({
@@ -171,12 +150,18 @@ const getGamesByName = async (name) => {
                 ['ASC']
             ],
         },
-        limnit: 15, // limita a 15 juegos que coincidan con el nombre
     });
 
-    // obtiene los juegos de la api
-    const dataApi = (await axios.get(url)).data;
-    const apiGames = apiAllCleaner(dataApi);
+    // obtiene los juegos de la api solo si se proporciona un name
+    let apiGames = [];
+    if (name) {
+        const dataApi = (await axios.get(url)).data;
+        apiGames = apiAllCleaner(dataApi);
+
+        // limita la respuesta a 15 juegos
+        apiGames = apiGames.slice(0, 15);
+    }
+
 
     // combina los juegos de la api y los de la base de datos
    const response = [...bdGame, ...apiGames];

@@ -11,6 +11,8 @@ import {
 import axios from 'axios';
 
 
+
+
 // MODIFICAR GAME
 export const upgradeGame = (id, name, description, image, released, rating, platforms, genres) => {
     const url = `http://localhost:3001/games/${id}`;
@@ -30,13 +32,15 @@ export const upgradeGame = (id, name, description, image, released, rating, plat
 
 // search games
 export const searchGames = (name) => {
-    const url = `http://localhost:3001/games?name=${name}`;
+    const url = `http://localhost:3001/games?name=${name}&limit=15`;
     return async function (dispatch) {
         try {
-            const games = await axios.get(url);
-            return dispatch({
+            const response = await axios.get(url);
+            const games = response.data; // Extrae data de la respuesta
+            console.log("Respuesta de API en action:", games);
+            dispatch({
                 type: SEARCH_GAMES,
-                payload: games.data
+                payload: games
             });
 
         } catch (error) {

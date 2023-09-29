@@ -1,71 +1,174 @@
 .contenedor {
     position: fixed;
     z-index: 100;
-    margin: 8em 0 0 0;
+    margin: 5.9em 0 0 0;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     align-items: center;
-    justify-content: space-around;
-    display: inline-block;
-    height: 5em;
-    padding: 0.5em 0 0 5em;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    height: 4em;
+    padding: 1em 0 0.6em 5em;
     background-color: black;
 }
+
 
 .divStyles {
     position: static;
     display: inline-block;
-    z-index: 102;
-    padding: 1em 0 1em 4em ;
-    width: 100%;
-    justify-content: space-around; /*alineado horizontal de los hijos*/
-    align-items: center; /*centrado vertical*/
     box-shadow: 0 5px 5px 0 rgb(107, 16, 117);
-    margin: 20em 0 0 30em;
+    z-index: 102;
     opacity: 0;
-    transition: opacity 3s;
+    transition: opacity 2s;
+    margin-left: 5em;
+
+     /*alineado horizontal de los hijos*/ /*centrado vertical*/
+    
 }
 
 .divStyles.visible {
     opacity: 1;
-    margin: 20em 0 0 30em;
+    
 } 
 
-
-
 .boton {
-    width: 10em;
-    height: 4em;
-    font-size: 1rem;   
+    width: 7em;
+    height: 3em;
+    font-size: 0.9rem;   
     font-weight: 600;
     box-shadow: 0 5px 5px 0 rgb(107, 16, 117);
     margin: 0 5px 0 0;
-    
-    
     }
+
+    .boton:hover {
+        background-image: linear-gradient(315deg, #c966aa 0%, #0dd366 74%);
+    }
+
 
     ul {
         list-style: none;
         padding: 0;
         margin: 0 2.5em 0 0;
-        display: inline-block;
-    }
-    li {
         display: flex;
-        justify-content: space-around;
-        display: inline-block;
+    }
+
+
+
+    li {
         margin: 0 1em 0 0;
     }
 
-    .redes {
-        display: inline-block;
-        justify-content: space-around;
-        padding: 0 ;
-        margin: 0 0 0 0.5em;
-        border-radius: 50%;
-        width: 4em;
-        height: 4em;
-    }
+.redes,
+.whapp,
+.linkedin,
+.github,
+.instagram,
+.face,
+.home,
+.contact {
+ display: flex;
+  border-radius: 50%;
+  align-items: center; /* Alineación vertical para el contenido dentro de los botones */
+  justify-content: center; /* Alineación horizontal para el contenido dentro de los botones */
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 0 10px rgba(146, 77, 146, 0.2);
+}
+
+.whapp:hover {
+    filter: brightness(0.5);
+}
+
+.linkedin:hover {
+    filter: brightness(0.5);
+}
+
+.github:hover {
+    filter: brightness(0.5);
+}
+
+.instagram:hover {
+    filter: brightness(0.5);
+}
+
+.face:hover {
+    filter: brightness(0.5);
+}
+
+.face {
+    background-image: url("../../Images/icons/face.png");
+    background-size: cover;
+    background-color: white;
+    width: 2em;
+    height: 2em;
+}
+
+.home {
+    background-image: url("../../Images/botones/home.png");
+    background-size: cover;
+    background-color: white;
+    width: 4em;
+    height: 4em;
+}
+
+.home:hover {
+    background-image: url("../../Images/botones/home2.png");
+    background-size: cover;
+    background-color: white;
+    width: 4em;
+    height: 4em;
+}
+.contact {
+    background-image: url("../../Images/botones/email.png");
+    background-size: cover;
+    background-color: white;
+    width: 4em;
+    height: 4em;
+}
+
+.contact:hover {
+    background-image: url("../../Images/botones/email2.png");
+    background-size: cover;
+    background-color: white;
+    width: 4em;
+    height: 4em;
+}
+
+.whapp {
+    background-image: url("../../Images/icons/whapp.png");
+    background-size: cover;
+    background-color: green;
+    width: 2em;
+    height: 2em;
+}
+
+.github {
+    width: 2em;
+    height: 2em;
+    background-image: url("../../Images/icons/github.png");
+    background-size: cover;
+    background-color: white;
+}
+
+.instagram {
+    width: 2em;
+    height: 2em;
+    background-image: url("../../Images/icons/insta.png");
+    background-size: cover;
+    background-color: white;
+}
+
+.linkedin {
+    width: 2em;
+    height: 2em;
+    background-image: url("../../Images/icons/linkedin.png");
+    background-size: cover;
+    background-color: white;
+}
 
     .searchBar {
-    margin: 0 2.5em 0 3.5em;
+    margin: 0 2.5em 0 5.5em;
 }

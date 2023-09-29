@@ -12,11 +12,12 @@ const initialState = {
     // create Game
     games: [],
     detailGame: [],
-    searchGame: [],
+    //searchGames: [],
 };
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
+
         case CREATE_GAME:
             return {
                 ...state,
@@ -33,9 +34,10 @@ export default function rootReducer(state = initialState, action) {
                 games: action.payload
             };
         case SEARCH_GAMES:
+            
             return {
                 ...state,
-                searchGame: action.payload
+                games: action.payload
             };
         case GET_GENRES:
             return {
