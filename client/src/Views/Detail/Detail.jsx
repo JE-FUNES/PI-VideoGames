@@ -1,25 +1,3 @@
-// crear el componente detail.
-
-// 1. Crear el componente Detail.jsx en la carpeta Views/Detail
-// 2. Importar el componente Detail en App.jsx
-// 3. Crear la ruta /detail/:id en App.jsx
-// 4. Crear el action getDetails en Redux
-// 5. Crear el reducer detailsReducer en Redux
-// 6. Crear el componente Detail.jsx en la carpeta Views/Detail
-// 7. Importar el componente Detail en App.jsx
-
-// En componente tendrá que mostrar:
-// - Imagen del juego
-// - Nombre del juego name: y name_original
-// - Descripción del juego description:
-// - Fecha de lanzamiento released:
-// updated:
-// - Rating
-// - Plataformas (parent_platforms) es un array de objetos
-// - Géneros genres: es un array de objetos
-// stores: es un array de objetos
-
-
 
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -78,6 +56,7 @@ const Detail = () => {
                 <p>Released: {released}</p>
                 <p>Updated: {updated}</p>
                 <p>Rating: {rating}</p>
+                
                 <div className={styles.platforms}>
                     <h3>Platforms:</h3>
                     <img src={playstation} alt="playstation" className={styles.LogoPlatform} />
