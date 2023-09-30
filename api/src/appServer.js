@@ -3,8 +3,20 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
-
+const {apiGenres} = require('./controllers/GenresControllers.js');
 require('./db.js');
+
+// Llama a apiGenres al iniciar la aplicación o en el lugar adecuado
+apiGenres()
+  .then((result) => {
+    console.log(result); // Puedes imprimir un mensaje de éxito si lo deseas
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
 
 const server = express();
 

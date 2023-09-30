@@ -1,7 +1,7 @@
 .contenedor {
     position: fixed;
     z-index: 100;
-    margin: 5.9em 0 0 0;
+    margin: 5.5em 0 0 0;
     top: 0;
     left: 0;
     right: 0;
@@ -11,7 +11,7 @@
     align-items: center;
     display: flex;
     height: 4em;
-    padding: 1em 0 0.6em 5em;
+    padding: 0.4em 0 0.6em 5em;
     background-color: black;
 }
 
@@ -34,6 +34,59 @@
     
 } 
 
+.mensaje,
+.mensaje1,
+.mensajeW,
+.mensajeL,
+.mensajeI,
+.mensajeG,
+.mensajeF {
+    font-size: 1em;
+    font-weight: 600;
+    color: rgb(203, 239, 233);
+    
+    padding: 0.3em;
+    position: absolute;
+   
+    align-items: center;
+    z-index: 2000;
+}
+
+.mensaje {
+    margin-top: -6em;
+    margin-left: 0.1em; 
+}
+
+.mensaje1 {
+    margin-top: -6em;
+    margin-left: 0;
+}
+
+.mensajeW {
+    margin-top: -5em;
+    margin-left: -2em; 
+}
+
+.mensajeL {
+    margin-top: -5em;
+    margin-left: -1em; 
+}
+
+.mensajeG {
+    margin-top: -5em;
+    margin-left: -1em; 
+}
+
+.mensajeI {
+    margin-top: -5em;
+    margin-left: -1.5em; 
+}
+
+.mensajeF {
+    margin-top: -5em;
+    margin-left: -1.5em; 
+}
+
 .boton {
     width: 7em;
     height: 3em;
@@ -44,7 +97,7 @@
     }
 
     .boton:hover {
-        background-image: linear-gradient(315deg, #c966aa 0%, #0dd366 74%);
+    background-image: linear-gradient(315deg, #c966aa 0%, #0dd366 74%);
     }
 
 
@@ -80,22 +133,27 @@
 
 .whapp:hover {
     filter: brightness(0.5);
+    transform: scale(1.2);
 }
 
 .linkedin:hover {
     filter: brightness(0.5);
+    transform: scale(1.2);
 }
 
 .github:hover {
     filter: brightness(0.5);
+    transform: scale(1.2);
 }
 
 .instagram:hover {
     filter: brightness(0.5);
+    transform: scale(1.2);
 }
 
 .face:hover {
     filter: brightness(0.5);
+    transform: scale(1.2);
 }
 
 .face {
@@ -112,14 +170,14 @@
     background-color: white;
     width: 4em;
     height: 4em;
+    
 }
 
 .home:hover {
     background-image: url("../../Images/botones/home2.png");
     background-size: cover;
     background-color: white;
-    width: 4em;
-    height: 4em;
+    transform: scale(1.1);
 }
 .contact {
     background-image: url("../../Images/botones/email.png");
@@ -133,8 +191,7 @@
     background-image: url("../../Images/botones/email2.png");
     background-size: cover;
     background-color: white;
-    width: 4em;
-    height: 4em;
+    transform: scale(1.1);
 }
 
 .whapp {

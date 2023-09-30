@@ -106,17 +106,19 @@ export const getDetails = (id) => {
 
 // create game
 
-export const createGame = (game) => {
+export const createGame = (input) => {
     const url = "http://localhost:3001/games";
     return async function (dispatch) {
         try {
-            await axios.post(url, game);
-            return dispatch({
+            const response = await axios.post(url, input);
+            dispatch({
                 type: CREATE_GAME,
+                payload: response.data,
             });
+
+            return response.data;
         } catch (error) {
-            console.log(error);
-            alert(`The game ${game.name} already exists`)
+            console.log(error, "The game could not be created");
 
         }
     };
@@ -139,3 +141,4 @@ export const deleteGame = (id) => {
         }
     }
 }
+

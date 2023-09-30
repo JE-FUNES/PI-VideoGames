@@ -20,7 +20,7 @@
     z-index: 100; 
     background-color: rgb(205, 225, 204);
     opacity: 0.95;
-    margin-top: 4em;
+    margin-top: 4.5em;
   }
 
   .Bienvenida {
@@ -33,7 +33,7 @@
 }
 
 .Bienvenida h2 {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: rgb(187, 255, 0);
     z-index: 1000;
     background-color: black;
