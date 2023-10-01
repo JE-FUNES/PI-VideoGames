@@ -12,7 +12,38 @@ const {YOUR_API_KEY} = process.env;
 
 // Post
 
-const createGame = async ( name, description, image, released, rating, platforms, genres ) => {
+const createGame = async ( name, description, image, released, rating, platforms, genreNames ) => {
+    // los datos recibidos son los que el usuario ingresa en el formulario
+
+    try {
+        // Buscar los géneros correspondientes en la base de datos (relaciona el name que recibe con su Id correspondiente)
+        const genres = await Genre.findAll({
+            where: {
+                name: genreNames
+            }
+        });
+
+
+    // create a new game en la base de datos
+    const newGame = await Videogame.create({
+        name,
+        description,
+        image,
+        released,
+        rating,
+        platforms,
+        genres
+    });
+    // Relacionar el nuevo juego con los géneros encontrados
+    await newGame.setGenres(genres);
+
+    return newGame;
+} catch (error) {
+    throw new Error(error.message);
+}
+};
+
+/*const createGame = async ( name, description, image, released, rating, platforms, genres ) => {
     // create a new game en la base de datos
     const newGame = await Videogame.create({
         name,
@@ -26,7 +57,7 @@ const createGame = async ( name, description, image, released, rating, platforms
     await newGame.addGenre(genres);
     return newGame;
 };
-
+*/
 
 
 const getAllGames = async () => {

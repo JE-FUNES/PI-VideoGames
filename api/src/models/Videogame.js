@@ -14,19 +14,19 @@ module.exports = (sequelize) => {
     },
 
     name: {
-      type: DataTypes.STRING, // Cambiar el tipo de dato a STRING
+      type: DataTypes.STRING, 
       allowNull: false,
     },
     
 
     description: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
 
     platforms: {
       type: DataTypes.ARRAY(DataTypes.STRING),  
-      allowNull: true,
+      allowNull: false,
     },
 
     image: {
@@ -46,9 +46,13 @@ module.exports = (sequelize) => {
        },
 
         rating: {
-        type: DataTypes.FLOAT,
-        
+        type: DataTypes.INTEGER,
+        validate: {
+            isNumeric: true,
+        },
+        defaultValue: 1,
        },
+
   },
   {
     timestamps: false,

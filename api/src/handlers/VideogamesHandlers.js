@@ -1,11 +1,13 @@
 const {
+    createGame,
     getAllGames,
     getGameById,
     getGamesByName,
-    createGame,
     updateGame,
     deleteGame
 } = require('../controllers/VideogamesController');
+
+
 
 // manejador de ruta Post para crear un nuevo videojuego
 
