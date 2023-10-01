@@ -1,22 +1,28 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from './NavBar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const NavBar = () => {
-// para que aparezca el navbar despues de 2 segundos
 
-        const [isVisible, setIsVisible] = useState(false);
-        const [isHovered, setIsHovered] = useState(false);
-        const [isHovered1, setIsHovered1] = useState(false);
-        const [isHoveredW, setIsHoveredW] = useState(false);
-        const [isHoveredL, setIsHoveredL] = useState(false);
-        const [isHoveredG, setIsHoveredG] = useState(false);
-        const [isHoveredI, setIsHoveredI] = useState(false);
-        const [isHoveredF, setIsHoveredF] = useState(false);
-      
-        useEffect(() => {
+  const location = useLocation();
+
+ 
+  // palabras onMouseHover del menu
+  
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered1, setIsHovered1] = useState(false);
+  const [isHoveredW, setIsHoveredW] = useState(false);
+  const [isHoveredL, setIsHoveredL] = useState(false);
+  const [isHoveredG, setIsHoveredG] = useState(false);
+  const [isHoveredI, setIsHoveredI] = useState(false);
+  const [isHoveredF, setIsHoveredF] = useState(false);
+  
+  // para que aparezca el navbar despues de 2 segundos
+  
+      useEffect(() => {
           // Cambia la visibilidad después de un tiempo determinado (por ejemplo, 2 segundos)
           const timer = setTimeout(() => {
             setIsVisible(true);
@@ -95,8 +101,9 @@ const NavBar = () => {
         <nav style={divStyles}>
             <ul>
                 <li></li>
-                <li></li>
-                <li><SearchBar className={styles.searchBar}/></li>
+                <li className={styles.searchBar}>
+                  <SearchBar/>
+                </li>
                 <li></li>
                 <li>
                     <Link to="/home">
@@ -113,8 +120,6 @@ const NavBar = () => {
                         <button className={styles.boton}>Create your Game</button>
                     </Link>
                 </li>
-                <li></li>
-                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -138,8 +143,6 @@ const NavBar = () => {
                         {isHovered1 && <div className={styles.mensaje1}>Contact</div>}
                     </Link>
                 </li>
-                <li></li>
-                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>

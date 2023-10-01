@@ -48,7 +48,7 @@ const Detail = () => {
                 <h1>{name}</h1>
                 <h2>{name_original}</h2>
                 <p>{description}</p>
-                
+            
             </div>
             
             <div className={styles.Detail2}>
@@ -56,7 +56,7 @@ const Detail = () => {
                 <p>Released: {released}</p>
                 <p>Updated: {updated}</p>
                 <p>Rating: {rating}</p>
-                
+
                 <div className={styles.platforms}>
                     <h3>Platforms:</h3>
                     <img src={playstation} alt="playstation" className={styles.LogoPlatform} />
@@ -64,29 +64,26 @@ const Detail = () => {
                     <img src={nintendo} alt="nintendo" className={styles.LogoPlatform} />
                     <img src={android} alt="android" className={styles.LogoPlatform} />
                     <img src={pc} alt="pc"  className={styles.LogoPlatform}/>
-                <ul>
-                    <li>{platforms}</li>
-                </ul>
+
+                    <ul>
+                        <li>{platforms ? platforms.join(" | ")  : "No stores available"}</li>
+                    </ul>
                 </div>
                     
                 <h3>Genders:</h3>
                 <ul>
-                    <li>{genres}</li>
+                    <li>{genres ? genres.join(" | ")  : "No stores available"}</li>
                 </ul>
                 <h3>Stores:</h3>
                 <ul>
-                    <li>{stores}</li>
+                <li>{stores ? stores.join(" | ") : "No stores available"}</li>
+
                 </ul>
                 
             </div>
         </div>
     );
     }
-                    
-
-
-            
-
-            
+                                
 
     export default Detail;

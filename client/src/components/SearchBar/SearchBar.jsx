@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './SearchBar.module.css';
 import { searchGames } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +11,7 @@ export default function SearchBar() {
    const dispatch = useDispatch();
    const [searchValue, setSearchValue] = useState('');
    const inputRef = useRef(null);
+   const navigate = useNavigate();
    
    const handleInputChange = (event) => {
       setSearchValue(event.target.value);
@@ -17,6 +19,7 @@ export default function SearchBar() {
    
    const handleSearchClick = () => {
       dispatch (searchGames(searchValue));
+      navigate ('/home'); // sin importar donde este, va a home con el resultado de la busqueda
    };
 
    const handleKeyPress = (event) => {

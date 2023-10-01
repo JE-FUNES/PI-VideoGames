@@ -2,12 +2,20 @@
     display: flex;
     flex-wrap: wrap;
     
-    margin: 0 auto;
+    margin-top: -3em;
     width: 100%;
     height: 100%;
-    background-color: black;
+    
     padding: 0 0 20px 0;
-    cursor: url('../../Images/icons/super-nintendo.png'), auto;
+    background: 
+    linear-gradient(163deg, #180363 2px, #180363 28px, transparent 28px ),
+    linear-gradient(161deg, #180363 2px, #180363 4px, #180363 30px, transparent 30px),
+    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px),  
+    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px); 
+background-color: black; 
+background-position: 4px 2px, 46px 32px, 96px 30px, 42px 60px; 
+background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
+
 }
 
 .Detail,
@@ -16,27 +24,48 @@
     flex: 1;
     flex-direction: column;
     
-    background-color: black;
+    background-color: transparent;
+    /* efecto blur */
+    backdrop-filter: blur(10px);
+
     padding: 0 0 20px 0;
     color: white;
     align-items: center;
 }
 
 .Detail {
-    margin-top: 12em;
-    margin-left: 2em;
+    margin-top: 9em;
+    margin-left: 1em;
     text-align: justify;
+    max-height: 32em;
+    overflow: auto;
+    padding-right: 1.5em;
+    padding-left: 1em;
 }
+.Detail::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Personaliza el color de la barra de desplazamiento */
+  .Detail::-webkit-scrollbar-thumb {
+    background-color: rgb(83, 122, 5);
+  }
+  
+  /* Personaliza el color del fondo de la barra de desplazamiento */
+  .Detail::-webkit-scrollbar-track {
+    background-color:rgb(27, 24, 24);
+  }
 
 .Detail2 {
-    margin-top: 12em;
+    margin-top: 9em;
     margin-left: 2em;
     padding-top: 1em;
-    background-color: rgb(43, 40, 40);
     border-style: dotted;
     border-color: yellowgreen;
     align-items: center;
     margin-right: 1em;
+    width: 22%;
+    max-height: 31em;
 }
 
 .platforms {
@@ -46,11 +75,13 @@
 
 .image {
     flex: 3;
-    max-height: 30em ;
-    margin-top: 12em;
+    height: 32em ;
+    max-width: 50%;
+    margin-top: 9.5em;
     margin-left: 3em;
   
 }
+
 
 .Contenedor h1 {
     font-size: 40px;
@@ -58,6 +89,7 @@
     color: yellowgreen;
     text-align: center;
     margin-bottom: -1em;
+    margin-top: 0;
     padding: 0 0 20px 0;
     
 }

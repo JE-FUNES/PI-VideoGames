@@ -6,15 +6,16 @@
 
 .SearchBar input {
     text-decoration: none;
-    background-color: white;
+    background-color: rgb(179, 179, 179);
     color: black;
     font-size: 1.2rem;
     font-weight: 50;
     cursor: text;
     z-index: 200;
     width: 15em;
-    height: 2em;
+    height: 1.8em;
     padding: 0 0 0 20px; /* es espacio dentro de la caja*/
+    background-image: url("../../Images/botones/madera_input.png");
 }
 
 .buttonS {
@@ -24,13 +25,15 @@
     cursor: pointer;
     z-index: 200;
     height: 2em;
-    background-color: white;
+    background-color: rgb(161, 16, 16);
     margin: 0.4em 0 0 -15.5px;
     border-radius: 0 80px 20px 0; 
-    
+    background-image: url("../../Images/botones/madera_busqueda.png");
+    background-repeat: no-repeat;
+box-shadow: grey 0px 0px 10px 0px;
 }
 .buttonS:hover {
-    background-image: linear-gradient(315deg, #c966aa 0%, #0dd366 74%);
+    background-image: url("../../Images/botones/madera_busqueda2.png");
 }
    
 

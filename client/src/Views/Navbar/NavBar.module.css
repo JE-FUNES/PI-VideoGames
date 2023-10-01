@@ -1,7 +1,7 @@
 .contenedor {
     position: fixed;
     z-index: 100;
-    margin: 5.5em 0 0 0;
+    margin: 4.5em 0 0 0;
     top: 0;
     left: 0;
     right: 0;
@@ -11,8 +11,16 @@
     align-items: center;
     display: flex;
     height: 4em;
-    padding: 0.4em 0 0.6em 5em;
-    background-color: black;
+    padding: 0.4em 0 0.6em 2em;
+    background: 
+    linear-gradient(163deg, black 1px, black 14px, transparent 14px ),
+    linear-gradient(161deg, black 1px, black 2px, black 15px, transparent 15px),
+    linear-gradient(343deg, black 1px, black 14px, transparent 14px),  
+    linear-gradient(343deg, black 1px, black 14px, transparent 14px); 
+    background-color: rgb(20, 31, 156); 
+    background-position: 2px 1px, 23px 16px,48px 15px, 21px 30px; 
+    background-size: 48px 30px;
+    box-shadow: black 0px 0px 20px 0px;
 }
 
 
@@ -23,7 +31,8 @@
     z-index: 102;
     opacity: 0;
     transition: opacity 2s;
-    margin-left: 5em;
+    margin-left: 7em;
+    
 
      /*alineado horizontal de los hijos*/ /*centrado vertical*/
     
@@ -88,16 +97,23 @@
 }
 
 .boton {
-    width: 7em;
-    height: 3em;
+    width: 10em;
+    height: 2.5em;
     font-size: 0.9rem;   
     font-weight: 600;
-    box-shadow: 0 5px 5px 0 rgb(107, 16, 117);
-    margin: 0 5px 0 0;
+    margin: 0.25em 5px 0 0;
+    background-image: url("../../Images/botones/madera_up.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color:transparent;
+    border-bottom: none;
+    border: 0;
+    
     }
 
     .boton:hover {
-    background-image: linear-gradient(315deg, #c966aa 0%, #0dd366 74%);
+        background-image: url("../../Images/botones/madera_down.png");
+        color: beige;
     }
 
 
@@ -227,5 +243,5 @@
 }
 
     .searchBar {
-    margin: 0 2.5em 0 5.5em;
+    margin: 0 0 0 1.5em;
 }

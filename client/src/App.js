@@ -7,7 +7,7 @@ import Home from "./Views/Home/Home";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import CreateGame from "./Views/Forms/CreateGame";
 import UpdateGame from "./Views/Forms/UpdateGame";
-import Footer from "./Views/Footer/Footer";
+import Upper from "./Views/Upper/Upper";
 
 
 function App() {
@@ -29,7 +29,8 @@ function App() {
       {location.pathname !== '/' && <NavBar
       className="nav" 
       />}
-      {location.pathname !== '/' && <Footer />}
+      {location.pathname !== '/' && location.pathname !== '/home' && <Upper />}
+
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/home' element={<Home games={games} />} />

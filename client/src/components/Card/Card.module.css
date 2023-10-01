@@ -2,35 +2,36 @@
     font-family: "PT Sans", sans-serif;
     border-radius: 0.3em;
     background-color: #00000062;
-    backdrop-filter: blur(10em);
+    backdrop-filter: blur(100em);
     height: 10em;
     width: 15em;
-    margin: 0.5em 1em 0 0.5em;
-    transition: all 1s ease;
+    margin: 0.5em 1em 0.5em 1em;
     position: relative;
     display: inline-block;
     overflow: hidden;
     z-index: 1000;
-    box-shadow: black 0px 0px 10px 0px;
+    box-shadow: black 0px 10px 20px 0px;
 }
 
 #card:hover{
     opacity: 1;
-    background-color: aliceblue;
+    background-color: rgb(0, 0, 0);
     backdrop-filter: blur(0em);
     transform: scale(1.1);
-    transition: all 1s ease;
     z-index: 2000;
     box-shadow: black 0px 0px 20px 0px;
+    transition: all 1s ease;
+
 }
 
 
 .imgCard{
     width: 15em;
-    height: 6em;
+    height: 6.6em;
     object-fit: cover;
     opacity: 1;
     z-index: 1000;
+    margin-bottom: 0.4em;
 }
 
 .imgCard:hover{
@@ -42,18 +43,18 @@
    
     justify-content: center;
     align-items: center;
-    width: 14em;
-    color: black;
-    font-size: 1em;
+    width: 11.5em;
+    color: rgb(9, 228, 206);
+    font-size: 0.9em;
     transition: all 1s;
-    margin: 0 0 0 0.5em;
+    margin: -0.5em 0 0 0.5em;
     font-weight: 600;
 }
 
 
 .rating{
     position: absolute;
-    top: 7.5em;
+    top: 7.2em;
     right: 0.5em;
     font-size: medium;
     font-weight: 600;
@@ -66,26 +67,32 @@
 .rating[ value = '0' ]{
   
     border-color: #6dc849;
+    color: #6dc849;
 }
 .rating[ value = '1' ]{
   
     border-color: #6dc849;
+    color: #6dc849;
 }
 .rating[ value = '2' ]{
     
     border-color: #e17108;
+    color: #e17108;
 }
 .rating[ value = '3' ]{
+    color: #e17108;
     
     border-color: #e17108;
 }
 .rating[ value = '4' ]{
     
     border-color: #fe0000;
+    color: #fe0000;
 }
 .rating[ value = '5' ]{
     
     border-color: #fe0000;
+    color: #fe0000;
 }
 
 .platform{
