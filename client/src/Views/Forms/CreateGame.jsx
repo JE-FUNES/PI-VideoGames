@@ -149,12 +149,7 @@ const CreateGame = () => {
             
             <div className={styles.formContainer}>
                 <form onSubmit={handleSubmit}>
-            <div className={styles.title}>
-            <h1>Create your Game!</h1>
-            <br/>
-            <br/>
-            <br/>
-            </div>
+            
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Name</label>
                         <input

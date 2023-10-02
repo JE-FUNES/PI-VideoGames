@@ -29,7 +29,7 @@ function App() {
       {location.pathname !== '/' && <NavBar
       className="nav" 
       />}
-      {location.pathname !== '/' && location.pathname !== '/home' && <Upper />}
+      <Upper />
 
       <Routes>
         <Route path='/' element={<LandingPage />} />
