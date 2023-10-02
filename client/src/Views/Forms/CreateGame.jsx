@@ -6,6 +6,13 @@ import styles from './CreateGame.module.css';
 
 const CreateGame = () => {
     const dispatch = useDispatch();
+
+    const [errors, setErrors] = useState({});
+
+    const [genres, setGenres] = useState([]);
+
+    const [platforms, setPlatforms] = useState([]);
+
     const [input, setInput] = useState({
         name: '',
         description: '',
@@ -14,9 +21,6 @@ const CreateGame = () => {
         image: '',
     });
 
-    const [errors, setErrors] = useState({});
-    const [genres, setGenres] = useState([]);
-    const [platforms, setPlatforms] = useState([]);
     const allGenres = [
              "Action",
             "Indie",
@@ -39,6 +43,17 @@ const CreateGame = () => {
             "Card"
     ];
 
+    const AllPlatforms = [
+        "PC",
+        "PlayStation",
+        "Xbox",
+        "Nintendo",
+        "iOS",
+        "Android",
+        "macOS",
+        "Linux"
+    ];
+
     const handleInputChange = (e) => {
         setInput({
             ...input,
@@ -52,10 +67,11 @@ const CreateGame = () => {
     };
 
     const handlePlatforms = (e) => {
+        const platformValue = e.target.value;
         if (e.target.checked) {
-            setPlatforms([...platforms, e.target.value]);
+            setPlatforms([...platforms, platformValue]);
         } else {
-            setPlatforms(platforms.filter(p => p !== e.target.value));
+            setPlatforms(platforms.filter(platform => platform !== platformValue));
         }
 
     }
@@ -68,19 +84,38 @@ const CreateGame = () => {
             setGenres(genres.filter((genre) => genre !== genreValue));
         }
     }
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // corregi el handler de creacion de juegos para que actualie y relacione con la tabla intermedia, por eso cambio de nombre
         input.genres = genres;
+        input.platforms = platforms;
+        
+        // Validar que al menos un género esté seleccionado
+        if (input.genres.length === 0) {
+        setErrors({ ...errors, genres: 'Select at least one' });
+        return;
+        } else {
+        // Si se seleccionó al menos un género, elimina el mensaje de error
+        setErrors({ ...errors, genres: '' });
+  }
+        // Validar que al menos una plataforma esté seleccionada
+        if (input.platforms.length === 0) {
+        setErrors({ ...errors, platforms: 'Select at least one' });
+        return;
+        }else {
+            // Si se seleccionó al menos una plataforma, elimina el mensaje de error
+            setErrors({ ...errors, platforms: '' });
+          }
+          
 
         dispatch(createGame(input));
         alert('Game created!');
         setInput({
             name: '',
             description: '',
-            platforms: [],
+            //platforms: [],
             //genres: [],
             image: '',
         });
@@ -99,6 +134,12 @@ const CreateGame = () => {
         if (!input.image) {
             errors.image = 'Image is required';
         }
+        if (input.genres.length === 0) {
+            errors.genres = 'Select at least one';
+          }          
+        if (input.platforms.length === 0) {
+            errors.platforms = 'Select at least one';
+          }
         return errors;
     }
 
@@ -130,6 +171,9 @@ const CreateGame = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Genres</label>
+                            {errors.genres && (
+                                <p className={styles.danger2}>{errors.genres}</p>
+                            )}
                         <div className={styles.checkboxContainer}>
                             {allGenres.map((genreName) => (
 
@@ -147,6 +191,7 @@ const CreateGame = () => {
                         ) )}
                         </div>
                     </div>
+                    
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Description</label>
                         <textarea
@@ -164,87 +209,23 @@ const CreateGame = () => {
                     
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Platforms</label>
+                            {errors.platforms && (
+                                <p className={styles.danger2}>{errors.platforms}</p>
+                            )}
                         <div className={styles.checkboxContainer}>
-                            <label className={styles.checkboxLabel}>
+                            {AllPlatforms.map((platformName) => (
+                            <label key={platformName} className={styles.checkboxLabel}>
                                 <input
                                     className={styles.checkbox}
                                     type="checkbox"
-                                    name="PC"
-                                    value="PC"
+                                    name="platforms"
+                                    value={platformName}
                                     onChange={handlePlatforms}
+                                    checked={platforms.includes(platformName)}
                                 />
-                                PC
+                                {platformName}
                             </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="PlayStation"
-                                    value="PlayStation"
-                                    onChange={handlePlatforms}
-                                />
-                                PlayStation
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="Xbox"
-                                    value="Xbox"
-                                    onChange={handlePlatforms}
-                                />
-                                Xbox
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="Nintendo"
-                                    value="Nintendo"
-                                    onChange={handlePlatforms}
-                                />
-                                Nintendo
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="iOS"
-                                    value="iOS"
-                                    onChange={handlePlatforms}
-                                />
-                                iOS
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="Android"
-                                    value="Android"
-                                    onChange={handlePlatforms}
-                                />
-                                Android
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="macOS"
-                                    value="macOS"
-                                    onChange={handlePlatforms}
-                                />
-                                macOS
-                            </label>
-                            <label className={styles.checkboxLabel}>
-                                <input
-                                    className={styles.checkbox}
-                                    type="checkbox"
-                                    name="Linux"
-                                    value="Linux"
-                                    onChange={handlePlatforms}
-                                />
-                                Linux
-                            </label>
+                        ) )}
                         </div>
                     </div>
                     
