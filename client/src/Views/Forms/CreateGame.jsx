@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createGame } from '../../redux/actions';
 import styles from './CreateGame.module.css';
+import { allGenres } from './constantesCreateGame';
 
 
 const CreateGame = () => {
@@ -21,7 +22,7 @@ const CreateGame = () => {
         image: '',
     });
 
-    const allGenres = [
+    /*const allGenres = [
              "Action",
             "Indie",
             "Adventure",
@@ -42,7 +43,7 @@ const CreateGame = () => {
             "Educational",
             "Card"
     ];
-
+*/
     const AllPlatforms = [
         "PC",
         "PlayStation",
