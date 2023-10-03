@@ -20,7 +20,7 @@ export const allGenres = [
    "Card"
 ];
 
-/*
+
 export const AllPlatforms = [
 "PC",
 "PlayStation",
@@ -29,6 +29,8 @@ export const AllPlatforms = [
 "iOS",
 "Android",
 ];
+
+/*
 
 export const validate = (input) => {
     let errors = {};

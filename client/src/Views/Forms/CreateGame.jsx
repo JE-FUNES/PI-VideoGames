@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createGame } from '../../redux/actions';
 import styles from './CreateGame.module.css';
-import { allGenres } from './constantesCreateGame';
+import { allGenres, AllPlatforms } from './constantesCreateGame';
 
 
 const CreateGame = () => {
@@ -22,28 +22,7 @@ const CreateGame = () => {
         image: '',
     });
 
-    /*const allGenres = [
-             "Action",
-            "Indie",
-            "Adventure",
-            "RPG",
-            "Strategy",
-            "Shooter",
-            "Casual",
-            "Simulation",
-            "Puzzle",
-            "Arcade",
-            "Platformer",
-            "Racing",
-            "Massively Multiplayer",
-            "Sports",
-            "Fighting",
-            "Family",
-            "Board Games",
-            "Educational",
-            "Card"
-    ];
-*/
+    /*
     const AllPlatforms = [
         "PC",
         "PlayStation",
@@ -54,6 +33,7 @@ const CreateGame = () => {
         "macOS",
         "Linux"
     ];
+    */
 
     const handleInputChange = (e) => {
         setInput({
