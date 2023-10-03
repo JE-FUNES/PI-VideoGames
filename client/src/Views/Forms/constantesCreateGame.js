@@ -30,7 +30,7 @@ export const AllPlatforms = [
 "Android",
 ];
 
-/*
+
 
 export const validate = (input) => {
     let errors = {};
@@ -54,4 +54,3 @@ export const validate = (input) => {
 
 
 
-*/

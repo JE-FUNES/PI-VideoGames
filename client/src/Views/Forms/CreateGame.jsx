@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createGame } from '../../redux/actions';
 import styles from './CreateGame.module.css';
-import { allGenres, AllPlatforms } from './constantesCreateGame';
+import { allGenres, AllPlatforms, validate } from './constantesCreateGame';
 
 
 const CreateGame = () => {
@@ -22,18 +22,6 @@ const CreateGame = () => {
         image: '',
     });
 
-    /*
-    const AllPlatforms = [
-        "PC",
-        "PlayStation",
-        "Xbox",
-        "Nintendo",
-        "iOS",
-        "Android",
-        "macOS",
-        "Linux"
-    ];
-    */
 
     const handleInputChange = (e) => {
         setInput({
@@ -91,7 +79,6 @@ const CreateGame = () => {
           }
           
 
-
         dispatch(createGame(input));
         alert('Game created!');
         setInput({
@@ -103,26 +90,6 @@ const CreateGame = () => {
         });
         setGenres([]);
         setPlatforms([]);
-    }
-
-    const validate = (input) => {
-        let errors = {};
-        if (!input.name) {
-            errors.name = 'Name is required';
-        }
-        if (!input.description) {
-            errors.description = 'Description is required';
-        }
-        if (!input.image) {
-            errors.image = 'Image is required';
-        }
-        if (input.genres.length === 0) {
-            errors.genres = 'Select at least one';
-          }          
-        if (input.platforms.length === 0) {
-            errors.platforms = 'Select at least one';
-          }
-        return errors;
     }
 
     return (
