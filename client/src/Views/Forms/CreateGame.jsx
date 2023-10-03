@@ -110,6 +110,7 @@ const CreateGame = () => {
           }
           
 
+
         dispatch(createGame(input));
         alert('Game created!');
         setInput({

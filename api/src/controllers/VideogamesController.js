@@ -21,12 +21,6 @@ const createGame = async (name, description, image, released, rating, platformNa
                 name: genreNames
             }
         });
-
-        const platforms = await Videogame.findAll({
-            where: {
-                platforms: platformNames
-            }
-        });
             
 
         // Crear un nuevo juego en la base de datos
@@ -36,13 +30,12 @@ const createGame = async (name, description, image, released, rating, platformNa
             image,
             released,
             rating,
-            platforms,
+            platforms: platformNames,
             genres,
         });
 
         // Relacionar el nuevo juego con los géneros encontrados
         await newGame.setGenres(genres);
-        await newGame.setPlatforms(platforms);
 
         return newGame;
     } catch (error) {
