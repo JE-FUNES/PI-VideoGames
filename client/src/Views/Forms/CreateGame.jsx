@@ -50,8 +50,6 @@ const CreateGame = () => {
         "Nintendo",
         "iOS",
         "Android",
-        "macOS",
-        "Linux"
     ];
 
     const handleInputChange = (e) => {
@@ -145,7 +143,7 @@ const CreateGame = () => {
 
     return (
 
-        <div className={styles.container}>
+        <div className={styles.routeContainer}>
             
             <div className={styles.formContainer}>
                 <form onSubmit={handleSubmit}>

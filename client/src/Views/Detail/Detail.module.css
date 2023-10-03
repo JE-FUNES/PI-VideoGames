@@ -1,8 +1,7 @@
-.Contenedor {
+.routeContainer {
     display: flex;
     flex-wrap: wrap;
     
-    margin-top: -3em;
     width: 100%;
     height: 100%;
     
@@ -27,42 +26,45 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     background-color: transparent;
     /* efecto blur */
     backdrop-filter: blur(10px);
+    justify-content: center;
 
-    padding: 0 0 20px 0;
     color: white;
-    align-items: center;
 }
 
 .Detail {
-    margin-top: 9em;
+    margin-top: 1em;
     margin-left: 1em;
     text-align: justify;
     max-height: 32em;
     overflow: auto;
     padding-right: 1.5em;
     padding-left: 1em;
+    /* si supera la altura maxima que habilite scrollbar */
+    overflow: auto;
+    
+    
 }
 .Detail::-webkit-scrollbar {
     width: 10px;
-  }
+}
   
-  /* Personaliza el color de la barra de desplazamiento */
-  .Detail::-webkit-scrollbar-thumb {
+/* Personaliza el color de la barra de desplazamiento */
+.Detail::-webkit-scrollbar-thumb {
     background-color: rgb(83, 122, 5);
-  }
-  
-  /* Personaliza el color del fondo de la barra de desplazamiento */
-  .Detail::-webkit-scrollbar-track {
+}
+
+/* Personaliza el color del fondo de la barra de desplazamiento */
+.Detail::-webkit-scrollbar-track {
     background-color:rgb(27, 24, 24);
-  }
+}
 
 .Detail2 {
-    margin-top: 9em;
+    align-items: center;
+    margin-top: 1em;
     margin-left: 2em;
     padding-top: 1em;
     border-style: dotted;
     border-color: yellowgreen;
-    align-items: center;
     margin-right: 1em;
     width: 22%;
     max-height: 31em;
@@ -77,16 +79,16 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     flex: 3;
     height: 32em ;
     max-width: 50%;
-    margin-top: 9.5em;
-    margin-left: 3em;
+    margin-top: 1em;
+    margin-left: 2em;
   
 }
 
 
-.Contenedor h1 {
+.routeContainer h1 {
     font-size: 40px;
     font-weight: 700;
-    color: yellowgreen;
+    color: red;
     text-align: center;
     margin-bottom: -1em;
     margin-top: 0;
@@ -94,7 +96,7 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     
 }
 
-.Contenedor h2 {
+.routeContainer h2 {
     font-size: 20px;
     font-weight: 700;
     color: white;
@@ -104,7 +106,16 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     
 }
 
-.Contenedor p {
+.pDetail2 {
+    font-size: 1em;
+    font-weight: 400;
+    color: rgb(195, 166, 18);
+    padding: 0 0 0.3em 1em;
+    font-style: italic;
+    margin-top: -0.5em;
+}
+
+.Detail p {
     font-size: 1em;
     font-weight: 400;
     color: white;
@@ -114,18 +125,18 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     margin-top: -0.5em;
 }
 
-.Contenedor h3 {
+.routeContainer h3 {
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: rgb(12, 212, 243);
     text-align: left;
     margin-top: -0.3em;
     margin-bottom: -0.3em;
     padding: 0 0 0.5em 1em;
 }
 
-.Contenedor h4 {
-    color: yellowgreen;
+.routeContainer h4 {
+    color: rgb(166, 14, 14);
     text-align: center;
     margin-top: 0;
 }
@@ -134,7 +145,7 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     color: white;
 }
 
-.Contenedor li {
+.routeContainer li {
     padding: 1em;
 }
 

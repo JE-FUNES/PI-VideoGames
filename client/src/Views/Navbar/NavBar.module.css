@@ -1,16 +1,14 @@
-.contenedor {
-    position: fixed;
-    z-index: 100;
-    margin: 3.5em 0 0 0;
+.navbar {
+    z-index: 1000;
+    /*margin: 3.5em 0 0 0;
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    align-items: center;
+    height: 4em;
+    width: 100%;*/
     justify-content: space-between;
     align-items: center;
     display: flex;
-    height: 4em;
     padding: 0.4em 0 0.6em 2em;
     background: 
     linear-gradient(163deg, black 1px, black 14px, transparent 14px ),

@@ -97,7 +97,7 @@ const NavBar = () => {
           };
 
      return (
-        <div className={styles.contenedor}>
+        <div className={styles.navbar}>
         <nav style={divStyles}>
             <ul>
                 <li></li>

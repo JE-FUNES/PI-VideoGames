@@ -12,7 +12,7 @@ const Home = (searchValue) => {
   const areGamesAvailable = games.length > 0;
 
   return (
-    <div className={styles.general}>
+    <div className={styles.routeContainer}>
      
       {areGamesAvailable && (
       <div className={styles.CardsContainer}>

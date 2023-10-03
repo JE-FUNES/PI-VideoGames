@@ -41,7 +41,7 @@ const Detail = () => {
 
     
     return (
-        <div className={styles.Contenedor} >
+        <div className={styles.routeContainer} >
             <img className={styles.image} src={image} alt={name} />
             
             <div className={styles.Detail}>
@@ -53,9 +53,9 @@ const Detail = () => {
             
             <div className={styles.Detail2}>
                 <h4>More about {name}:</h4>
-                <p>Released: {released}</p>
-                <p>Updated: {updated}</p>
-                <p>Rating: {rating}</p>
+                <p className={styles.pDetail2}>Released: {released}</p>
+                <p className={styles.pDetail2}>Updated: {updated}</p>
+                <p className={styles.pDetail2}>Rating: {rating}</p>
 
                 <div className={styles.platforms}>
                     <h3>Platforms:</h3>

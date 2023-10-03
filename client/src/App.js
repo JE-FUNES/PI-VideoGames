@@ -26,21 +26,19 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== '/' && <NavBar
-      className="nav" 
-      />}
-      <Upper />
+      {location.pathname !== '/' && <Upper />}
+      {location.pathname !== '/' && <NavBar />}
 
       <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/home' element={<Home games={games} />} />
-        <Route path='/detail/:id' element={< Detail />} />
-        <Route path='/creategame' element={ <CreateGame />} />
-        <Route path='/updategame/:id' element={<UpdateGame />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home games={games}/>} />
+        <Route path="/detail/:id" element={<Detail/>} />
+        <Route path="/creategame" element={<CreateGame/>} />
+        <Route path="/updategame/:id" element={<UpdateGame />} />
       </Routes>
     </div>
   );
-}
+  }  
 
 
 export default App;
