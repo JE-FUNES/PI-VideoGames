@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createGame } from '../../redux/actions';
 import styles from './CreateGame.module.css';
 import { allGenres, AllPlatforms, validate } from './constantesCreateGame';
+import { handleInputChange } from './handlersCreateGame';
 
 
 const CreateGame = () => {
@@ -23,17 +24,6 @@ const CreateGame = () => {
     });
 
 
-    const handleInputChange = (e) => {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        });
-        setErrors(validate({
-            ...input,
-            [e.target.name]: e.target.value
-        }));
-
-    };
 
     const handlePlatforms = (e) => {
         const platformValue = e.target.value;
