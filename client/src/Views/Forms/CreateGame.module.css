@@ -6,7 +6,7 @@
     width: 100vw;
     padding-right: 2em;
     padding-bottom: -0.5em;
-    margin-top: 0.1em;
+    margin-top: -0.5em;
     background: 
     linear-gradient(163deg, #180363 2px, #180363 28px, transparent 28px ),
     linear-gradient(161deg, #180363 2px, #180363 4px, #180363 30px, transparent 30px),
@@ -22,7 +22,7 @@ background-size: 96px 60px;
       display: flex;
       justify-content: space-between;
       background-color:black;
-      padding-top: 1em;
+      padding-top: 0.5em;
       padding-left: 3em;
       padding-right: 3em;
       padding-bottom: 1.5em;
@@ -32,7 +32,7 @@ background-size: 96px 60px;
       background-color: transparent;
       /*efecto blur*/
       backdrop-filter: blur(10px);
-      margin-top: 1em;
+      margin-top: 0.5em;
       
     }
 
@@ -45,13 +45,13 @@ background-size: 96px 60px;
  
   
   .formGroup {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   
   .label {
     font-weight: bold;
     color: burlywood;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
   
   .input {
