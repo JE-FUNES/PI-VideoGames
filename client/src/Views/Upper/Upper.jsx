@@ -28,12 +28,7 @@ const Upper = () => {
             Welcome <span className={styles.username}>{userName}</span>! Search for your favorite video game, or create your own!
           </p>
         );
-      case '/detail/:id':
-        return (
-          <p>
-            You want it <span className={styles.username}>{userName}</span>... you got it! All the info about your favorite video game here!
-          </p>
-        );
+    
       case '/creategame':
         return (
           <p>
@@ -42,7 +37,7 @@ const Upper = () => {
         );
       // mensajes personalizados para las proximas rutas
       default:
-        return '';
+        return (<p>More than 500.000 video games availables!</p>) ;
     }
   };
   
