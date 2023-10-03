@@ -31,10 +31,6 @@ module.exports = (sequelize) => {
 
     image: {
         type: DataTypes.STRING,
-        validate:{
-            isUrl: true,
-        },
-        defaultValue: 'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/26TZ62LNNNHFLM5YYVOXEHM7HQ.jpg',
       },
 
         released: {
@@ -50,7 +46,7 @@ module.exports = (sequelize) => {
         validate: {
             isNumeric: true,
         },
-        defaultValue: 1,
+        defaultValue: 0,
        },
 
   },

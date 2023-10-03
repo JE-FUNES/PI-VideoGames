@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createGame } from '../../redux/actions';
 import styles from './CreateGame.module.css';
-import { allGenres, AllPlatforms, validate } from './constantesCreateGame';
-import { handleInputChange, handlePlatforms, handleGenres, handleSubmit } from './handlersCreateGame';
 
 
 const CreateGame = () => {
-    
     const dispatch = useDispatch();
+
     const [errors, setErrors] = useState({});
+
     const [genres, setGenres] = useState([]);
+
     const [platforms, setPlatforms] = useState([]);
+
     const [input, setInput] = useState({
         name: '',
         description: '',
@@ -20,19 +21,140 @@ const CreateGame = () => {
         image: '',
     });
 
+    const allGenres = [
+             "Action",
+            "Indie",
+            "Adventure",
+            "RPG",
+            "Strategy",
+            "Shooter",
+            "Casual",
+            "Simulation",
+            "Puzzle",
+            "Arcade",
+            "Platformer",
+            "Racing",
+            "Massively Multiplayer",
+            "Sports",
+            "Fighting",
+            "Family",
+            "Board Games",
+            "Educational",
+            "Card"
+    ];
 
-    const onSubmit = (e) => {
+    const AllPlatforms = [
+        "PC",
+        "PlayStation",
+        "Xbox",
+        "Nintendo",
+        "iOS",
+        "Android",
+        "macOS",
+        "Linux"
+    ];
+
+    const handleInputChange = (e) => {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        });
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }));
+
+    };
+
+    const handlePlatforms = (e) => {
+        const platformValue = e.target.value;
+        if (e.target.checked) {
+            setPlatforms([...platforms, platformValue]);
+        } else {
+            setPlatforms(platforms.filter(platform => platform !== platformValue));
+        }
+
+    }
+
+    const handleGenres = (e) => {
+        const genreValue = e.target.value;
+        if (e.target.checked) {
+            setGenres([...genres, genreValue]);
+        } else {
+            setGenres(genres.filter((genre) => genre !== genreValue));
+        }
+    }
+    
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        handleSubmit(input, genres, platforms, errors, setErrors, dispatch, setInput, setGenres, setPlatforms, createGame);
+
+        input.genres = genres;
+        input.platforms = platforms;
+        
+        // Validar que al menos un género esté seleccionado
+        if (input.genres.length === 0) {
+        setErrors({ ...errors, genres: 'Select at least one' });
+        return;
+        } else {
+        // Si se seleccionó al menos un género, elimina el mensaje de error
+        setErrors({ ...errors, genres: '' });
+  }
+        // Validar que al menos una plataforma esté seleccionada
+        if (input.platforms.length === 0) {
+        setErrors({ ...errors, platforms: 'Select at least one' });
+        return;
+        }else {
+            // Si se seleccionó al menos una plataforma, elimina el mensaje de error
+            setErrors({ ...errors, platforms: '' });
+          }
+          
+
+        dispatch(createGame(input));
+        alert('Game created!');
+        setInput({
+            name: '',
+            description: '',
+            platforms: [],
+            genres: [],
+            image: '',
+        });
+        setGenres([]);
+        setPlatforms([]);
+    }
+
+    const validate = (input) => {
+        let errors = {};
+        if (!input.name) {
+            errors.name = 'Name is required';
+        }
+        if (!input.description) {
+            errors.description = 'Description is required';
+        }
+        if (!input.image) {
+            errors.image = 'Image is required';
+        }
+        if (input.genres.length === 0) {
+            errors.genres = 'Select at least one';
+          }          
+        if (input.platforms.length === 0) {
+            errors.platforms = 'Select at least one';
+          }
+        return errors;
     }
 
     return (
 
-        <div className={styles.routeContainer}>
+        <div className={styles.container}>
             
             <div className={styles.formContainer}>
-                <form onSubmit={onSubmit}>
-            
+                <form onSubmit={handleSubmit}>
+            <div className={styles.title}>
+            <h1>Create your Game!</h1>
+            <br/>
+            <br/>
+            <br/>
+            </div>
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Name</label>
                         <input
@@ -40,7 +162,7 @@ const CreateGame = () => {
                             type="text"
                             name="name"
                             value={input.name}
-                            onChange={(e) => handleInputChange(input, setInput, validate, setErrors, e)}
+                            onChange={handleInputChange}
                             placeholder='Wtitte your game name here'
                         />
                         {errors.name && (
@@ -61,7 +183,7 @@ const CreateGame = () => {
                                     type="checkbox"
                                     name="genres"
                                     value={genreName}
-                                    onChange={(e) => handleGenres(genres, setGenres, e)}
+                                    onChange={handleGenres}
                                     checked={genres.includes(genreName)}
                                     />
                                 {genreName}
@@ -77,7 +199,7 @@ const CreateGame = () => {
                             type="text"
                             name="description"
                             value={input.description}
-                            onChange={(e) => handleInputChange(input, setInput, validate, setErrors, e)}
+                            onChange={handleInputChange}
                             placeholder='Wtitte your game description here'
                         />
                         {errors.description && (
@@ -98,7 +220,7 @@ const CreateGame = () => {
                                     type="checkbox"
                                     name="platforms"
                                     value={platformName}
-                                    onChange={(e) => handlePlatforms(platforms, setPlatforms, e)}
+                                    onChange={handlePlatforms}
                                     checked={platforms.includes(platformName)}
                                 />
                                 {platformName}
@@ -114,7 +236,7 @@ const CreateGame = () => {
                             type="text"
                             name="image"
                             value={input.image}
-                            onChange={(e) => handleInputChange(input, setInput, validate, setErrors, e)}
+                            onChange={handleInputChange}
                             placeholder='Wtitte your game image route here'
                         />
                         {errors.image && (

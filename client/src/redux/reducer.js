@@ -22,7 +22,7 @@ export default function rootReducer(state = initialState, action) {
         case CREATE_GAME:
             return {
                 ...state,
-               // games: [...state.games, action.payload]
+               games: [...state.games, action.payload]
             };
        
         case DELETE_GAME:

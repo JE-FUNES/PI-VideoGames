@@ -14,6 +14,8 @@ const {
 const createGameHandler = async (req, res) => {
     const { name, description, image, released, rating, platforms, genres } = req.body;
     try {
+        console.log(name, description, image, released, rating, platforms, genres);
+
         const newGame = await createGame(name, description, image, released, rating, platforms, genres );
         res.status(201).json(newGame);
 
