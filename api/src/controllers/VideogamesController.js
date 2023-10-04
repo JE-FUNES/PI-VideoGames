@@ -48,8 +48,9 @@ const createGame = async (name, description, image, released, rating, platformNa
 
 
 const getAllGames = async () => {
+    
     // vars
-    let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`;
+    let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&Limit=100`;
     let apiGames = []; // almacenará los juegos de la API
 
     // obtiene los juegos de la base de datos

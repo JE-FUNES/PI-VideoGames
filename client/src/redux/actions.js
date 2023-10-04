@@ -7,6 +7,8 @@ import {
     DELETE_GAME,
     UPGRADE_GAME,
     GET_DETAILS_NEWGAME,
+    FILTER_GAMES_GENRE,
+    FILTER_GAMES_PLATFORM,
 } from './actionTypes.js';
 
 import axios from 'axios';
@@ -164,6 +166,34 @@ export const deleteGame = (id) => {
             alert("The game could not be deleted")
             
         }
+    }
+}
+
+export const filterGenre = ( payload ) => {
+    return {
+        type: FILTER_GENRE,
+        payload
+    }
+};
+
+export const filterOrdered = ( payload ) => {
+    return {
+        type: FILTER_ORDER,
+        payload
+    }
+};
+
+export const filterRating = ( payload ) => {
+    return {
+        type: FILTER_RATING,
+        payload
+    }
+};
+
+export const filterGamesPlatform = (platform) => {
+    return {
+        type: FILTER_GAMES_PLATFORM,
+        payload: platform
     }
 }
 
