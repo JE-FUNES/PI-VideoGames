@@ -1,7 +1,8 @@
 .SearchBar {
     align-items: baseline;
     display: inline-block;
-    margin: 5px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .SearchBar input {
@@ -12,7 +13,7 @@
     font-weight: 50;
     cursor: text;
     z-index: 200;
-    width: 15em;
+    width: 10em;
     height: 1.8em;
     padding: 0 0 0 20px; /* es espacio dentro de la caja*/
     background-image: url("../../Images/botones/madera_input.png");

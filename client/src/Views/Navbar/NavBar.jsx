@@ -4,7 +4,12 @@ import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import Filter from '../../components/Filters/Filter';
+
 const NavBar = () => {
+
+  const [ currentPage, setCurrentPage ] = useState( 1 );
+  
 
   
   // palabras onMouseHover del menu
@@ -98,29 +103,26 @@ const NavBar = () => {
         <div className={styles.navbar}>
         <nav style={divStyles}>
             <ul>
-                <li></li>
+                
                 <li className={styles.searchBar}>
                   <SearchBar/>
                 </li>
-                <li></li>
+
                 <li>
-                    <Link to="/home">
-                        <button className={styles.boton}>Find by Gender</button>
-                    </Link>
+                <Filter currentPage={ currentPage } setCurrentPage={ setCurrentPage } />
                 </li>
-                <li>
-                    <Link to="/about">
-                        <button className={styles.boton}>Find by Platform</button>
-                    </Link>
-                </li>
+                
+                
+
+                
+                <li></li><li></li>
                 <li>
                     <Link to="/creategame">
                         <button className={styles.boton}>Create your Game</button>
                     </Link>
                 </li>
                 <li></li>
-                <li></li>
-                <li></li>
+               
                 <li>
                     <Link to="/home">
                         <button 
@@ -131,6 +133,7 @@ const NavBar = () => {
                         {isHovered && <div className={styles.mensaje}>Home</div>}
                     </Link>
                 </li>
+
                 <li>
                     <Link to="/email o formulario">
                         <button 
@@ -141,9 +144,7 @@ const NavBar = () => {
                         {isHovered1 && <div className={styles.mensaje1}>Contact</div>}
                     </Link>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+               <li></li><li></li>
                 <li>
                     <Link to="https://wa.me/5493512737199">
                         <button 
@@ -154,6 +155,7 @@ const NavBar = () => {
                         {isHoveredW && <div className={styles.mensajeW}>Whatsapp</div>}
                     </Link>
                 </li>
+
                 <li>
                     <Link to="https://www.linkedin.com/je-funes">
                         <button 
@@ -164,6 +166,7 @@ const NavBar = () => {
                          {isHoveredL && <div className={styles.mensajeL}>Linkedin</div>}   
                     </Link>
                 </li>
+
                 <li>
                     <Link to="https://www.github.com/JE-FUNES">
                         <button
@@ -174,6 +177,7 @@ const NavBar = () => {
                         {isHoveredG && <div className={styles.mensajeG}>GitHub</div>}
                     </Link>
                 </li>
+
                 <li>
                     <Link to="https://www.instagram.com/je.funes">
                         <button 
@@ -184,6 +188,7 @@ const NavBar = () => {
                         {isHoveredI && <div className={styles.mensajeI}>Instagram</div>}
                     </Link>
                 </li>
+
                 <li>
                     <Link to="https://www.facebook.com/juliafunes.vinilomall">
                         <button 
@@ -198,6 +203,9 @@ const NavBar = () => {
         </nav>
         </div>
     )};
+                    
+                    
+                    
                 
                 
 

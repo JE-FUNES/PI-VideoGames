@@ -24,7 +24,7 @@ function OrderFilter({ setCurrentPage }) {
                 <option className='orderOptions' value="rAsc"> Higher to lower </option>
                 <option className='orderOptions' value="rDesc"> Rating Lower to higher </option>
             </select>
-            <button className='btnReset' type='reset' > X </button>
+            
         </form>
     )
 }

@@ -15,7 +15,7 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-    
+    originalGames: [],
     games: [],
     detailGame: [],
     genres: [],
@@ -113,16 +113,31 @@ export default function rootReducer(state = initialState, action) {
                 games: ratingFilter,
             };
 
-            case FILTER_PLATFORM: 
+           /* case FILTER_PLATFORM: 
             const gamesPlatformFilter = state.gamesFilter;
             const platformFilter = gamesPlatformFilter
-                .filter( game => game.parent_platforms
+                .filter( game => game.platforms
                 .map( p => p.toLowerCase())
                 .includes( action.payload ) );
             return{
                 ...state,
                 games: action.payload === "All" ? gamesPlatformFilter : platformFilter,
             };
+*/
+
+case FILTER_PLATFORM:
+    const gamesPlatformFilter = state.games; // Utiliza los juegos originales
+    const platformFilter = gamesPlatformFilter.filter((game) =>
+      game.platforms.map((p) => p.toLowerCase()).includes(action.payload)
+    );
+  
+    return {
+      ...state,
+      gamesFilter: gamesPlatformFilter, // Actualiza gamesFilter con los juegos originales
+      games: action.payload === "All" ? gamesPlatformFilter : platformFilter,
+    };
+  
+
 
             case FILTER_GENRE: 
                  const gamesGenreFilter = state.gamesFilter;

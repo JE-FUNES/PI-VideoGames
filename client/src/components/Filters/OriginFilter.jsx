@@ -18,7 +18,7 @@ function CreatedFilter({ setCurrentPage }) {
                 <option className='origionOptions' value="Api"> API </option>
                 <option className='origionOptions' value="created"> Database </option>
             </select>
-            <button className='btnReset' type='reset' onClick={ handleSelect } value="All"> X </button>
+            
         </form>
     )
 }
