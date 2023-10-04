@@ -7,8 +7,11 @@ import {
     DELETE_GAME,
     UPGRADE_GAME,
     GET_DETAILS_NEWGAME,
-    FILTER_GAMES_GENRE,
-    FILTER_GAMES_PLATFORM,
+    FILTER_GENRE,
+    FILTER_PLATFORM,
+    FILTER_CREATED,
+    FILTER_RATING,
+    FILTER_ORDER,
 } from './actionTypes.js';
 
 import axios from 'axios';
@@ -190,10 +193,17 @@ export const filterRating = ( payload ) => {
     }
 };
 
-export const filterGamesPlatform = (platform) => {
+export const filterCreated = ( payload ) => {
     return {
-        type: FILTER_GAMES_PLATFORM,
-        payload: platform
+        type: FILTER_CREATED,
+        payload
     }
-}
+};
+
+export const filterPlatform = ( payload ) => {
+    return {
+        type: FILTER_PLATFORM,
+        payload
+    }
+};
 
