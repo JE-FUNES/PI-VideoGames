@@ -1,14 +1,12 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from './NavBar.module.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const NavBar = () => {
 
-  const location = useLocation();
-
- 
+  
   // palabras onMouseHover del menu
   
   const [isVisible, setIsVisible] = useState(false);

@@ -23,38 +23,6 @@ const apiGenres = async () => {
   };
   
 
-// busqueda para determinar los genres de un new game para renderizarlos en detailNewGame
-/*
-const getGenresForGame = async (gameId) => {
-    try {
-        // Buscar los registros en la tabla intermedia videogame_genre para el juego dado
-        const genreRecords = await videogame_genre.findAll({
-            where: {
-                VideogameId: gameId,
-            },
-        });
-
-        // Obtener los IDs de los géneros de los registros encontrados
-        const genreIds = genreRecords.map((record) => record.GenreId);
-
-        // Buscar los nombres de los géneros en la tabla Genre usando los IDs
-        const genres = await Genre.findAll({
-            where: {
-                id: genreIds,
-            },
-            attributes: ['name'], // Solo obtener los nombres de los géneros
-        });
-
-        // Obtener los nombres de los géneros como un array de strings
-        const genreNames = genres.map((genre) => genre.name);
-
-        return genreNames;
-    } catch (error) {
-        throw error;
-    }
-};
-*/
-
 // Get desde la base de datos
 
 const getAllGenres = async () => {
@@ -81,13 +49,6 @@ const getGenresByName = async (name) => {
     return getGenres;
 };
 
-
-/*const createGenres = async (name) => {
-    const createGenre = await Genre.create(name);
-    // lo crea en la base de datos
-    return createGenre;
-};
-*/
 
 const createGenre = async (name) => {
     try {
