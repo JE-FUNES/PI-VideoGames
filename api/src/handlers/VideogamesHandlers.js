@@ -57,9 +57,12 @@ const getGameHandler = async (req, res) => {
 const getGameByUIdHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const response = await getGameBuUId(id);
+        console.log(id, "el handler recibe el id");
+        const response = await getGameBuUId(id); // obtiene los detalles del juego mediante este controller
+        console.log(response, "el handler recibe la respuesta");
         res.status(200).json(response);
     } catch (error) {
+        console.error("error en el handler:", error);
         res.status(404).json({ error: `The id: ${id} does not exist` });
     }
 };

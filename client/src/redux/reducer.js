@@ -10,12 +10,12 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-    // create Game
+    
     games: [],
     detailGame: [],
     //searchGames: [],
     genres: [],
-    detailNewGame: null, // no tengo idea de porque
+    detailNewGame: null, // no necesita iniciar con datos porque los obtien cuando los necesita de la base de datos
 };
 
 export default function rootReducer(state = initialState, action) {

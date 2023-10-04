@@ -14,6 +14,7 @@ import axios from 'axios';
 
 
 
+
 // MODIFICAR GAME
 export const upgradeGame = (id, name, description, image, released, rating, platforms, genres) => {
     const url = `http://localhost:3001/games/${id}`;
@@ -107,14 +108,16 @@ export const getDetails = (id) => {
 
 // getDetailsByUUID traera de la base de datos un juego por su id GET_DETAILS_NEWGAME
 
+
 export const getDetailsByUUID = (id) => {
     const url = `http://localhost:3001/games/uuid/${id}`;
     return async function (dispatch) {
         try {
-            const detail = await axios.get(url);
+            const detailNewGame = await axios.get(url);
+            
             return dispatch({
                 type: GET_DETAILS_NEWGAME,
-                payload: detail.data
+                payload: detailNewGame.data
             });
         } catch (error) {
             console.log(error);
@@ -122,6 +125,9 @@ export const getDetailsByUUID = (id) => {
         }
     };
 }
+
+
+
 
 // create game
 

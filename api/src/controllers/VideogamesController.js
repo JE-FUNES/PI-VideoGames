@@ -1,5 +1,5 @@
-const {Videogame, Genre} = require('../db.js');
-const {Op} = require('sequelize');
+const {Videogame, Genre, videogame_genre} = require('../db.js');
+const {Op, Sequelize} = require('sequelize');
 const axios = require('axios');
 const { apiAllCleaner,
         apiIdCleaner,
@@ -142,43 +142,45 @@ const getGameById = async (id, source) => {
         }
     };
 
-    // GET VIDEO GAME POR ID ( UUID) SOLO EN LA BASE DE DATOS, en el modelo VideoGame
+    
 
-        const getGameBuUId = async (id) => {
-            try {
-                const response = await Videogame.findByPk(id, {
-                    include: {
-                        model: Genre,
-                        as: 'genres',
-                        attributes: ['id', 'name'],
-                        through: { // atravez de la tabla intermedia
-                            attributes: []
-                        },
-                        order: [
-                            ['ASC']
-                        ],
-                    },
-                });
-                if (!response)  
-                    throw Error(`The id: ${id} does not exist`);
-                    
-                    const filteredData = {
-                        id: response.id,
-                        name: response.name,
-                        description: response.description,
-                        platforms: response.platforms,
-                        released: response.released,
-                        rating: response.rating,
-                        image: response.image,
-                    };
+// datail para los juegos creados en la base de datos
+
+const getGameBuUId = async (id) => {
+    try {
+        const response = await Videogame.findByPk(id, {
+            include: 
+                {
+                model: Genre,
+                as: 'genres',
+                attributes: ['id', 'name'],
+                through: { // atravez de la tabla intermedia
+                    attributes: []
+                },
+                order: [
+                    ['ASC']
+                ],
+            },
+        });
+        if (!response)  
+            throw Error(`The id: ${id} does not exist`);
             
-                    return filteredData;
-                } catch (error) {
-                    throw error;
-                }
-            }
-
-
+            const filteredData = {
+                id: response.id,
+                name: response.name,
+                description: response.description,
+                platforms: response.platforms,
+                released: response.released,
+                rating: response.rating,
+                image: response.image,
+                genres: response.genres.map((genre) => genre.name),
+            };
+    
+            return filteredData;
+        } catch (error) {
+            throw error;
+        }
+    }
 
 
 

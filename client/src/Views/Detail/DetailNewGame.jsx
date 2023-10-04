@@ -1,38 +1,38 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
+import { getDetailsByUUID } from "../../redux/actions";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styles from  "./DetailNewGame.module.css";
 import android from "../../Images/Platforms/android.png";
 import nintendo from "../../Images/Platforms/nintendo.png";
 import pc from "../../Images/Platforms/pc.png";
 import playstation from "../../Images/Platforms/playstation.png";
 import xbox from "../../Images/Platforms/xbox.png";
-import { getDetailsByUUID } from "../../redux/actions";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 
 const DetailNewGame = () => {
 
     const { id } = useParams();
-    const [gameDetails, setGameDetails] = useState(null);
-   
+    const gameDetails = useSelector((state) => state.detailNewGame);
+    const dispatch = useDispatch();
     
     useEffect(() => {
-        const bringGameDetails = async () => {
-            try {
+        console.log("UseEffect ejecutado");
+        console.log("id", id); // se consologuea bien
+        console.log("llamado a getDetailsByUUID", getDetailsByUUID(id));
+        dispatch(getDetailsByUUID(id)).then((result) => console.log("Resultado de la action getDetailsByUUID:", result));
 
-                const response = await axios.get(`http://localhost:3001/games/uuid/${id}`);
-                const game = response.data;
-                setGameDetails(game);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+    }, [dispatch, id]);
 
-        bringGameDetails();
-    }, [id]);
+    useEffect(() => {
+        console.log("gameDetails cambió:", gameDetails);
+    }, [gameDetails]); // Este useEffect muestra los cambios en gameDetails
+
 
     if (!gameDetails) {
         return <div className={styles.Loading}>Loading...</div>;
-    }   
+    }
+
+       
 
     const { 
         name, 
@@ -74,7 +74,7 @@ const DetailNewGame = () => {
                 </ul>
             </div>
                 
-            <h3>Genders:</h3>
+            <h3>Genres:</h3>
             <ul>
                 <li>{genres ? genres.join(" | ")  : "No genres available"}</li>
             </ul>
