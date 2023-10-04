@@ -66,13 +66,13 @@ const Detail = () => {
                     <img src={pc} alt="pc"  className={styles.LogoPlatform}/>
 
                     <ul>
-                        <li>{platforms ? platforms.join(" | ")  : "No stores available"}</li>
+                        <li>{platforms ? platforms.join(" | ")  : "No platforms available"}</li>
                     </ul>
                 </div>
                     
                 <h3>Genders:</h3>
                 <ul>
-                    <li>{genres ? genres.join(" | ")  : "No stores available"}</li>
+                    <li>{genres ? genres.join(" | ")  : "No genres available"}</li>
                 </ul>
                 <h3>Stores:</h3>
                 <ul>

@@ -5,7 +5,8 @@ import {
     SEARCH_GAMES,
     GET_GENRES,
     GET_DETAILS,
-    UPGRADE_GAME
+    UPGRADE_GAME,
+    GET_DETAILS_NEWGAME
 } from "./actionTypes";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     detailGame: [],
     //searchGames: [],
     genres: [],
+    detailNewGame: null, // no tengo idea de porque
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -51,6 +53,12 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 detailGame: action.payload
             };
+            case GET_DETAILS_NEWGAME:
+                return {
+                    ...state,
+                    detailNewGame: action.payload
+                };
+
         case UPGRADE_GAME:
             return {
                 ...state,

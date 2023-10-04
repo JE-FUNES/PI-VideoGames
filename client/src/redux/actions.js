@@ -6,6 +6,7 @@ import {
     CREATE_GAME,
     DELETE_GAME,
     UPGRADE_GAME,
+    GET_DETAILS_NEWGAME,
 } from './actionTypes.js';
 
 import axios from 'axios';
@@ -103,6 +104,24 @@ export const getDetails = (id) => {
         }
     };
 };
+
+// getDetailsByUUID traera de la base de datos un juego por su id GET_DETAILS_NEWGAME
+
+export const getDetailsByUUID = (id) => {
+    const url = `http://localhost:3001/games/uuid/${id}`;
+    return async function (dispatch) {
+        try {
+            const detail = await axios.get(url);
+            return dispatch({
+                type: GET_DETAILS_NEWGAME,
+                payload: detail.data
+            });
+        } catch (error) {
+            console.log(error);
+
+        }
+    };
+}
 
 // create game
 

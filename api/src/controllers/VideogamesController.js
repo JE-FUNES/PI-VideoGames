@@ -142,6 +142,47 @@ const getGameById = async (id, source) => {
         }
     };
 
+    // GET VIDEO GAME POR ID ( UUID) SOLO EN LA BASE DE DATOS, en el modelo VideoGame
+
+        const getGameBuUId = async (id) => {
+            try {
+                const response = await Videogame.findByPk(id, {
+                    include: {
+                        model: Genre,
+                        as: 'genres',
+                        attributes: ['id', 'name'],
+                        through: { // atravez de la tabla intermedia
+                            attributes: []
+                        },
+                        order: [
+                            ['ASC']
+                        ],
+                    },
+                });
+                if (!response)  
+                    throw Error(`The id: ${id} does not exist`);
+                    
+                    const filteredData = {
+                        id: response.id,
+                        name: response.name,
+                        description: response.description,
+                        platforms: response.platforms,
+                        released: response.released,
+                        rating: response.rating,
+                        image: response.image,
+                    };
+            
+                    return filteredData;
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+
+
+
+
+
     // Get by name
     const getGamesByName = async (name) => {
 
@@ -244,5 +285,6 @@ module.exports = {
     getGameById,
     getGamesByName,
     updateGame,
-    deleteGame
+    deleteGame,
+    getGameBuUId
 };

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Genre} = require('../db');
+const { Genre, videogame_genre} = require('../db');
 const { Op } = require("sequelize");
 const { apiGenresCleaner } = require('../controllers/utils/utilsApiGames.js');
 
@@ -12,15 +12,48 @@ const { YOUR_API_KEY } = process.env;
 const apiGenres = async () => {
     const url = `https://api.rawg.io/api/genres?key=${YOUR_API_KEY}`;
     return await axios
-        .get(url)
-        .then( dataApi => apiGenresCleaner(dataApi.data))
-        .then ( genres => {
-            genres.forEach( genreName => {
-                createGenres({name: genreName});
-            });
-            return "Temperaments of the API saved in the database";
+      .get(url)
+      .then((dataApi) => apiGenresCleaner(dataApi.data))
+      .then(async (genres) => {
+        for (const genreName of genres) {
+          await createGenre(genreName);
+        }
+        return "Temperaments of the API saved in the database";
+      });
+  };
+  
+
+// busqueda para determinar los genres de un new game para renderizarlos en detailNewGame
+/*
+const getGenresForGame = async (gameId) => {
+    try {
+        // Buscar los registros en la tabla intermedia videogame_genre para el juego dado
+        const genreRecords = await videogame_genre.findAll({
+            where: {
+                VideogameId: gameId,
+            },
         });
+
+        // Obtener los IDs de los géneros de los registros encontrados
+        const genreIds = genreRecords.map((record) => record.GenreId);
+
+        // Buscar los nombres de los géneros en la tabla Genre usando los IDs
+        const genres = await Genre.findAll({
+            where: {
+                id: genreIds,
+            },
+            attributes: ['name'], // Solo obtener los nombres de los géneros
+        });
+
+        // Obtener los nombres de los géneros como un array de strings
+        const genreNames = genres.map((genre) => genre.name);
+
+        return genreNames;
+    } catch (error) {
+        throw error;
+    }
 };
+*/
 
 // Get desde la base de datos
 
@@ -49,11 +82,34 @@ const getGenresByName = async (name) => {
 };
 
 
-const createGenres = async (name) => {
+/*const createGenres = async (name) => {
     const createGenre = await Genre.create(name);
     // lo crea en la base de datos
     return createGenre;
 };
+*/
+
+const createGenre = async (name) => {
+    try {
+      // Buscar un género existente con el mismo nombre o crearlo si no existe
+      const [genre, created] = await Genre.findOrCreate({
+        where: { name },
+      });
+  
+      if (created) {
+        // El género fue creado porque no existía previamente
+        console.log(`Género "${name}" creado.`);
+      } else {
+        // El género ya existía en la base de datos
+        console.log(`Género "${name}" ya existe.`);
+      }
+  
+      return genre;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
 
 // lo actualiza en la base de datos
 
@@ -79,7 +135,7 @@ const deleteGenre = async (id) => {
 
 module.exports = {
     apiGenres,
-    createGenres,
+    createGenre,
     getAllGenres,
     getGenreById,
     getGenresByName,

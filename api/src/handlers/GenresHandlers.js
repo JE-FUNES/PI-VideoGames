@@ -5,8 +5,12 @@ const {
     getGenreById, 
     getGenresByName, 
     updateGenre, 
-    deleteGenre 
+    deleteGenre,
+    getGenresForGame 
 } = require('../controllers/GenresControllers');
+
+const { getGameBuUId } = require('../controllers/VideogamesController');
+const { Genre } = require('../db');
 
 // Post
 
@@ -19,6 +23,29 @@ const apiGenresHandler = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+const getGameByUIdHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const game = await getGameBuUId(id);
+
+        // Obtener los nombres de los géneros para el juego y agregarlos a la respuesta
+        const genreIds = await getGenresForGame(id);
+        const gameGenres = await Genre.findAll({
+            where: {
+                id: genreIds
+            },
+        atributes: ['name'],
+    });
+
+    game.genres = gameGenres.map(genre => genre.name);
+
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({ error: `The id: ${uuid} does not exist` });
+    }
+};
+
 
 const createGenreHandler = async (req, res) => {
     const { name } = req.body;
@@ -89,4 +116,5 @@ module.exports = {
     getGenreHandler,
     putGenreHandler,
     deleteGenreHandler,
+    getGameByUIdHandler
 };

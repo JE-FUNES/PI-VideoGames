@@ -4,8 +4,10 @@ const {
     getGameById,
     getGamesByName,
     updateGame,
-    deleteGame
+    deleteGame,
+    getGameBuUId
 } = require('../controllers/VideogamesController');
+
 
 
 
@@ -37,12 +39,25 @@ const getGamesHandler = async (req, res) => {
     }
 };
 
-// manejador de ruta Get para traer un videojuego por id
+// manejador de ruta Get para traer un videojuego por id tando de la api como de la base de datos
 const getGameHandler = async (req, res) => {
     const { id } = req.params;
     const source = isNaN(id) ? "db" : "api";
     try {
         const response = await getGameById(id, source);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({ error: `The id: ${id} does not exist` });
+    }
+};
+
+
+// manejador de ruta Get para traer un videojuego por id solo de la base de datos
+
+const getGameByUIdHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await getGameBuUId(id);
         res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: `The id: ${id} does not exist` });
@@ -94,5 +109,6 @@ module.exports = {
     getGameHandler,
     putGameHandler,
     deleteGameHandler,
-    getAllGamesHandler
+    getAllGamesHandler,
+    getGameByUIdHandler
 };
