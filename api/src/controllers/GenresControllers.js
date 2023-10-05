@@ -24,12 +24,42 @@ const apiGenres = async () => {
   
 
 // Get desde la base de datos
-
+/*
 const getAllGenres = async () => {
     const getGenres = await Genre.findAll();
     if ( !getGenres.length ) throw Error('Database is empty');
     return getGenres;
 };
+*/
+
+// modificacion para ser utilizado por el filtrado
+
+const getAllGenres = async (name = null) => {
+    let whereCondition = {}; // Condición para la consulta, inicialmente vacía
+
+    if (name) {
+        whereCondition = {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        };
+    }
+
+    const getGenres = await Genre.findAll({
+        where: whereCondition // Aplica la condición solo si se proporciona un nombre
+    });
+
+    if (!getGenres.length) {
+        if (name) {
+            throw Error(`The name: ${name} does not exist`);
+        } else {
+            throw Error('Database is empty');
+        }
+    }
+
+    return getGenres;
+};
+
 
 const getGenreById = async (id) => {
     const getGenres = await Genre.findByPk(id);
@@ -37,7 +67,7 @@ const getGenreById = async (id) => {
     return getGenres;
 }
 
-const getGenresByName = async (name) => {
+/*const getGenresByName = async (name) => {
     const getGenres = await Genre.findAll({
         where: {
             name: {
@@ -48,6 +78,34 @@ const getGenresByName = async (name) => {
     if ( !getGenres.length ) throw Error(`The name: ${name} does not exist`);
     return getGenres;
 };
+*/
+// modificacion para utilizarlo en el filtrado
+const getGenresByName = async (name) => {
+    let whereCondition = {}; // Condición para la consulta, inicialmente vacía
+
+    if (name) {
+        whereCondition = {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        };
+    }
+
+    const getGenres = await Genre.findAll({
+        where: whereCondition // Aplica la condición solo si se proporciona un nombre
+    });
+
+    if (!getGenres.length) {
+        if (name) {
+            throw Error(`The name: ${name} does not exist`);
+        } else {
+            throw Error('Database is empty');
+        }
+    }
+
+    return getGenres;
+};
+
 
 
 const createGenre = async (name) => {

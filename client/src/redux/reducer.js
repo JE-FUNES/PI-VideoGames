@@ -18,7 +18,7 @@ const initialState = {
     gamesCopy: [],
     games: [],
     detailGame: [],
-    genresCopy: [],
+    
     genres: [],
     detailNewGame: null, // no necesita iniciar con datos porque los obtien cuando los necesita de la base de datos
     gamesFilter: [],
@@ -42,7 +42,8 @@ export default function rootReducer(state = initialState, action) {
         case GET_GAMES:
             return {
                 ...state,
-                games: action.payload
+                games: action.payload,
+                gamesCopy: action.payload
             };
         case SEARCH_GAMES:
             
@@ -52,6 +53,7 @@ export default function rootReducer(state = initialState, action) {
                 gamesCopy: action.payload // aqui se hara el filtrado
             };
             case GET_GENRES:
+                console.log('Genres received from the API:', action.payload);
                 return {
                     ...state,
                     genresFilter: action.payload,
@@ -71,7 +73,7 @@ export default function rootReducer(state = initialState, action) {
                 
                
                 case FILTER_CREATED:
-                    const gamesCreatedFilter = state.gamesCopy; // Utiliza los juegos copiados
+                    const gamesCreatedFilter = state.games;
                     const createdFilter =
                       action.payload === "created"
                         ? gamesCreatedFilter.filter((game) => game.created === true)
@@ -139,19 +141,24 @@ export default function rootReducer(state = initialState, action) {
   
 
 
-            case FILTER_GENRE: 
-                 const gamesGenreFilter = state.gamesFilter;
-                 const genresFilter = action.payload === "All" 
-                    ? gamesGenreFilter 
-                    : gamesGenreFilter
-                        .filter( game => game.genres
-                        .map( p => p.name)
-                        .includes( action.payload )
-                       );
-            return{
-                ...state,
-                games: genresFilter.length === 0  ? `Not found games with the genre: ${ action.payload }` : genresFilter,
-            };
+            case FILTER_GENRE:
+                console.log('Género seleccionado en la acción:', action.payload);
+                const gamesGenreFilter = state.gamesCopy;
+                const genresFilter = action.payload === "All"
+                    ? state.games // Restablece a los juegos originales
+                    : gamesGenreFilter.filter((game) =>
+                        game.genres.map((p) => p.name).includes(action.payload)
+                    );
+                console.log('Juegos filtrados por género:', genresFilter);
+                return {
+                    ...state,
+                    gamesCopy: genresFilter.length === 0
+                        ? `Not found games with the genre: ${action.payload}`
+                        : genresFilter,
+                };
+            
+
+
 
             case UPGRADE_GAME:
                 return {

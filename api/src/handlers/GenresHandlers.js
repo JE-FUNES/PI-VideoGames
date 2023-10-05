@@ -64,13 +64,18 @@ const createGenreHandler = async (req, res) => {
 const getGenresHandler = async (req, res) => {
     const { name } = req.query;
     try {
-        const response = name ? await getGenresByName(name) : await getAllGenres();
-        // busca por nombre o trae todos
+        let response;
+        if (name) {
+            response = await getGenresByName(name);
+        } else {
+            response = await getAllGenres();
+        }
         res.status(200).json(response);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
 };
+
 
 const getGenreHandler = async (req, res) => {
     const { id } = req.params;

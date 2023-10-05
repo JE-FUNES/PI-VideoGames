@@ -78,7 +78,7 @@ export const getGames = () => {
 // get genres
 
 export const getGenres = () => {
-    const url = "http://localhost:3001/genres";
+    const url = `http://localhost:3001/genres`;
     return async function (dispatch) {
         try {
             const genres = await axios.get(url);
@@ -88,10 +88,10 @@ export const getGenres = () => {
             });
         } catch (error) {
             console.log(error);
-
         }
     };
 };
+
 
 // get details
 

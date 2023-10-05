@@ -6,6 +6,10 @@ import './Css/Filter.css'
 function GenreFilter({ setCurrentPage }) {
     const dispatch = useDispatch();
     const genres = useSelector( state => state.genresFilter )
+
+    const games = useSelector(state => state.games);
+
+    
     
     useEffect(() => {
         dispatch( getGenres() )
@@ -15,12 +19,14 @@ function GenreFilter({ setCurrentPage }) {
         const value = evento.target.value;
         setCurrentPage( 1 );
         dispatch( filterGenre( value ));
+        console.log('Género seleccionado:', value);
+        console.log('Juegos después del filtrado:', games);
     };
     
     return (
         <form id="genreFilter">
-            <select className='genreFilters' onChange={ handleSelect } defaultValue={'DEFAULT'}>
-                <option className='genreOptions' value="DEFAULT" disabled> Genre </option>
+            <select className='genreFilters' onChange={ handleSelect } defaultValue={'All'}>
+                <option className='genreOptions' value="All" > All Genres </option>
                 {
                     genres.map(( genre, i ) => {
                         return(
