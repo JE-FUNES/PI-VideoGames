@@ -1,0 +1,124 @@
+.routeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    width: 100vw;
+    padding-right: 2em;
+    padding-bottom: -0.5em;
+    margin-top: -0.5em;
+    background: 
+    linear-gradient(163deg, #180363 2px, #180363 28px, transparent 28px ),
+    linear-gradient(161deg, #180363 2px, #180363 4px, #180363 30px, transparent 30px),
+    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px),  
+    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px); 
+background-color: black; 
+background-position: 4px 2px, 46px 32px, 96px 30px, 42px 60px; 
+background-size: 96px 60px;
+  }
+  
+  
+  .formContainer {
+      display: flex;
+      justify-content: space-between;
+      background-color:black;
+      padding-top: 0.5em;
+      padding-left: 3em;
+      padding-right: 3em;
+      padding-bottom: 1.5em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px bla;
+      width: 75%;
+      background-color: transparent;
+      /*efecto blur*/
+      backdrop-filter: blur(10px);
+      margin-top: 0.5em;
+      
+    }
+
+
+  @media (max-width: 768px) {
+    /* Media query existente */
+  }
+
+  
+ 
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: burlywood;
+    margin-bottom: 0.5em;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 0.7em;
+    font-size: 1em;
+    font-weight: 500;
+    color: black;
+    margin-top: 0.2em;
+    background-image: url("../../Images/botones/madera_input_grande.png");
+}
+   
+  
+  
+  .checkboxContainer {
+    display: flex;
+    flex-wrap: wrap;
+    color: aliceblue;
+  }
+  
+  .checkboxLabel {
+    flex: 0 0 16%; /* divide en columnas*/
+    margin-bottom: 0.2em;
+  }
+  
+  .checkbox {
+    margin-right: 5px;
+    background-color: burlywood;
+  }
+  
+  .button {
+    background-color: blue;
+    background-image: url("../../Images/botones/madera_up.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color:transparent;
+    border-bottom: none;
+    border: 0;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    margin: 0.25em 5px 0 0;
+    height: 2.5em;
+    width: 10em;
+  }
+  
+  .button:hover {
+    background-image: url("../../Images/botones/madera_down.png");
+    color: beige;
+}
+  
+
+  .danger {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .danger2 {
+    color: rgb(217, 217, 217);
+    margin-top: 5px;
+    font-size: 14px;
+  }

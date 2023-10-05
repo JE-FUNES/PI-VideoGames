@@ -5,10 +5,10 @@ import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from "./Views/Home/Home";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import CreateGame from "./Views/Forms/CreateGame";
-import UpdateGame from "./Views/Forms/UpdateGame";
 import Upper from "./Views/Upper/Upper";
 import Detail from "./Views/Detail/Detail";
 import DetailNewGame from './Views/Detail/DetailNewGame';
+import ContactForm from './Views/Forms/ContactForm';
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
         <Route path="/detail/:id" element={ <Detail />} />
         <Route path="/detailnewgame/:id" element={ <DetailNewGame />} />
         <Route path="/creategame" element={<CreateGame/>} />
-        <Route path="/updategame/:id" element={<UpdateGame />} />
+        <Route path="/contactus" element={<ContactForm />} />
       </Routes>
     </div>
   );

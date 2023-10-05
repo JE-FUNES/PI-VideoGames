@@ -135,7 +135,7 @@ const NavBar = () => {
                 </li>
 
                 <li>
-                    <Link to="/email o formulario">
+                    <Link to="/contactus">
                         <button 
                         className={styles.contact}
                         onMouseOver={showMessage1}
