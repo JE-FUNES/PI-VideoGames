@@ -1,60 +1,47 @@
-
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Cards from '../../components/Cards/Cards';
-import { getGames } from "../../redux/actions";
 import { useSelector, useDispatch } from 'react-redux';
+import { getGames } from '../../redux/actions'; 
 
-const Home = (searchValue) => {
-  
-  const games = useSelector((state) => state.gamesCopy);
-// los filtro para eliminar esos juegos "basura" que me estan apareciendo
-  //const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
-
+const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Llama a la acción getGames al cargar el componente
     dispatch(getGames());
   }, [dispatch]);
-  
+
+  const games = useSelector((state) => state.gamesCopy);
   const areGamesAvailable = games.length > 0;
 
+  // Paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const gamesPerPage = 15;
 
-    //                  Paginado
-    //  Estados
-    const [ currentPage, setCurrentPage ] = useState( 1 );
-    const [ gamesPerPage ] = useState( 15 );
-    
-    // Index del ultimo juego que se ve en la pagina → pag1 => 15 || pag2 => 30
-    const indexOfLastGame = currentPage * gamesPerPage;
-    
-    // Index del primer juego que se ve en la pagina → pag1 => 0 || pag2 => 15
-    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
 
-
+  const paginate = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className={styles.routeContainer}>
-     
-     
       {areGamesAvailable && (
-      <div className={styles.CardsContainer}>
-        <Cards 
-        games={games} 
-        searchValue={searchValue}
-        currentPage={ currentPage } 
-        setCurrentPage={ setCurrentPage } 
-        gamesPerPage={ gamesPerPage } 
-        indexOfFirstGame={ indexOfFirstGame } 
-        indexOfLastGame={ indexOfLastGame }  
-        />
-      </div>
+        <div className={styles.CardsContainer}>
+          <Cards
+            games={games}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            gamesPerPage={gamesPerPage}
+            indexOfFirstGame={indexOfFirstGame}
+            indexOfLastGame={indexOfLastGame}
+            paginate={paginate}
+          />
+        </div>
       )}
-    <div className={styles.container}>
-     
-    </div> 
-  </div> 
+      <div className={styles.container}></div>
+    </div>
   );
 };
 

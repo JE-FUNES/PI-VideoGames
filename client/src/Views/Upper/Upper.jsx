@@ -25,7 +25,7 @@ const Upper = () => {
       case '/home':
         return (
           <p>
-            Welcome <span className={styles.username}>{userName}</span>! Search for your favorite video game, or create your own!
+            <span className={styles.username}>{userName}</span>! Search for your favorite videogame, or create your own!
           </p>
         );
     

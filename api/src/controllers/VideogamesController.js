@@ -212,7 +212,7 @@ const getGameBuUId = async (id) => {
     
     // calcula, segun los juegos de la BD, cuantos puede traer de la api (max 15 total)
     
-        const apiLimit = 15 - bdGame.length;
+        const apiLimit = 100 - bdGame.length;
         let apiGames = []; // almacenará los juegos de la API
     
         // ahora va a la api
