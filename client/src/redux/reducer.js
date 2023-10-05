@@ -15,9 +15,10 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-    originalGames: [],
+    gamesCopy: [],
     games: [],
     detailGame: [],
+    genresCopy: [],
     genres: [],
     detailNewGame: null, // no necesita iniciar con datos porque los obtien cuando los necesita de la base de datos
     gamesFilter: [],
@@ -47,7 +48,8 @@ export default function rootReducer(state = initialState, action) {
             
             return {
                 ...state,
-                games: action.payload
+                games: action.payload,
+                gamesCopy: action.payload
             };
             case GET_GENRES:
                 return {
@@ -67,15 +69,19 @@ export default function rootReducer(state = initialState, action) {
                     detailNewGame: action.payload
                 };
                 
-            case FILTER_CREATED:
-                const gamesCreatedFilter = state.gamesFilter;
-                const createdFilter = action.payload === "created"  
-                    ? gamesCreatedFilter.filter( game => game.created === true ) 
-                    : gamesCreatedFilter.filter( game => game.created === false );
-                return{
-                    ...state,
-                    games: action.payload === "All" ? gamesCreatedFilter : createdFilter,
-            };
+               
+                case FILTER_CREATED:
+                    const gamesCreatedFilter = state.games; // Utiliza los juegos originales
+                    const createdFilter = action.payload === "created"
+                      ? gamesCreatedFilter.filter((game) => game.created === true)
+                      : action.payload === "All" // Si es "All", restablece a los juegos originales
+                      ? gamesCreatedFilter
+                      : gamesCreatedFilter.filter((game) => game.created === false);
+                    return {
+                      ...state,
+                      games: createdFilter,
+                    };
+                  
 
             case FILTER_ORDER: 
             const gamesNameFilter = state.games;

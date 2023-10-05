@@ -9,7 +9,7 @@ const Home = (searchValue) => {
   
   const games = useSelector((state) => state.games);
 // los filtro para eliminar esos juegos "basura" que me estan apareciendo
-  const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
+  //const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
   
   const areGamesAvailable = games.length > 0;
 
@@ -34,7 +34,7 @@ const Home = (searchValue) => {
       {areGamesAvailable && (
       <div className={styles.CardsContainer}>
         <Cards 
-        games={filteredGames} 
+        games={games} 
         searchValue={searchValue}
         currentPage={ currentPage } 
         setCurrentPage={ setCurrentPage } 
