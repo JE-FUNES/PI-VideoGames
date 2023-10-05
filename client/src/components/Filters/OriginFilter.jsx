@@ -14,7 +14,7 @@ function CreatedFilter({ setCurrentPage }) {
     return (
         <form className='CreatedFilters'>
             <select className='createdFiltersList' onChange={ handleSelect } defaultValue={'All'}>
-                <option className='origionOptionsD' value="All" disabled> All Origins </option>
+                <option className='origionOptionsD' value="All"> All Origins </option>
                 <option className='origionOptions' value="Api"> API Games </option>
                 <option className='origionOptions' value="created"> DB Games </option>
             </select>

@@ -71,16 +71,19 @@ export default function rootReducer(state = initialState, action) {
                 
                
                 case FILTER_CREATED:
-                    const gamesCreatedFilter = state.games; // Utiliza los juegos originales
-                    const createdFilter = action.payload === "created"
-                      ? gamesCreatedFilter.filter((game) => game.created === true)
-                      : action.payload === "All" // Si es "All", restablece a los juegos originales
-                      ? gamesCreatedFilter
-                      : gamesCreatedFilter.filter((game) => game.created === false);
+                    const gamesCreatedFilter = state.gamesCopy; // Utiliza los juegos copiados
+                    const createdFilter =
+                      action.payload === "created"
+                        ? gamesCreatedFilter.filter((game) => game.created === true)
+                        : action.payload === "All" // Si es "All", muestra todos los juegos originales
+                        ? state.games // Usa los juegos originales almacenados en 'games'
+                        : gamesCreatedFilter.filter((game) => game.created === false);
                     return {
                       ...state,
-                      games: createdFilter,
+                      gamesCopy: createdFilter,
                     };
+                  
+
                   
 
             case FILTER_ORDER: 
@@ -119,17 +122,7 @@ export default function rootReducer(state = initialState, action) {
                 gamesCopy: ratingFilter,
             };
 
-           /* case FILTER_PLATFORM: 
-            const gamesPlatformFilter = state.gamesFilter;
-            const platformFilter = gamesPlatformFilter
-                .filter( game => game.platforms
-                .map( p => p.toLowerCase())
-                .includes( action.payload ) );
-            return{
-                ...state,
-                games: action.payload === "All" ? gamesPlatformFilter : platformFilter,
-            };
-*/
+   
 
             case FILTER_PLATFORM:
                 const gamesPlatformFilter = state.games; // Utiliza los juegos originales
