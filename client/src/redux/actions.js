@@ -4,8 +4,6 @@ import {
     GET_GENRES,
     GET_DETAILS,
     CREATE_GAME,
-    DELETE_GAME,
-    UPGRADE_GAME,
     GET_DETAILS_NEWGAME,
     FILTER_GENRE,
     FILTER_PLATFORM,
@@ -19,24 +17,6 @@ import axios from 'axios';
 
 
 
-
-// MODIFICAR GAME
-export const upgradeGame = (id, name, description, image, released, rating, platforms, genres) => {
-    const url = `http://localhost:3001/games/${id}`;
-    return async function (dispatch) {
-        try {
-            await axios.put(url, {name, description, image, released, rating, platforms, genres});
-            return dispatch({
-                type: UPGRADE_GAME,
-            });
-        } catch (error) {
-            console.log(error);
-            alert(`The game ${name} could not be updated`)
-        }
-    }
-}
-
-
 // search games
 export const searchGames = (name) => {
     const url = `http://localhost:3001/games?name=${name}&limit=15`;
@@ -44,7 +24,7 @@ export const searchGames = (name) => {
         try {
             const response = await axios.get(url);
             const games = response.data; // Extrae data de la respuesta
-            console.log("Respuesta de API en action:", games);
+            
             dispatch({
                 type: SEARCH_GAMES,
                 payload: games
@@ -64,7 +44,7 @@ export const getGames = () => {
     return async function (dispatch) {
         try {
             const games = await axios.get(url);
-            return dispatch({
+            dispatch({
                 type: GET_GAMES,
                 payload: games.data
             });
@@ -155,7 +135,7 @@ export const createGame = (input) => {
 }
 
 // delete game
-
+/*
 export const deleteGame = (id) => {
     const url = `http://localhost:3001/games/delete/${id}`;
     return async function (dispatch) {
@@ -171,6 +151,7 @@ export const deleteGame = (id) => {
         }
     }
 }
+*/
 
 export const filterGenre = ( payload ) => {
     return {

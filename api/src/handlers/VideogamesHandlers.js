@@ -3,8 +3,6 @@ const {
     getAllGames,
     getGameById,
     getGamesByName,
-    updateGame,
-    deleteGame,
     getGameBuUId
 } = require('../controllers/VideogamesController');
 
@@ -67,21 +65,9 @@ const getGameByUIdHandler = async (req, res) => {
     }
 };
 
-// manejador de ruta Put para actualizar un videojuego por id
-
-const putGameHandler = async (req, res) => {
-    const { id } = req.params;
-    const { name, description, image, released, rating, platforms } = req.body;
-    try {
-        const response = await updateGame(id, name, description, image, released, rating, platforms, genres );
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
 
 // maneja la ruta Delete para eliminar un videojuego por id
-
+/*
 const deleteGameHandler = async (req, res) => {
     const { id } = req.params;
     try {
@@ -90,7 +76,7 @@ const deleteGameHandler = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-};
+};*/
 
 // maneja la ruta para trer todos los videojuegos
 // getAllGames
@@ -110,8 +96,6 @@ module.exports = {
     createGameHandler,
     getGamesHandler,
     getGameHandler,
-    putGameHandler,
-    deleteGameHandler,
     getAllGamesHandler,
     getGameByUIdHandler
 };

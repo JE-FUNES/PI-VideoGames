@@ -1,15 +1,22 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Cards from '../../components/Cards/Cards';
-
-import { useSelector } from 'react-redux';
+import { getGames } from "../../redux/actions";
+import { useSelector, useDispatch } from 'react-redux';
 
 const Home = (searchValue) => {
   
   const games = useSelector((state) => state.gamesCopy);
 // los filtro para eliminar esos juegos "basura" que me estan apareciendo
   //const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Llama a la acción getGames al cargar el componente
+    dispatch(getGames());
+  }, [dispatch]);
   
   const areGamesAvailable = games.length > 0;
 
