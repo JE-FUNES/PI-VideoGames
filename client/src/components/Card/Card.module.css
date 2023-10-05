@@ -51,6 +51,13 @@
     font-weight: 600;
 }
 
+.genre {
+    font-size: 0.6em;
+    font-weight: 300;
+    color: white ;
+    margin-top: -0.1em;
+    margin-left: 0.5em;
+}
 
 .rating{
     position: absolute;

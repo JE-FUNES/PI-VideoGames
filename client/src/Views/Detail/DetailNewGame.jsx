@@ -52,6 +52,7 @@ const DetailNewGame = () => {
         
         <div className={styles.Detail}>
             <h1>{name}</h1>
+            <p># {id}</p>
             <p>{description}</p>
         
         </div>

@@ -27,8 +27,7 @@ const Detail = () => {
     }   
 
     const { 
-        name, 
-        name_original, 
+        name,  
         description, 
         released, 
         updated, 
@@ -46,7 +45,7 @@ const Detail = () => {
             
             <div className={styles.Detail}>
                 <h1>{name}</h1>
-                <h2>{name_original}</h2>
+                <p># {id}</p>
                 <p>{description}</p>
             
             </div>

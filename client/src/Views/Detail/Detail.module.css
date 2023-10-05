@@ -122,7 +122,7 @@ background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
     text-align: center;
     padding: 0 0 0.3em 0;
     font-style: italic;
-    margin-top: -0.5em;
+    margin-top: 1em;
 }
 
 .routeContainer h3 {

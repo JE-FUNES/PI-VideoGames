@@ -146,7 +146,7 @@ const NavBar = () => {
                 </li>
                <li></li><li></li>
                 <li>
-                    <Link to="https://wa.me/5493512737199">
+                    <Link to="https://wa.me/5493512737199" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.whapp}
                         onMouseOver={showMessageW}
@@ -157,7 +157,7 @@ const NavBar = () => {
                 </li>
 
                 <li>
-                    <Link to="https://www.linkedin.com/je-funes">
+                    <Link to="https://www.linkedin.com/je-funes" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.linkedin}
                          onMouseOver={showMessageL}
@@ -168,7 +168,7 @@ const NavBar = () => {
                 </li>
 
                 <li>
-                    <Link to="https://www.github.com/JE-FUNES">
+                    <Link to="https://www.github.com/JE-FUNES" target="_blank" rel="noopener noreferrer">
                         <button
                         className={styles.github}
                         onMouseOver={showMessageG}
@@ -179,7 +179,7 @@ const NavBar = () => {
                 </li>
 
                 <li>
-                    <Link to="https://www.instagram.com/je.funes">
+                    <Link to="https://www.instagram.com/je.funes" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.instagram}
                         onMouseOver={showMessageI}
@@ -190,7 +190,7 @@ const NavBar = () => {
                 </li>
 
                 <li>
-                    <Link to="https://www.facebook.com/juliafunes.vinilomall">
+                    <Link to="https://www.facebook.com/juliafunes.vinilomall" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.face}
                         onMouseOver={showMessageF}
