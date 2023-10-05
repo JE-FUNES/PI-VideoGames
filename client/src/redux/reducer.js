@@ -48,8 +48,8 @@ export default function rootReducer(state = initialState, action) {
             
             return {
                 ...state,
-                games: action.payload,
-                gamesCopy: action.payload
+                games: action.payload, // aqui quedaran los juegos originalmente traidos
+                gamesCopy: action.payload // aqui se hara el filtrado
             };
             case GET_GENRES:
                 return {
@@ -84,7 +84,7 @@ export default function rootReducer(state = initialState, action) {
                   
 
             case FILTER_ORDER: 
-            const gamesNameFilter = state.games;
+            const gamesNameFilter = state.gamesCopy;
             const nameFilter = action.payload === "asc"  
                 ? gamesNameFilter.slice().sort( function(a, b) {
                     if( a.name.toLowerCase() < b.name.toLowerCase() ) return -1;
@@ -98,11 +98,11 @@ export default function rootReducer(state = initialState, action) {
                 })
             return{
                 ...state,
-                games: nameFilter,
+                gamesCopy: nameFilter,
             };
 
             case FILTER_RATING: 
-            const gamesRatingFilter = state.games;
+            const gamesRatingFilter = state.gamesCopy;
             const ratingFilter = action.payload === "rAsc"
                 ? gamesRatingFilter.slice().sort( function(a, b) {
                     if( a.rating > b.rating ) return -1;
@@ -116,7 +116,7 @@ export default function rootReducer(state = initialState, action) {
                 })
             return{
                 ...state,
-                games: ratingFilter,
+                gamesCopy: ratingFilter,
             };
 
            /* case FILTER_PLATFORM: 
@@ -131,17 +131,18 @@ export default function rootReducer(state = initialState, action) {
             };
 */
 
-case FILTER_PLATFORM:
-    const gamesPlatformFilter = state.games; // Utiliza los juegos originales
-    const platformFilter = gamesPlatformFilter.filter((game) =>
-      game.platforms.map((p) => p.toLowerCase()).includes(action.payload)
-    );
-  
-    return {
-      ...state,
-      gamesFilter: gamesPlatformFilter, // Actualiza gamesFilter con los juegos originales
-      games: action.payload === "All" ? gamesPlatformFilter : platformFilter,
-    };
+            case FILTER_PLATFORM:
+                const gamesPlatformFilter = state.games; // Utiliza los juegos originales
+                const platformFilter = action.payload === "All"
+                ? gamesPlatformFilter // Si es "All", usa los juegos originales
+                : gamesPlatformFilter.filter((game) =>
+                game.platforms.map((p) => p.toLowerCase()).includes(action.payload)
+                );
+            return {
+                ...state,
+                gamesCopy: platformFilter,
+            };
+
   
 
 

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Home = (searchValue) => {
   
-  const games = useSelector((state) => state.games);
+  const games = useSelector((state) => state.gamesCopy);
 // los filtro para eliminar esos juegos "basura" que me estan apareciendo
   //const filteredGames = games.filter((game) => !/(object|Object)s?\b/i.test(game.name));
   

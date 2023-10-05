@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 function Cards() { 
    
-   const games = useSelector((state) => state.games);   
+   const games = useSelector((state) => state.gamesCopy);   
      
    return(
        <div className={styles.Cards_component}>
