@@ -19,22 +19,26 @@ background-size: 96px 60px;
   
   
   .formContainer {
-      display: flex;
-      justify-content: space-between;
-      background-color:black;
-      padding-top: 0.5em;
-      padding-left: 3em;
-      padding-right: 3em;
-      padding-bottom: 1.5em;
-      border-radius: 8px;
-      box-shadow: 0 0 10px bla;
-      width: 75%;
-      background-color: transparent;
-      /*efecto blur*/
-      backdrop-filter: blur(10px);
-      margin-top: 0.5em;
-      
-    }
+    display: flex;
+    flex-direction: column; /* Cambiar a column para apilar verticalmente */
+    align-items: center; /* Centrar verticalmente los elementos */
+    background-color: black;
+    padding: 1.5em 3em 1.5em 3em; /* Simplificar el padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px black;
+    width: 75%;
+    background-color: transparent;
+    /* Efecto blur */
+    backdrop-filter: blur(10px);
+    margin-top: 0.5em;
+}
+
+/* Estilos para el título "Contact Us" */
+.formContainer h2 {
+    margin-bottom: 1em; /* Espacio inferior para separarlo del resto */
+    color: white;
+}
+
 
 
   @media (max-width: 768px) {
@@ -46,7 +50,26 @@ background-size: 96px 60px;
   
   .formGroup {
     margin-bottom: 15px;
+    color: white;
   }
+
+/* Estilos para las estrellas */
+.starContainer {
+    cursor: pointer;
+}
+
+/* Estilo para una estrella no seleccionada */
+.star {
+    font-size: 20px;
+    color: gray; /* Color por defecto de las estrellas */
+}
+
+/* Estilo para una estrella seleccionada */
+.selectedStar {
+    font-size: 20px;
+    color: gold; /* Color de las estrellas seleccionadas */
+}
+
   
   .label {
     font-weight: bold;

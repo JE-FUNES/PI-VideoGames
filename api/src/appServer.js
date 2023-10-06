@@ -4,22 +4,23 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const {apiGenres} = require('./controllers/GenresControllers.js');
+const nodemailer = require("nodemailer");
+require('dotenv').config();
+const {GMAIL_USER, GMAIL_PASSWORD} = process.env;
 require('./db.js');
 
-// Llama a apiGenres al iniciar la aplicación o en el lugar adecuado
+// Llama a apiGenres al iniciar la aplicación
 apiGenres()
   .then((result) => {
-    console.log(result); // Puedes imprimir un mensaje de éxito si lo deseas
+    console.log(result); 
   })
   .catch((error) => {
     console.error('Error:', error);
   });
 
-
-
-
-const server = express();
-
+  const server = express();
+  
+  
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -36,7 +37,6 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
@@ -45,5 +45,52 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   console.error(err);
   res.status(status).send(message);
 });
+
+/// ENVÍO DE EMAIL CON NODEMAILER
+
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: GMAIL_USER, // Sin llaves {}
+    pass: GMAIL_PASSWORD, // Sin llaves {}
+  },
+});
+
+async function sendEmail(to, subject, message) {
+  const mailOptions = {
+    from: GMAIL_USER, 
+    to,
+    subject,
+    text: message,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error("Error al enviar el correo electrónico: ", error);
+    throw error;
+  }
+}
+
+server.post("/sendEmail", async (req, res) => {
+  const { email, subject, message } = req.body;
+  
+  try {
+    // Enviar correo al destinatario (en este caso, mi dirección de Gmail)
+    await sendEmail(GMAIL_USER, subject, message);
+    
+    // Enviar correo de confirmación al usuario
+    const confirmacionSubject = "Notification: form received - Videogames";
+    const confirmacionMessage = "We have received your email correctly. Thank you!. Julia Funes | PI. Videogames | Soy Henry";
+
+    await sendEmail(email, confirmacionSubject, confirmacionMessage);
+    
+    res.status(200).send("Correo electrónico enviado con éxito");
+  } catch (error) {
+    console.error("Error al enviar el correo electrónico: ", error);
+    res.status(500).send("Error al enviar el correo electrónico");
+  }
+});
+server.use('/', routes);
 
 module.exports = server;

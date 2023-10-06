@@ -1,41 +1,82 @@
 import React, { useState } from "react";
 import styles from "./ContactForm.module.css";
+import axios from "axios";
+
+
 
 function ContactForm() {
+
+    
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         likedPage: 3, // Valor por defecto de 3 estrellas
         reason: "",
-    });
-
-    const handleInputChange = (e) => {
+      });
+    
+      const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        if (name === "likedPage") {
+            setFormData({
+                ...formData,
+                [name]: Number(value), // Convierte el valor a número
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
     };
+    
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        // Aquí puedes agregar la lógica para enviar el formulario por correo electrónico.
-        // Puedes usar una biblioteca como 'nodemailer' en un servidor Node.js para manejar esto.
-
-        // Luego de enviar el formulario, puedes mostrar un mensaje de éxito o redirigir al usuario a una página de agradecimiento.
-
-        // Aquí solo mostramos la información en la consola por ahora:
-        console.log("Form Data:", formData);
-
-        // Reiniciar el formulario
+      const handleStarClick = (rating) => {
         setFormData({
+          ...formData,
+          likedPage: rating,
+        });
+      };
+    
+      const handleFormSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          // Realizar una solicitud POST al servidor para enviar el formulario
+          await axios.post("/sendEmail", formData);
+          // Mostrar un mensaje de éxito o redirigir al usuario a una página de agradecimiento
+          console.log("Formulario enviado con éxito");
+          // Reiniciar el formulario
+          setFormData({
             name: "",
             email: "",
             likedPage: 3,
             reason: "",
-        });
-    };
+          });
+        } catch (error) {
+          console.error("Error al enviar el formulario:", error);
+        }
+      };
+
+      // Genera estrellas dinámicamente en base a la calificación actual
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      const className =
+        i <= formData.likedPage ? styles.starActive : styles.starInactive;
+      stars.push(
+        <span
+          key={i}
+          className={className}
+          onClick={() => handleStarClick(i)}
+        >
+          ★
+        </span>
+      );
+    }
+    return stars;
+  };
+    
 
     return (
         <div className={styles.routeContainer}>
@@ -68,18 +109,20 @@ function ContactForm() {
                 </div>
 
                 <div className={styles.formGroup}>
-                    <label>Did you like the page? (1-5 stars):</label>
-                    <input
-                        type="number"
-                        id="likedPage"
-                        name="likedPage"
-                        min="1"
-                        max="5"
-                        value={formData.likedPage}
-                        onChange={handleInputChange}
-                        required
-                        />
-                </div>
+    <label>Did you like the page? (1-5 stars):</label>
+    <div className={styles.starContainer}>
+        {[1, 2, 3, 4, 5].map((star) => (
+            <span
+                key={star}
+                className={star <= formData.likedPage ? styles.selectedStar : styles.star}
+                onClick={() => handleStarClick(star)}
+            >
+                ★
+            </span>
+        ))}
+    </div>
+</div>
+
 
                 <div className={styles.formGroup}>
                     <label htmlFor="reason">Reason for contact:</label>
