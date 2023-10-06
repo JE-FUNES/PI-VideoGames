@@ -1,5 +1,5 @@
 .navbar {
-    z-index: 1000;
+    z-index: 3000;
     /*margin: 3.5em 0 0 0;
     top: 0;
     left: 0;
@@ -10,15 +10,10 @@
     align-items: center;
     display: flex;
     padding: 0.4em 0 0.6em 2em;
-    background: 
-    linear-gradient(163deg, black 1px, black 14px, transparent 14px ),
-    linear-gradient(161deg, black 1px, black 2px, black 15px, transparent 15px),
-    linear-gradient(343deg, black 1px, black 14px, transparent 14px),  
-    linear-gradient(343deg, black 1px, black 14px, transparent 14px); 
-    background-color: rgb(20, 31, 156); 
-    background-position: 2px 1px, 23px 16px,48px 15px, 21px 30px; 
-    background-size: 48px 30px;
-    box-shadow: black 0px 0px 20px 0px;
+    background-image: url("../../Images/fondo_menu.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: rgb(94, 25, 25) 0px 0px 10px 0px;
 }
 
 

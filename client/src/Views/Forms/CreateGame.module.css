@@ -2,19 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     padding-right: 2em;
     padding-bottom: -0.5em;
     margin-top: -0.5em;
-    background: 
-    linear-gradient(163deg, #180363 2px, #180363 28px, transparent 28px ),
-    linear-gradient(161deg, #180363 2px, #180363 4px, #180363 30px, transparent 30px),
-    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px),  
-    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px); 
-background-color: black; 
-background-position: 4px 2px, 46px 32px, 96px 30px, 42px 60px; 
-background-size: 96px 60px;
   }
   
   
@@ -27,7 +19,7 @@ background-size: 96px 60px;
       padding-right: 3em;
       padding-bottom: 1.5em;
       border-radius: 8px;
-      box-shadow: 0 0 10px bla;
+      box-shadow: 0 0 10px black;
       width: 75%;
       background-color: transparent;
       /*efecto blur*/
@@ -50,7 +42,7 @@ background-size: 96px 60px;
   
   .label {
     font-weight: bold;
-    color: burlywood;
+    color: black;
     margin-bottom: 0.5em;
   }
   
@@ -72,7 +64,7 @@ background-size: 96px 60px;
   .checkboxContainer {
     display: flex;
     flex-wrap: wrap;
-    color: aliceblue;
+    color: black;
   }
   
   .checkboxLabel {
@@ -118,7 +110,7 @@ background-size: 96px 60px;
   }
   
   .danger2 {
-    color: rgb(217, 217, 217);
+    color:black;
     margin-top: 5px;
     font-size: 14px;
   }

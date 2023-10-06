@@ -6,14 +6,7 @@
     height: 100%;
     
     padding: 0 0 20px 0;
-    background: 
-    linear-gradient(163deg, #180363 2px, #180363 28px, transparent 28px ),
-    linear-gradient(161deg, #180363 2px, #180363 4px, #180363 30px, transparent 30px),
-    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px),  
-    linear-gradient(343deg, #180363 2px, #180363 28px, transparent 28px); 
-background-color: black; 
-background-position: 4px 2px, 46px 32px, 96px 30px, 42px 60px; 
-background-size: 96px 60px; /* Aumenta el tamaño a 96px x 60px */
+
 
 }
 

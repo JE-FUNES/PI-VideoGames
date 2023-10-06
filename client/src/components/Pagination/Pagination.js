@@ -39,7 +39,7 @@ function Pagination({
           <p style={{ display: "none" }} />
         ) : (
           <button className="page" onClick={handlePrev}>
-            Prev
+            «
           </button>
         )}
         {pageNumbers.map((page, i) => {
@@ -62,7 +62,7 @@ function Pagination({
           <p style={{ display: "none" }} />
         ) : (
           <button className="page" onClick={handleNext}>
-            Next
+            »
           </button>
         )}
       </ul>

@@ -1,11 +1,13 @@
 .upper{
    
-    background-color: rgb(230, 26, 26);
+    background-image: url("../../Images/fondo_top.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: 4000;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    width: 100%;
 }
 
 .message {
@@ -14,11 +16,11 @@
 }
 
 .upper p {
-    color: rgb(0, 0, 0);
+    color: rgb(202, 160, 108);
     font-size: 1.1em;
     font-weight: 600;
 }
 
 .username {
-    color: rgb(31, 51, 203);
+    color: rgb(255, 225, 0);
 }
