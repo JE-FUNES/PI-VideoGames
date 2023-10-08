@@ -1,0 +1,72 @@
+/* CSS para el menú vertical en la página Home */
+.Filtro {
+    position: fixed; /* Fija el menú en la pantalla */
+    top: -0.5em; /* Alinea el menú en la parte superior de la pantalla */
+    right: 0; /* Alinea el menú en el margen derecho de la pantalla */
+    width: 9em; /* Ancho del menú */
+    max-height: 90vh; /* Altura máxima */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+    padding-right: 1em;
+    color: white;
+}
+.divStyles {
+ 
+    opacity: 0;
+    transition: opacity 3s;
+    
+}
+
+.divStyles.visible {
+    opacity: 1;
+    
+} 
+  
+  .Filtro h2 {
+    font-size: 1em;
+  }
+  
+  .Filtro h3 {
+    font-size: 0.8em;
+    margin-bottom: -0.1em;
+  }
+  
+  /* Espaciado entre los elementos del menú */
+  .Filtro div {
+    margin-bottom: 16px;
+  }
+  
+  /* CSS para los componentes de filtro (OrderFilter, CreatedFilter, PlatformFilter, GenreFilter) */
+  .OrderFilter,
+  .CreatedFilter,
+  .PlatformFilter,
+  .GenreFilter {
+    display: none; /* Inicialmente, oculta los formularios */
+    margin-bottom: 1em; /* Espaciado entre los formularios */
+    background-color: black; /* Fondo del formulario */
+    color: white; /* Color del texto */
+    margin-left: 1em;
+  }
+  
+  /* Muestra los formularios cuando el menú está desplegado */
+  .Filtro.active-forms .OrderFilter,
+  .Filtro.active-forms .CreatedFilter,
+  .Filtro.active-forms .PlatformFilter,
+  .Filtro.active-forms .GenreFilter {
+    display: block;
+  }
+  
+  /* Estilos para las opciones de filtro */
+  .option {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 3px 5px;
+    margin-top: 0.1em;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .option:hover {
+    background-color: #555;
+  }
+  

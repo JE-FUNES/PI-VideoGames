@@ -51,7 +51,9 @@ const Detail = () => {
             </div>
             
             <div className={styles.Detail2}>
-                <h4>More about {name}:</h4>
+                <h4>More about <br />
+                {name}:
+                </h4>
                 <p className={styles.pDetail2}>Released: {released}</p>
                 <p className={styles.pDetail2}>Updated: {updated}</p>
                 <p className={styles.pDetail2}>Rating: {rating}</p>

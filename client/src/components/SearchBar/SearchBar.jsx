@@ -40,7 +40,7 @@ export default function SearchBar() {
                <input 
                   className={styles.inputS}
                   type='search'
-                  placeholder='Find your game by name...'
+                  placeholder='Find by name...'
                   value={searchValue}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyPress}

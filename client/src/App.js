@@ -9,13 +9,11 @@ import Upper from "./Views/Upper/Upper";
 import Detail from "./Views/Detail/Detail";
 import DetailNewGame from './Views/Detail/DetailNewGame';
 import ContactForm from './Views/Forms/ContactForm';
+import MenuFilterVertical from './Views/MenuFilterVertical/MenuFilterVertical';
 
 
 function App() {
-
-
-
-  const location = useLocation();
+const location = useLocation();
   let [games, setGames] = useState([]);
   
 
@@ -32,16 +30,18 @@ function App() {
   return (
     <div className={styles.App}>
       {location.pathname !== '/' && <Upper />}
-      {location.pathname !== '/' && <NavBar />}
+      
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Home games={games}/>} />
+        <Route path="/home" element={<div className={styles.container}> <MenuFilterVertical /> <Home games={games}/></div>} />
         <Route path="/detail/:id" element={ <Detail />} />
         <Route path="/detailnewgame/:id" element={ <DetailNewGame />} />
         <Route path="/creategame" element={<CreateGame/>} />
         <Route path="/contactus" element={<ContactForm />} />
       </Routes>
+      
+      {location.pathname !== '/' && <NavBar />}
     </div>
   );
   }  

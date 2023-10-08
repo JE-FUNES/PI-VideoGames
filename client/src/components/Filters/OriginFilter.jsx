@@ -1,26 +1,42 @@
-import React from 'react'
-import { filterCreated } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
-import './Css/Filter.css'
+import React from 'react';
+import { filterCreated } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+import styles from './Css/Filter.module.css';
 
 function CreatedFilter({ setCurrentPage }) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSelect = ( evento ) => {
-        const value = evento.target.value;
-        setCurrentPage( 1 );
-        dispatch( filterCreated( value ))
-    }
-    return (
-        <form className='CreatedFilters'>
-            <select className='createdFiltersList' onChange={ handleSelect } defaultValue={'All'}>
-                <option className='origionOptionsD' value="All"> All Origins </option>
-                <option className='origionOptions' value="Api"> API Games </option>
-                <option className='origionOptions' value="created"> DB Games </option>
-            </select>
-            
-        </form>
-    )
+  const handleOptionClick = (optionValue) => {
+    setCurrentPage(1);
+    dispatch(filterCreated(optionValue));
+  };
+
+  return (
+    <div className={styles.CreatedFilters}>
+      <h3>ORIGIN</h3>
+      <div className={styles.options}>
+        <button
+          onClick={() => handleOptionClick('All')}
+          className={styles.option}
+        >
+          ALL Origins
+        </button>
+        <button
+          onClick={() => handleOptionClick('Api')}
+          className={styles.option}
+        >
+          API
+        </button>
+        <button
+          onClick={() => handleOptionClick('created')}
+          className={styles.option}
+        >
+          DB
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default CreatedFilter
+export default CreatedFilter;
+

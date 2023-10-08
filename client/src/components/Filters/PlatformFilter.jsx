@@ -1,28 +1,58 @@
 import React from 'react';
 import { filterPlatform } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import './Css/Filter.css';
+import styles from './Css/Filter.module.css';
 
 function PlatformFilter({ setCurrentPage }) {
   const dispatch = useDispatch();
 
-  const handleSelect = (event) => {
-    const value = event.target.value;
+  const handleOptionClick = (optionValue) => {
     setCurrentPage(1);
-    dispatch(filterPlatform(value));
+    dispatch(filterPlatform(optionValue));
   };
 
   return (
-    <form id="platformFilter">
-      <select className='platformFilterList' onChange={handleSelect} defaultValue={'All'}>
-        <option className='platformOptionsD' value="All">All Platforms</option>
-        <option className='platformOptions' value="xbox">Xbox</option>
-        <option className='platformOptions' value="android">Android</option>
-        <option className='platformOptions' value="playstation">Playstation</option>
-        <option className='platformOptions' value="pc">PC</option>
-        <option className='platformOptions' value="nintendo">Nintendo</option>
-      </select>
-    </form>
+    <div className={styles.platformFilter}>
+      <h3>PLATFORMS</h3>
+      <div className={styles.options}>
+        <button
+          onClick={() => handleOptionClick('All')}
+          className={styles.option}
+        >
+          All Platforms
+        </button>
+        <button
+          onClick={() => handleOptionClick('xbox')}
+          className={styles.option}
+        >
+          Xbox
+        </button>
+        <button
+          onClick={() => handleOptionClick('android')}
+          className={styles.option}
+        >
+          Android
+        </button>
+        <button
+          onClick={() => handleOptionClick('playstation')}
+          className={styles.option}
+        >
+          Playstation
+        </button>
+        <button
+          onClick={() => handleOptionClick('pc')}
+          className={styles.option}
+        >
+          PC
+        </button>
+        <button
+          onClick={() => handleOptionClick('nintendo')}
+          className={styles.option}
+        >
+          Nintendo
+        </button>
+      </div>
+    </div>
   );
 }
 

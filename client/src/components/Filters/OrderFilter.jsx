@@ -1,32 +1,54 @@
 import React from 'react';
 import { filterOrdered, filterRating } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import './Css/Filter.css'
+import styles from  './Css/Filter.module.css'
 
 function OrderFilter({ setCurrentPage }) {
     const dispatch = useDispatch();
-
-    const handleSelect = ( evento ) => {
-        const value = evento.target.value;
-        setCurrentPage( 1 );
-        value === "asc" || value === "desc"  ? dispatch( filterOrdered( value )) 
-        : dispatch( filterRating( value ));
-    }
-
+  
+    const handleOptionClick = (optionValue) => {
+      setCurrentPage(1);
+      if (optionValue === 'asc' || optionValue === 'desc') {
+        dispatch(filterOrdered(optionValue));
+      } else {
+        dispatch(filterRating(optionValue));
+      }
+    };
+  
     return (
-        <form className="orderFilter">
-            <select className='orderFilterList' onChange={ handleSelect } defaultValue={'DEFAULT'} >
-                <option className='orderOptionsD' value="DEFAULT" disabled> Order by: </option>
-                <option className='orderOptionsD' value="DEFAULT" disabled> Name </option>
-                <option className='orderOptions' value="asc"> Ascendant </option>
-                <option className='orderOptions' value="desc"> Desendent </option>
-                <option className='orderOptionsD' value="DEFAULT" disabled> Rating </option>
-                <option className='orderOptions' value="rAsc"> Higher to lower </option>
-                <option className='orderOptions' value="rDesc"> Rating Lower to higher </option>
-            </select>
-            
-        </form>
-    )
-}
+      <div className={styles.orderFilter}>
+        <h2>Order By</h2>
+        <div className={styles.options}>
+            <h3>ABC</h3>
+          <button
+            onClick={() => handleOptionClick('asc')}
+            className={styles.option}
+          >
+            A to Z
+          </button>
+          <button
+            onClick={() => handleOptionClick('desc')}
+            className={styles.option}
+          >
+            Z to A
+          </button>
+          
+          <h3>RATING</h3>
+          <button
+            onClick={() => handleOptionClick('rAsc')}
+            className={styles.option}
+          >
+            ➕ to ➖
+          </button>
+          <button
+            onClick={() => handleOptionClick('rDesc')}
+            className={styles.option}
+          >
+            ➖ to ➕
+          </button>
+        </div>
+      </div>
+    );
+  }
 
 export default OrderFilter

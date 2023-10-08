@@ -1,34 +1,49 @@
 import React, { useState } from "react";
 import styles from "./ContactForm.module.css";
-import axios from "axios";
+import {submitContactForm} from "../../redux/actions"; 
+import image from "../../Images/julia_2023_4x4.jpg";
+import { useDispatch } from "react-redux";
 
 
 
 function ContactForm() {
 
+  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      likedPage: 3, // Valor por defecto de 3 estrellas
+      reason: "",
+    });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "likedPage") {
+      setFormData({
+        ...formData,
+        [name]: Number(value),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+    // Validación de errores
+    const newErrors = { ...errors };
+    if (name === "name" && value.trim() === "") {
+      newErrors[name] = "Name is required";
+    } else {
+      delete newErrors[name];
+    }
+    setErrors(newErrors);
+  };
+  
     
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        likedPage: 3, // Valor por defecto de 3 estrellas
-        reason: "",
-      });
     
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === "likedPage") {
-            setFormData({
-                ...formData,
-                [name]: Number(value), // Convierte el valor a número
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        }
-    };
     
 
       const handleStarClick = (rating) => {
@@ -38,54 +53,23 @@ function ContactForm() {
         });
       };
     
-      const handleFormSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          // Realizar una solicitud POST al servidor para enviar el formulario
-          await axios.post("/sendEmail", formData);
-          // Mostrar un mensaje de éxito o redirigir al usuario a una página de agradecimiento
-          console.log("Formulario enviado con éxito");
-          // Reiniciar el formulario
-          setFormData({
-            name: "",
-            email: "",
-            likedPage: 3,
-            reason: "",
-          });
-        } catch (error) {
-          console.error("Error al enviar el formulario:", error);
-        }
+
+      const handleFormSubmit = () => {
+        // Llama a la acción utilizando dispatch para iniciar la solicitud
+        dispatch(submitContactForm(formData));
       };
 
-      // Genera estrellas dinámicamente en base a la calificación actual
-  const renderStars = () => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      const className =
-        i <= formData.likedPage ? styles.starActive : styles.starInactive;
-      stars.push(
-        <span
-          key={i}
-          className={className}
-          onClick={() => handleStarClick(i)}
-        >
-          ★
-        </span>
-      );
-    }
-    return stars;
-  };
     
 
     return (
         <div className={styles.routeContainer}>
             <div className={styles.formContainer}>
-                <h2>Contact Us</h2>
+                <h2>Contact Me</h2>
                 <form onSubmit={handleFormSubmit}>
 
                 <div className={styles.formGroup}>
                     <label htmlFor="name">Name:</label>
+                    <br />
                     <input
                         type="text"
                         id="name"
@@ -94,10 +78,12 @@ function ContactForm() {
                         onChange={handleInputChange}
                         required
                         />
+                    
                 </div>
 
                 <div className={styles.formGroup}>
                     <label htmlFor="email">E-mail:</label>
+                    <br />
                     <input
                         type="email"
                         id="email"
@@ -106,10 +92,12 @@ function ContactForm() {
                         onChange={handleInputChange}
                         required
                     />
+                    
                 </div>
 
                 <div className={styles.formGroup}>
-    <label>Did you like the page? (1-5 stars):</label>
+    <label>Did you like the page?</label>
+    <br />
     <div className={styles.starContainer}>
         {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -123,9 +111,9 @@ function ContactForm() {
     </div>
 </div>
 
-
                 <div className={styles.formGroup}>
                     <label htmlFor="reason">Reason for contact:</label>
+                    <br />
                     <textarea
                         id="reason"
                         name="reason"
@@ -136,9 +124,19 @@ function ContactForm() {
                         />
                 </div>
 
-                <button type="submit">Submit</button>
+                <button className={styles.button} type="submit">Submit</button>
             </form>
             </div>
+            <div className={styles.imageContainer}>
+            <h2>About this web...</h2>
+            <p>This is a web page made with React, Redux, Node.js, Express, Sequelize, PostgreSQL, CSS and HTML.</p>
+            <p>It was made for the semi-final project of the Henry bootcamp.</p>
+            <p>It is a web page where you can find information about videogames, such as their name, description, release date, rating, platforms, genres and stores.</p>
+            <p>You can also order alphabetically or by rating, you can also filter by platform or genre.</p>
+            <p>And you can also create your own videogame!</p>
+            <img src={image} alt="Una foto de mí" />
+            Julia. E. Funes - Cohorte 42a - Soy Henry.-
+              </div>
         </div>
     );
 }

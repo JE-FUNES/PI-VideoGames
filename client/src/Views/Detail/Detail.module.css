@@ -1,13 +1,15 @@
 .routeContainer {
     display: flex;
     flex-wrap: wrap;
-    
+    background-image: url("../../Images/fondo-detail.png");
+    background-repeat: no-repeat;
+    background-size:cover;
     width: 100%;
     height: 100vh;
     position: relative;
-    
-    padding: 0 0 20px 0;
-
+    background-color: black;
+    margin-top: -2em;
+    z-index: 1000;
 }
 
 .Detail,
@@ -17,23 +19,25 @@
     flex-direction: column;
     
     background-color: transparent;
-    /* efecto blur */
-    backdrop-filter: blur(10px);
+    
     justify-content: center;
 
     color: white;
 }
 
 .Detail {
-    margin-top: 1em;
+    margin-top: 4.1em;
     margin-left: 1em;
+    margin-right: 1.5em;
+    max-width: 30% ;
     text-align: justify;
     max-height: 32em;
     overflow: auto;
-    padding-right: 1.5em;
+    padding-right: 0.5em;
     padding-left: 1em;
     /* si supera la altura maxima que habilite scrollbar */
     overflow: auto;
+    
     
     
 }
@@ -53,13 +57,11 @@
 
 .Detail2 {
     align-items: center;
-    margin-top: 1em;
-    margin-left: 2em;
-    padding-top: 1em;
-    border-style: dotted;
-    border-color: yellowgreen;
-    margin-right: 1em;
-    width: 22%;
+    margin-top: 2em;
+    margin-left: 1em;
+    right: 0;
+    padding: 0.3em;
+    max-width: 11%;
     max-height: 31em;
 }
 
@@ -71,9 +73,10 @@
 .image {
     flex: 3;
     height: 32em ;
-    max-width: 50%;
-    margin-top: 1em;
-    margin-left: 2em;
+    max-width: 60%;
+    margin-top: 4.5em;
+    margin-left: 8em;
+    margin-right: 0;
   
 }
 
@@ -100,8 +103,7 @@
 }
 
 .pDetail2 {
-    font-size: 1em;
-    font-weight: 400;
+    font-size: 0.7em;
     color: rgb(195, 166, 18);
     padding: 0 0 0.3em 1em;
     font-style: italic;
@@ -111,7 +113,7 @@
 .Detail p {
     font-size: 1em;
     font-weight: 400;
-    color: white;
+    color: black;
     text-align: center;
     padding: 0 0 0.3em 0;
     font-style: italic;
@@ -119,7 +121,7 @@
 }
 
 .routeContainer h3 {
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 700;
     color: rgb(12, 212, 243);
     text-align: left;
@@ -140,13 +142,14 @@
 
 .routeContainer li {
     padding: 1em;
+    font-size: 0.85em;
 }
 
 .LogoPlatform {
-    width: 1.5em;
-    height: 1.5em;
-    margin-right: 1em;
-    margin-left: 1.3em;
-    margin-top: 0.5em;
+    width: 1.2em;
+    height: 1.3em;
+    margin-top: 0.1em;
+    padding: 0.4em;
+    
     align-items: center;
 }

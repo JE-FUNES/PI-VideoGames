@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const {apiGenres} = require('./controllers/GenresControllers.js');
-const nodemailer = require("nodemailer");
+//const nodemailer = require("nodemailer");
 require('dotenv').config();
-const {GMAIL_USER, GMAIL_PASSWORD} = process.env;
+//const {GMAIL_USER, GMAIL_PASSWORD} = process.env;
 require('./db.js');
 
 // Llama a apiGenres al iniciar la aplicación
@@ -48,7 +48,7 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 /// ENVÍO DE EMAIL CON NODEMAILER
 
-const transporter = nodemailer.createTransport({
+/*const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
     user: GMAIL_USER, // Sin llaves {}
@@ -90,7 +90,8 @@ server.post("/sendEmail", async (req, res) => {
     console.error("Error al enviar el correo electrónico: ", error);
     res.status(500).send("Error al enviar el correo electrónico");
   }
-});
+});*/
+
 server.use('/', routes);
 
 module.exports = server;

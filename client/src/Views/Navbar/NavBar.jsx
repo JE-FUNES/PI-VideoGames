@@ -1,20 +1,18 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from './NavBar.module.css';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useState} from 'react';
 
-import Filter from '../../components/Filters/Filter';
 
 const NavBar = () => {
 
-  const [ currentPage, setCurrentPage ] = useState( 1 );
+  //const [ currentPage, setCurrentPage ] = useState( 1 );
   
 
   
   // palabras onMouseHover del menu
   
-  const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered1, setIsHovered1] = useState(false);
   const [isHoveredW, setIsHoveredW] = useState(false);
@@ -23,25 +21,7 @@ const NavBar = () => {
   const [isHoveredI, setIsHoveredI] = useState(false);
   const [isHoveredF, setIsHoveredF] = useState(false);
   
-  // para que aparezca el navbar despues de 2 segundos
   
-      useEffect(() => {
-          // Cambia la visibilidad después de un tiempo determinado (por ejemplo, 2 segundos)
-          const timer = setTimeout(() => {
-            setIsVisible(true);
-          }, 2000);
-      
-          return () => {
-            clearTimeout(timer); // Limpia el temporizador al desmontar el componente
-          };
-        }, []);
-
-        const divStyles = {
-            opacity: isVisible ? 1 : 0, // Cambia la opacidad en función de isVisible
-            transition: 'opacity 1s', // Transición suave durante 1 segundo
-          };
-
-
 
           const showMessage = () => {
             setIsHovered(true);
@@ -101,103 +81,96 @@ const NavBar = () => {
 
      return (
         <div className={styles.navbar}>
-        <nav style={divStyles}>
+        <nav > 
             <ul>
                 
                 <li className={styles.searchBar}>
                   <SearchBar/>
                 </li>
-
+              
                 <li>
-                <Filter currentPage={ currentPage } setCurrentPage={ setCurrentPage } />
+                    <NavLink to="/creategame" className={styles.boton}>
+                        Create your Game
+                    </NavLink>
                 </li>
-                
-                
-
-                
-                <li></li><li></li>
-                <li>
-                    <Link to="/creategame">
-                        <button className={styles.boton}>Create your Game</button>
-                    </Link>
-                </li>
-                <li></li>
                
                 <li>
-                    <Link to="/home">
+                    <NavLink to="/home">
                         <button 
                         className={styles.home} 
                         onMouseOver={showMessage}
                         onMouseOut={hideMessage}>
                         </button>
                         {isHovered && <div className={styles.mensaje}>Home</div>}
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="/contactus">
+                    <NavLink to="/contactus">
                         <button 
                         className={styles.contact}
                         onMouseOver={showMessage1}
                         onMouseOut={hideMessage1}>
                         </button>
                         {isHovered1 && <div className={styles.mensaje1}>Contact</div>}
-                    </Link>
+                    </NavLink>
                 </li>
-               <li></li><li></li>
+               
                 <li>
-                    <Link to="https://wa.me/5493512737199" target="_blank" rel="noopener noreferrer">
+                    <NavLink to="https://wa.me/5493512737199" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.whapp}
                         onMouseOver={showMessageW}
                         onMouseOut={hideMessageW}>
                         </button>
                         {isHoveredW && <div className={styles.mensajeW}>Whatsapp</div>}
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="https://www.linkedin.com/je-funes" target="_blank" rel="noopener noreferrer">
+                    <NavLink to="https://www.linkedin.com/je-funes" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.linkedin}
                          onMouseOver={showMessageL}
                          onMouseOut={hideMessageL}>
                          </button>
                          {isHoveredL && <div className={styles.mensajeL}>Linkedin</div>}   
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="https://www.github.com/JE-FUNES" target="_blank" rel="noopener noreferrer">
+                    <NavLink to="https://www.github.com/JE-FUNES" target="_blank" rel="noopener noreferrer">
                         <button
                         className={styles.github}
                         onMouseOver={showMessageG}
                         onMouseOut={hideMessageG}>
                         </button>
                         {isHoveredG && <div className={styles.mensajeG}>GitHub</div>}
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="https://www.instagram.com/je.funes" target="_blank" rel="noopener noreferrer">
+                    <NavLink to="https://www.instagram.com/je.funes" target="_blank" rel="noopener noreferrer">
                         <button 
                         className={styles.instagram}
                         onMouseOver={showMessageI}
                         onMouseOut={hideMessageI}>
                         </button>
                         {isHoveredI && <div className={styles.mensajeI}>Instagram</div>}
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="https://www.facebook.com/juliafunes.vinilomall" target="_blank" rel="noopener noreferrer">
-                        <button 
+                    <NavLink 
+                        to="https://www.facebook.com/juliafunes.vinilomall" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
                         className={styles.face}
                         onMouseOver={showMessageF}
                         onMouseOut={hideMessageF}>
-                        </button>
+                        
                         {isHoveredF && <div className={styles.mensajeF}>Facebook</div>}
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
@@ -205,13 +178,4 @@ const NavBar = () => {
     )};
                     
                     
-                    
-                
-                
-
-    
- 
-     
-     
-     
      export default NavBar; 

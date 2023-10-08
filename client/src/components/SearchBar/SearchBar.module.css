@@ -1,22 +1,24 @@
 .SearchBar {
     align-items: baseline;
     display: inline-block;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 10em;
 }
 
 .SearchBar input {
     text-decoration: none;
-    background-color: rgb(179, 179, 179);
+    background-color: transparent;
     color: black;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 50;
     cursor: text;
     z-index: 200;
-    width: 10em;
+    width: 18em;
     height: 1.8em;
-    padding: 0 0 0 20px; /* es espacio dentro de la caja*/
-    background-image: url("../../Images/botones/madera_input.png");
+    padding: 22px 10px 20px 22px; /* es espacio dentro de la caja*/
+    background-image: url("../../Images/botones/search-bar.png");
+    background-size: cover;
+    border: none;
+    outline: none;
 }
 
 .buttonS {

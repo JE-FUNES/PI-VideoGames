@@ -1,0 +1,12 @@
+.box {
+    position: fixed;
+    top: 2.5em;
+    right: 0;
+    width: 11em;
+    height: 90vh;
+    max-height: 92vh;
+    overflow-y: auto;
+    color: white; /* Cambia el color del texto según tus necesidades */
+    z-index: 3000;
+}
+

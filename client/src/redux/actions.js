@@ -10,6 +10,7 @@ import {
     FILTER_CREATED,
     FILTER_RATING,
     FILTER_ORDER,
+    SUBMIT_CONTACT_FORM
 } from './actionTypes.js';
 
 import axios from 'axios';
@@ -188,5 +189,33 @@ export const filterPlatform = ( payload ) => {
     }
 };
 
-
+export const submitContactForm = (formData) => {
+    const url = "http://localhost:3001/submitContactForm"; 
+  
+    return async function (dispatch) {
+      try {
+        // Realiza una solicitud POST al servidor para enviar el formulario
+        const response = await axios.post(url, formData);
+  
+        // Despacha una acción con el tipo SUBMIT_CONTACT_FORM y la respuesta del servidor
+        dispatch({
+          type: SUBMIT_CONTACT_FORM,
+          payload: response.data, // Puedes ajustar esto según lo que esperes en la respuesta del servidor
+        });
+  
+        // Retorna la respuesta del servidor si es necesario
+        return response.data;
+      } catch (error) {
+        console.error("Error al enviar el formulario:", error);
+        // Puedes agregar una acción adicional para manejar errores si lo deseas
+      }
+    };
+  };
+  
+  
+  
+  
+  
+  
+  
 

@@ -1,26 +1,34 @@
 .upper{
    
-    background-image: url("../../Images/fondo_top.svg");
+    /*background-image: url("../../Images/fondo-top.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 4000;
+    background-size: cover;*/
+    background-color: transparent;
+    z-index: 5000;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 2em;
+    padding-top: 0.15em;
+
 }
 
 .message {
     height: 2em;
-    margin-top: -1em;
+    margin-top: -0.8em;
+    z-index: 4000;
 }
 
 .upper p {
-    color: rgb(202, 160, 108);
-    font-size: 1.1em;
-    font-weight: 600;
+    color: rgb(0, 0, 0);
+    font-size: 1.05em;
+    font-weight: 500;
 }
 
 .username {
-    color: rgb(255, 225, 0);
+    color: rgb(252, 7, 7);
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-right: 0.1em;
 }

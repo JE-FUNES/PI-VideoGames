@@ -10,6 +10,7 @@ import {
     FILTER_CREATED,
     FILTER_ORDER,
     FILTER_RATING,
+    SUBMIT_CONTACT_FORM_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -141,6 +142,15 @@ export default function rootReducer(state = initialState, action) {
                     ? `Not found games with the genre: ${action.payload}`
                     : genresFilter,
                 };
+
+                // En tu reducer
+case SUBMIT_CONTACT_FORM_SUCCESS:
+    return {
+      ...state,
+      contactFormSubmitted: true,
+      contactFormData: action.payload, // Si deseas guardar los datos enviados
+    };
+  
             
       /*  case DELETE_GAME:
             return {
