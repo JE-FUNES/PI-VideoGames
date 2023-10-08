@@ -98,6 +98,7 @@ const CreateGame = () => {
         <div className={styles.routeContainer}>
             
             <div className={styles.formContainer}>
+            <h2>Create a Game</h2>
                 <form onSubmit={handleSubmit}>
         
                     <div className={styles.formGroup}>

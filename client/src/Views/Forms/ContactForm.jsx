@@ -57,6 +57,7 @@ function ContactForm() {
       const handleFormSubmit = () => {
         // Llama a la acción utilizando dispatch para iniciar la solicitud
         dispatch(submitContactForm(formData));
+        alert('Form Send!');
       };
 
     

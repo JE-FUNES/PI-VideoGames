@@ -10,7 +10,7 @@ import {
     FILTER_CREATED,
     FILTER_ORDER,
     FILTER_RATING,
-    SUBMIT_CONTACT_FORM_SUCCESS,
+    SUBMIT_CONTACT_FORM,
 } from "./actionTypes";
 
 const initialState = {
@@ -144,7 +144,7 @@ export default function rootReducer(state = initialState, action) {
                 };
 
                 // En tu reducer
-case SUBMIT_CONTACT_FORM_SUCCESS:
+case SUBMIT_CONTACT_FORM:
     return {
       ...state,
       contactFormSubmitted: true,

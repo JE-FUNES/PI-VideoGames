@@ -13,7 +13,7 @@ const router = Router();
 
 router.use('/games', videogamesRouter);
 router.use('/genres', genresRouter);
-router.use('/submitContactForm', contactRouter);
+router.use('/submit', contactRouter);
 
 
 module.exports = router;

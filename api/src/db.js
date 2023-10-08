@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 const fs = require('fs');
 const path = require('path');
-const ContactForm = require('./models/ContactForm.js');
+
 
 
 
@@ -27,6 +27,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach(model => model(sequelize));
+
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
@@ -36,7 +37,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame, Genre } = sequelize.models;
+const { Videogame, Genre, Contact } = sequelize.models;
 
 
 // Aca vendrian las relaciones
@@ -46,8 +47,6 @@ Videogame.belongsToMany(Genre, {  as: 'genres',  through: 'videogame_genre' });
 Genre.belongsToMany(Videogame, { as: 'genres', through: 'videogame_genre' });
 
 module.exports = {
-  ...sequelize.models,
-  ContactForm, 
+  ...sequelize.models, 
   conn: sequelize,
 };
-

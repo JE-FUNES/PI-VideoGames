@@ -16,7 +16,7 @@ function Filter({ setCurrentPage }) {
         // Cambia la visibilidad después de un tiempo determinado (por ejemplo, 2 segundos)
         const timer = setTimeout(() => {
           setIsVisible(true);
-        }, 3000);
+        }, 1000);
     
         return () => {
           clearTimeout(timer); // Limpia el temporizador al desmontar el componente
@@ -26,7 +26,7 @@ function Filter({ setCurrentPage }) {
       const divStyles = {
         opacity: isVisible ? 1 : 0,
         transform: `translateY(${isVisible ? 0 : '-20px'})`, // Desplazamiento vertical
-        transition: 'opacity 3s, transform 3s', // Agrega una transición de 2 segundos a la opacidad y la transformación
+        transition: 'opacity 1s, transform 1s', // Agrega una transición de 2 segundos a la opacidad y la transformación
       };
       
 

@@ -10,7 +10,7 @@ import {
     FILTER_CREATED,
     FILTER_RATING,
     FILTER_ORDER,
-    SUBMIT_CONTACT_FORM
+    SUBMIT_CONTACT_FORM,
 } from './actionTypes.js';
 
 import axios from 'axios';
@@ -190,7 +190,7 @@ export const filterPlatform = ( payload ) => {
 };
 
 export const submitContactForm = (formData) => {
-    const url = "http://localhost:3001/submitContactForm"; 
+    const url = "http://localhost:3001/submit/contact"; 
   
     return async function (dispatch) {
       try {

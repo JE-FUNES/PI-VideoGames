@@ -1,12 +1,10 @@
 const { 
-    apiGenres, 
-    createGenres, 
+    apiGenres,  
     getAllGenres, 
     getGenreById, 
     getGenresByName, 
     updateGenre, 
-    deleteGenre,
-    getGenresForGame 
+    deleteGenre, 
 } = require('../controllers/GenresControllers');
 
 const { getGameBuUId } = require('../controllers/VideogamesController');
