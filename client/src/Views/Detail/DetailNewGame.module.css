@@ -1,7 +1,7 @@
 .routeContainer {
     display: flex;
     flex-wrap: wrap;
-    background-image: url("../../Images/fondo-detail.png");
+    background-image: url("../../Images/gifs animados/fondo-web.gif");
     background-repeat: no-repeat;
     background-size:cover;
     width: 100%;

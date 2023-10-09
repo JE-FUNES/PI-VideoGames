@@ -11,6 +11,7 @@ import {
     FILTER_ORDER,
     FILTER_RATING,
     SUBMIT_CONTACT_FORM,
+    PRELOAD_CARDS
 } from "./actionTypes";
 
 const initialState = {
@@ -32,7 +33,14 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                games: [...state.games, action.payload]
             };
-       
+
+            case PRELOAD_CARDS:
+                const gamesPreload = state.games;
+                return {
+                    ...state,
+                    gamesCopy: gamesPreload,
+                };
+                       
         case GET_GAMES:
             return {
                 ...state,
@@ -48,7 +56,7 @@ export default function rootReducer(state = initialState, action) {
             };
 
         case GET_GENRES:
-                console.log('Genres received from the API:', action.payload);
+                
             return {
                     ...state,
                     genresFilter: action.payload,

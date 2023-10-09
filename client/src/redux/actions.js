@@ -11,11 +11,52 @@ import {
     FILTER_RATING,
     FILTER_ORDER,
     SUBMIT_CONTACT_FORM,
+    PRELOAD_CARDS,
 } from './actionTypes.js';
 
 import axios from 'axios';
 
 
+/*llamar a la acción getGames y luego esperar a que se complete la carga de los datos antes de continuar con la redirección 
+a la página Home
+la funcion preloadcards debera llamar a dispatch getGames, lo que activa la action getGames y
+carga los datos de los juegos de manera asincrónica
+*/
+
+export const preloadCards = () => {
+    return async function (dispatch) {
+        try {
+            await dispatch(getGames());
+            dispatch({
+                type: PRELOAD_CARDS,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+
+
+
+
+// get games
+
+export const getGames = () => {
+    const url = "http://localhost:3001/games";
+    return async function (dispatch) {
+        try {
+            const games = await axios.get(url);
+            dispatch({
+                type: GET_GAMES,
+                payload: games.data
+            });
+        } catch (error) {
+            console.log(error);
+
+        }
+    };
+};
 
 
 // search games
@@ -38,23 +79,7 @@ export const searchGames = (name) => {
     }
 }
 
-// get games
 
-export const getGames = () => {
-    const url = "http://localhost:3001/games";
-    return async function (dispatch) {
-        try {
-            const games = await axios.get(url);
-            dispatch({
-                type: GET_GAMES,
-                payload: games.data
-            });
-        } catch (error) {
-            console.log(error);
-
-        }
-    };
-};
 
 // get genres
 

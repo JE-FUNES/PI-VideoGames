@@ -1,9 +1,9 @@
 .contenedorInput {
-    margin: 30em 0 0 -1em ;
+    margin: 24.5em 0 0 -16em ;
 }
 
 .contenedorInput input {
-    width: 24em;
+    width: 22em;
     padding: 0 0 0 1em;
     height: 1.5em;
     border-radius: 1em 1em;
@@ -29,7 +29,7 @@
 }
 
 
-.boton {
+/*.boton {
     width: 9em;
     height: 10em;
     z-index: 1000;
@@ -37,12 +37,48 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
-    margin: 1.5em 0 0 25em;
+    margin: 1.5em 0 0 22.5em;
     border: none;
-
 }
+*/
 
-.boton:hover {
+.boton {
+    /* Estilos comunes del botón */
+    width: 9em;
+    height: 10em;
+    z-index: 1000;
+    background-color: transparent;
+    margin: 1.5em 0 0 22.5em;
+    border: none;
+    position: relative; /* Añade posición relativa para que funcione :before y :after */
+    transition: background-image 0.3s ease-in-out;  
+}
+  
+  .boton:before {
+    /* Estilo para el estado normal */
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../Images/pacman_letsGo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+  
+  .boton[data-loading="true"]:before {
+    /* Estilo para el estado "Loading" */
+    background-image: url('../../Images/pacman-loading.gif');
+    background-size:cover;
+   
+    opacity: 1;
+  }
+  
+
+.boton:hover::before {
     width: 9em;
     height: 10em;
     z-index: 1000;
@@ -50,7 +86,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
-    margin: 1.5em 0 0 25em;
+  
     border: none;
     cursor: pointer;
 }

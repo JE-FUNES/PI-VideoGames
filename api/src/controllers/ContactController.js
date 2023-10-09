@@ -1,12 +1,14 @@
-const { Contact } = require('../db.js');
+const { Contact } = require("../db.js");
+
+// formulario de contacto
 
 const createContact = async (req, res) => {
   console.log("Entró al controlador createContact");
   const { name, email, likedPage, reason } = req.body;
 
   if (!name || !email || !likedPage || !reason) {
-    console.log("Faltan datos en la solicitud")
-    return res.status(400).json({ message: 'Faltan datos' });
+    console.log("Faltan datos en la solicitud");
+    return res.status(400).json({ message: "Faltan datos" });
   }
 
   try {
@@ -19,11 +21,11 @@ const createContact = async (req, res) => {
       reason,
     });
     console.log("Formulario enviado con éxito");
-    return res.status(201).json({ message: 'Formulario enviado con éxito' });
+    return res.status(201).json({ message: "Formulario enviado con éxito" });
   } catch (error) {
-    console.error('Error al enviar el formulario:', error);
+    console.error("Error al enviar el formulario:", error);
     console.log("Error al procesar la solicitud");
-    return res.status(500).json({ error: 'Error al procesar la solicitud' });
+    return res.status(500).json({ error: "Error al procesar la solicitud" });
   }
 };
 
