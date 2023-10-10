@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getGenres, filterGenre } from '../../redux/actions';
-import styles from './Css/Filter.module.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getGenres, filterGenre } from "../../redux/actions";
+import styles from "./Css/Filter.module.css";
 
 function GenreFilter({ setCurrentPage }) {
   const dispatch = useDispatch();
@@ -16,8 +16,6 @@ function GenreFilter({ setCurrentPage }) {
   const handleOptionClick = (genre) => {
     setCurrentPage(1);
     dispatch(filterGenre(genre));
-    console.log('Género seleccionado:', genre);
-    console.log('Juegos después del filtrado:', games);
   };
 
   return (
@@ -25,7 +23,7 @@ function GenreFilter({ setCurrentPage }) {
       <h2>All Genres</h2>
       <div className={styles.options}>
         <button
-          onClick={() => handleOptionClick('All')}
+          onClick={() => handleOptionClick("All")}
           className={styles.option}
         >
           All Genres

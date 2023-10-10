@@ -1,5 +1,5 @@
 import React from "react";
-import "./Pagination.css";
+import styles from "./Pagination.module.css";
 
 function Pagination({
   gamesPerPage,
@@ -33,21 +33,25 @@ function Pagination({
   }
 
   return (
-    <div id="paginationDiv">
-      <ul className="pagination">
+    <div className={styles.paginationDiv}>
+      <ul className={styles.pagination}>
         {pageNumbers.length === 0 ? (
           <p style={{ display: "none" }} />
         ) : (
-          <button className="page" onClick={handlePrev}>
+          <button className={styles.page} onClick={handlePrev}>
             «
           </button>
         )}
         {pageNumbers.map((page, i) => {
           if (i < currentPage * 5 && i >= (currentPage - 1) * 5) {
             return (
-              <li key={i} className="paginationItem">
+              <li key={i} className={styles.paginationItem}>
                 <span
-                  className={currentPage === page ? "page active" : "page"}
+                  className={
+                    currentPage === page
+                      ? `${styles.page} ${styles.active}`
+                      : styles.page
+                  }
                   onClick={() => paginate(page)}
                 >
                   {page}
@@ -61,7 +65,7 @@ function Pagination({
         {pageNumbers.length === 0 ? (
           <p style={{ display: "none" }} />
         ) : (
-          <button className="page" onClick={handleNext}>
+          <button className={styles.page} onClick={handleNext}>
             »
           </button>
         )}

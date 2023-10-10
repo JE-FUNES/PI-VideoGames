@@ -1,7 +1,7 @@
-import React from 'react';
-import { filterCreated } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
-import styles from './Css/Filter.module.css';
+import React from "react";
+import { filterCreated } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import styles from "./Css/Filter.module.css";
 
 function CreatedFilter({ setCurrentPage }) {
   const dispatch = useDispatch();
@@ -16,19 +16,19 @@ function CreatedFilter({ setCurrentPage }) {
       <h3>ORIGIN</h3>
       <div className={styles.options}>
         <button
-          onClick={() => handleOptionClick('All')}
+          onClick={() => handleOptionClick("All")}
           className={styles.option}
         >
           ALL Origins
         </button>
         <button
-          onClick={() => handleOptionClick('Api')}
+          onClick={() => handleOptionClick("Api")}
           className={styles.option}
         >
           API
         </button>
         <button
-          onClick={() => handleOptionClick('created')}
+          onClick={() => handleOptionClick("created")}
           className={styles.option}
         >
           DB
@@ -39,4 +39,3 @@ function CreatedFilter({ setCurrentPage }) {
 }
 
 export default CreatedFilter;
-

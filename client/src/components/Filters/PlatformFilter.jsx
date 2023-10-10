@@ -1,7 +1,7 @@
-import React from 'react';
-import { filterPlatform } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
-import styles from './Css/Filter.module.css';
+import React from "react";
+import { filterPlatform } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import styles from "./Css/Filter.module.css";
 
 function PlatformFilter({ setCurrentPage }) {
   const dispatch = useDispatch();
@@ -16,37 +16,37 @@ function PlatformFilter({ setCurrentPage }) {
       <h3>PLATFORMS</h3>
       <div className={styles.options}>
         <button
-          onClick={() => handleOptionClick('All')}
+          onClick={() => handleOptionClick("All")}
           className={styles.option}
         >
           All Platforms
         </button>
         <button
-          onClick={() => handleOptionClick('xbox')}
+          onClick={() => handleOptionClick("xbox")}
           className={styles.option}
         >
           Xbox
         </button>
         <button
-          onClick={() => handleOptionClick('android')}
+          onClick={() => handleOptionClick("android")}
           className={styles.option}
         >
           Android
         </button>
         <button
-          onClick={() => handleOptionClick('playstation')}
+          onClick={() => handleOptionClick("playstation")}
           className={styles.option}
         >
           Playstation
         </button>
         <button
-          onClick={() => handleOptionClick('pc')}
+          onClick={() => handleOptionClick("pc")}
           className={styles.option}
         >
           PC
         </button>
         <button
-          onClick={() => handleOptionClick('nintendo')}
+          onClick={() => handleOptionClick("nintendo")}
           className={styles.option}
         >
           Nintendo

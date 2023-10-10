@@ -1,18 +1,18 @@
-.Cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -8.8em;
-    overflow: hidden;
+.Cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -8.8em;
+  overflow: hidden;
 }
 @media screen and (max-width: 669px) {
-    .Cards{ 
-        display: flex
-    }
+  .Cards {
+    display: flex;
+  }
 }
 @media screen and (max-width: 450px) {
-    .Cards{ 
-        display: block;
-        padding: 25px;
-    }
+  .Cards {
+    display: block;
+    padding: 25px;
+  }
 }
