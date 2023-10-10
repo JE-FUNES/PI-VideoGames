@@ -1,11 +1,8 @@
-import React from 'react';
-import styles from './Titulo.module.css';
+import React from "react";
+import styles from "./Titulo.module.css";
 
 const Titulo = () => {
-    return (
-        <div className={styles.Titulo}>
-        </div>
-    );
-    };
+  return <div className={styles.Titulo}></div>;
+};
 
 export default Titulo;

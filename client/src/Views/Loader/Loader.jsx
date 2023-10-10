@@ -1,11 +1,11 @@
 import React from 'react'
-import './Loader.css'
+import styles from './Loader.module.css'
 
 const Loader = () => {
     return (
-        <div id="loader">
+        <div className={styles.loader}>
             <img 
-                className='loader' 
+                className={styles.loader} 
                 src="https://i.gifer.com/ZKZg.gif" 
                 alt="Loader" 
             />

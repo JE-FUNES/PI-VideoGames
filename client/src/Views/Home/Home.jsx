@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
-import Cards from '../../components/Cards/Cards';
-import { useSelector, useDispatch } from 'react-redux';
-import { getGames } from '../../redux/actions'; 
+import Cards from "../../components/Cards/Cards";
+import { useSelector, useDispatch } from "react-redux";
+import { getGames } from "../../redux/actions";
 
 const Home = () => {
   const dispatch = useDispatch();

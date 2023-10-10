@@ -1,36 +1,33 @@
 .navbar {
-    z-index: 3000;
-    height: 2em;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    position: fixed; /* Fija la barra en la parte inferior */
-    bottom: 1em; /* Ajusta la distancia desde el borde inferior */
-    left: 0; /* Alinea la barra a la izquierda de la pantalla */
-    right: 0; /* Alinea la barra a la derecha de la pantalla */
-    align-items: center;
+  z-index: 3000;
+  height: 2em;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  position: fixed; /* Fija la barra en la parte inferior */
+  bottom: 1em; /* Ajusta la distancia desde el borde inferior */
+  left: 0; /* Alinea la barra a la izquierda de la pantalla */
+  right: 0; /* Alinea la barra a la derecha de la pantalla */
+  align-items: center;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: -1em 2.5em 0 0;
-    display: flex;
+  list-style: none;
+  padding: 0;
+  margin: -1em 2.5em 0 0;
+  display: flex;
 }
 
-
-
 li {
-    margin: 0 1em 0 0;
+  margin: 0 1em 0 0;
 }
 
 .searchBar {
-    margin: 0.5em 0 0 1.5em;
+  margin: 0.5em 0 0 1.5em;
 }
 
-
 .boton {
-    background-image: url('../../Images/botones/create-your-game.png'); /* Ruta de tu imagen de fondo */
+  background-image: url("../../Images/botones/create-your-game.png"); /* Ruta de tu imagen de fondo */
   background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el espacio del enlace */
   /* Otros estilos opcionales */
   color: rgb(255, 204, 0); /* Color del texto */
@@ -43,62 +40,59 @@ li {
 }
 
 .boton:hover {
-        background-image: url("../../Images/botones/create-your-game-hover.png");
-        background-size: cover;
-        color: beige;
-        text-shadow: black 0.1em 0.1em 0.2em;
-        font-weight: 500;
-    }
-    
-    .home {
-        background-image: url("../../Images/botones/home.png");
-        background-size: cover;
-        background-color: transparent;
-        width: 4.5em;
-        height: 4em;
-        cursor: pointer;
-        border: none;
-        
-    }
-    
-    .home:hover {
-        background-image: url("../../Images/botones/home2.png");   
-    
-    }
-    .contact {
-        background-image: url("../../Images/botones/email.png");
-        background-size: cover;
-        background-color: transparent;
-        width: 4.5em;
-        height: 4em;
-        cursor: pointer;
-        border: none;
-        margin-right: 2em;
-    }
-    
-    .contact:hover {
-        background-image: url("../../Images/botones/email2.png");
-          
-    }
+  background-image: url("../../Images/botones/create-your-game-hover.png");
+  background-size: cover;
+  color: beige;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: 500;
+}
+
+.home {
+  background-image: url("../../Images/botones/home.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 4.5em;
+  height: 4em;
+  cursor: pointer;
+  border: none;
+}
+
+.home:hover {
+  background-image: url("../../Images/botones/home2.png");
+}
+.contact {
+  background-image: url("../../Images/botones/email.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 4.5em;
+  height: 4em;
+  cursor: pointer;
+  border: none;
+  margin-right: 2em;
+}
+
+.contact:hover {
+  background-image: url("../../Images/botones/email2.png");
+}
 
 .mensaje,
 .mensaje1 {
-    font-size: 1em;
-    font-weight: 400;
-    color: black;
-    padding: 0.3em;
-    position: absolute;
-    align-items: center;
-    z-index: 2000;
-    margin-top: -6em;
+  font-size: 1em;
+  font-weight: 400;
+  color: black;
+  padding: 0.3em;
+  position: absolute;
+  align-items: center;
+  z-index: 2000;
+  margin-top: -6em;
 }
 
 .mensaje {
-    margin-left: 0.1em; 
+  margin-left: 0.1em;
 }
 
 .mensaje1 {
-    margin-left: -0.5em;
+  margin-left: -0.5em;
 }
 
 .whapp,
@@ -106,49 +100,44 @@ li {
 .github,
 .instagram,
 .face {
-    font-size: 0.9em;
-    font-weight: 400;
- display: flex;
+  font-size: 0.9em;
+  font-weight: 400;
+  display: flex;
   border-radius: 50%;
   align-items: center; /* Alineación vertical para el contenido dentro de los botones */
   justify-content: center; /* Alineación horizontal para el contenido dentro de los botones */
   cursor: pointer;
   background-size: cover;
   width: 3em;
-    height: 3em;
+  height: 3em;
 }
-
 
 .face {
-    background-image: url("../../Images/icons/face.png");
+  background-image: url("../../Images/icons/face.png");
 }
 
-
 .whapp {
-    background-image: url("../../Images/icons/whapp.png");
+  background-image: url("../../Images/icons/whapp.png");
 }
 
 .github {
-    background-image: url("../../Images/icons/github.png");
-   
+  background-image: url("../../Images/icons/github.png");
 }
 
 .instagram {
-    background-image: url("../../Images/icons/insta.png");
-    
+  background-image: url("../../Images/icons/insta.png");
 }
 
 .linkedin {
-    background-image: url("../../Images/icons/linkedin.png");
-
+  background-image: url("../../Images/icons/linkedin.png");
 }
 
 .whapp:hover,
-.linkedin:hover, 
+.linkedin:hover,
 .instagram:hover,
-.face:hover, 
+.face:hover,
 .github:hover {
-    transform: scale(0.7);
+  transform: scale(0.7);
 }
 
 .mensajeF,
@@ -156,43 +145,33 @@ li {
 .mensajeL,
 .mensajeG,
 .mensajeI {
-    font-size: 0.9em;
-    font-weight: 400;
-    color: rgb(203, 239, 233);
-    padding: 0.3em;
-    position: absolute;
-    align-items: center;
-    z-index: 2000;
-    margin-top: -4.4em;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: rgb(203, 239, 233);
+  padding: 0.3em;
+  position: absolute;
+  align-items: center;
+  z-index: 2000;
+  margin-top: -4.4em;
 }
-    
-   
 
 .mensajeW {
-    margin-left: -1.5em; 
+  margin-left: -1.5em;
 }
 
 .mensajeL {
-    margin-left: -1em; 
+  margin-left: -1em;
 }
 
 .mensajeG {
-    margin-left: -1em; 
+  margin-left: -1em;
 }
 
 .mensajeI {
-    margin-left: -1.3em; 
+  margin-left: -1.3em;
 }
 
 .mensajeF {
-    margin-left: -1.5em; 
-    font-size: 1em;
+  margin-left: -1.5em;
+  font-size: 1em;
 }
-
-
-
-
-
-
-
-

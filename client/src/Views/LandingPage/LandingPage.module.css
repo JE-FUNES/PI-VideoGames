@@ -1,65 +1,59 @@
-
 .routeContainer {
-    display: flex;
-    flex-wrap: wrap;
-    background-image: url("../../Images/gifs animados/fondo-web.gif");
-    background-repeat: no-repeat;
-    background-size:cover;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-color: black;
-    margin-top: 0em;
-    z-index: 1000;
-  }
-
- 
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("../../Images/gifs animados/fondo-web.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: black;
+  margin-top: 0em;
+  z-index: 1000;
+}
 
 .generalContainer {
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    width: 50.5%;
-    height: 37.5em;
-    max-width: 83.5%;
-    background-image: url('../../Images/gifs animados/zuma game.gif');
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 2em;
-    margin-left: 4.9em;
-    border-radius: 3%;
-  
-    /* Configuración para hacer el contenedor inicialmente transparente */
-    opacity: 0;
-    animation: fadeIn 5s ease forwards; /* Animación durante 2 segundos */
-  }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 0.8;
-    }
-  }
-  
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 50.5%;
+  height: 37.5em;
+  max-width: 83.5%;
+  background-image: url("../../Images/gifs animados/zuma game.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 2em;
+  margin-left: 4.9em;
+  border-radius: 3%;
 
-.formContainer{
-   display: flex;
-   width: 100vw;
-   height: 100vh;
-   justify-content: center;
-   align-items: center;
-   margin: -339px 0 0 -75px;
+  /* Configuración para hacer el contenedor inicialmente transparente */
+  opacity: 0;
+  animation: fadeIn 5s ease forwards; /* Animación durante 2 segundos */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 0.8;
+  }
+}
+
+.formContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: -339px 0 0 -75px;
 }
 
 .tituloContainer {
   margin: -2em 0 0 3em;
 }
 
-    .footer {
-        text-align: center;
-        font-size: 0.6rem;
-        color: #f49c28;
-        z-index: 1000;
-        margin: 6.5em 0 0 105em ;
-        
-    }
-
+.footer {
+  text-align: center;
+  font-size: 0.6rem;
+  color: #f49c28;
+  z-index: 1000;
+  margin: 6.5em 0 0 105em;
+}
