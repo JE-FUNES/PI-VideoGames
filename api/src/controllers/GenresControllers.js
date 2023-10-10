@@ -7,6 +7,7 @@ require("dotenv").config();
 const { YOUR_API_KEY } = process.env;
 
 //Get desde la API y los guarda en la base de datos
+//Se ejecuta en appServer.js
 
 const apiGenres = async () => {
   const url = `https://api.rawg.io/api/genres?key=${YOUR_API_KEY}`;
@@ -21,8 +22,9 @@ const apiGenres = async () => {
     });
 };
 
+
 const getAllGenres = async (name = null) => {
-  let whereCondition = {}; // Condición para la consulta, inicialmente vacía
+  let whereCondition = {}; 
 
   if (name) {
     whereCondition = {
