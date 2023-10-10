@@ -1,7 +1,7 @@
 .routeContainer {
   display: flex;
   flex-wrap: wrap;
-  background-image: url("../../Images/gifs animados/fondo-web.gif");
+  background-image: url("../../Images/gifs animados/fondo-web-zuma.gif");
   background-repeat: no-repeat;
   background-size:cover;
   width: 100%;
@@ -37,6 +37,12 @@
   font-size: 1em;
 }
 
+.imageContainer p {
+  font-size: 0.95em;
+  margin-top: -0.2em;
+  font-weight: 500;
+}
+
 .imageContainer img {
   z-index: 1000;
   width:190px;
@@ -58,14 +64,15 @@
 }
 
 .formContainer textarea {
-  height: 10em;
+  height: 8.5em;
   width: 40%;
   border: 2px solid #d61010;
   font-size: 1.5em;
     font-weight: 600;
-    background-image: url("../../Images/fondo-textarea.png");
+    /*background-image: url("../../Images/fondo-textarea.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
+    background-color: rgb(245, 234, 212);
 }
 
   @media (max-width: 768px) {
@@ -108,13 +115,13 @@
 /* Estilo para una estrella no seleccionada */
 .star {
     font-size: 2.5em;
-    color: gray; /* Color por defecto de las estrellas */
+    color:  rgb(245, 234, 212); /* Color por defecto de las estrellas */
 }
 
 /* Estilo para una estrella seleccionada */
 .selectedStar {
     font-size: 2.5em;
-    color: red; /* Color de las estrellas seleccionadas */
+    color: rgb(255, 213, 4); /* Color de las estrellas seleccionadas */
 }
 
   
@@ -134,7 +141,8 @@
     font-weight: 600;
     color: black;
     margin-top: 0.2em;
-    background-image: url("../../Images/botones/madera_input_grande.png");
+    /*background-image: url("../../Images/botones/madera_input_grande.png");*/
+    background-color:  rgb(245, 234, 212);
 }
   
   

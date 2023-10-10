@@ -1,7 +1,7 @@
 .routeContainer {
   display: flex;
   flex-wrap: wrap;
-  background-image: url("../../Images/gifs animados/fondo-web.gif");
+  background-image: url("../../Images/gifs animados/fondo-web-zuma-gamecreated.gif");
   background-repeat: no-repeat;
   background-size:cover;
   width: 100%;
@@ -19,8 +19,8 @@
   flex-direction: column; /* Cambiar a column para apilar verticalmente */
   align-items: center; /* Centrar verticalmente los elementos */
   padding: 1.5em 3em 1.5em 3em; /* Simplificar el padding */
-  width: 50%;
-  max-width: 75%;
+  width: 48%;
+  max-width: 70%;
   background-color: transparent;
   margin-top: 0;
   margin-left:5em;
@@ -35,7 +35,7 @@
  
   
   .formGroup {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
   
   .label {

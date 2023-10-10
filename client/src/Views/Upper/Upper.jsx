@@ -25,19 +25,28 @@ const Upper = () => {
       case '/home':
         return (
           <p>
-            <span className={styles.username}>{userName}</span>! Search for your favorite videogame, or create your own!
+            <span className={styles.username}>{userName}</span>! Search for your favorite videogame, or create your own game card!
           </p>
         );
     
       case '/creategame':
         return (
           <p>
-            Fantastic <span className={styles.username}>{userName}</span>! Create your own video game here!
+            Fantastic <span className={styles.username}>{userName}</span>! Create your own game card here!
           </p>
         );
-      // mensajes personalizados para las proximas rutas
+
+        case '/contactus':
+        return (
+          <p>
+            Hi again <span className={styles.username}>{userName}</span>... Contact me and let me know what you think about this project!
+          </p>
+        );
+
+      
       default:
-        return (<p>More than 500.000 video games availables!</p>) ;
+        return (<p>
+          all the info about your favorite videogames <span className={styles.username}>{userName}</span>: more than 500,000!</p>) ;
     }
   };
   
