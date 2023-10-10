@@ -3,6 +3,7 @@ import styles from "./LoginForm.module.css";
 import { useNavigate } from 'react-router-dom';
 import { connect } from "react-redux";
 import { preloadCards } from "../../redux/actions";
+import wellcome from '../../Images/gifs animados/wellcome-zuma.gif';
 
 function LoginForm({preloadCards}) {
     const [name, setName] = useState('');
@@ -55,10 +56,12 @@ function LoginForm({preloadCards}) {
     return (
         <div className={styles.contenedorInput}>
             <form onSubmit={handleFormSubmit}>
+                <img src={wellcome} alt="wellcome" className={styles.wellcome}/>
+                <p>Your name</p>
                 <input
                     type="text"
                     id="name"
-                    placeholder="Please enter YOUR NAME here"
+                    placeholder="here..."
                     value={name}
                     onChange={handleInputChange}
                     maxLength={10}

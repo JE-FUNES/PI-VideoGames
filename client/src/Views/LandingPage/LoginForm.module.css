@@ -1,17 +1,17 @@
 .contenedorInput {
-    margin: 24.5em 0 0 -16em ;
+    margin: 13em 0 0 75.5em ;
 }
 
 .contenedorInput input {
-    width: 22em;
+    width: 11em;
     padding: 0 0 0 1em;
-    height: 1.5em;
+    height: 2em;
     border-radius: 1em 1em;
-    font-size: 1.1em;
+    font-size: 0.8em;
     color:yellow;
     font-weight: 100;
-    margin: 2.85em 0 0 9em;
-    border-color: blue;
+    margin: 0 0 0 9em;
+    border-color: rgb(223, 191, 126);
     background-color: black;
     
 }
@@ -19,9 +19,13 @@
 .contenedorInput ::placeholder {
     color: yellow;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
+.contenedorInput p {
+    color: white;
+    margin: 1em 0 0 9.5em;
+}
 .error {
     font-size: smaller;
     color: yellow;
@@ -29,18 +33,6 @@
 }
 
 
-/*.boton {
-    width: 9em;
-    height: 10em;
-    z-index: 1000;
-    background-image: url('../../Images/pacman_letsGo.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: transparent;
-    margin: 1.5em 0 0 22.5em;
-    border: none;
-}
-*/
 
 .boton {
     /* Estilos comunes del botón */
@@ -48,7 +40,7 @@
     height: 10em;
     z-index: 1000;
     background-color: transparent;
-    margin: 1.5em 0 0 22.5em;
+    margin: -1em 0 0 10em;
     border: none;
     position: relative; /* Añade posición relativa para que funcione :before y :after */
     transition: background-image 0.3s ease-in-out;  
@@ -60,7 +52,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url('../../Images/pacman_letsGo.png');
+    background-image: url('../../Images/botones/zuma1.png');
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -71,7 +63,7 @@
   
   .boton[data-loading="true"]:before {
     /* Estilo para el estado "Loading" */
-    background-image: url('../../Images/pacman-loading.gif');
+    background-image: url('../../Images/gifs animados/loading-zuma.gif');
     background-size:cover;
    
     opacity: 1;
@@ -82,11 +74,15 @@
     width: 9em;
     height: 10em;
     z-index: 1000;
-    background-image: url('../../Images/pacman_letsGo_onMO.png');
+    background-image: url('../../Images/gifs animados/zumasFrog.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
   
     border: none;
     cursor: pointer;
+}
+
+.wellcome {
+    margin-left: 7.5em;
 }
