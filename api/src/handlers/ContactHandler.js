@@ -1,4 +1,4 @@
-const { createContact } = require('../controllers/ContactController');
+const { createContact } = require("../controllers/ContactController");
 
 const createContactHandler = async (req, res) => {
   try {
