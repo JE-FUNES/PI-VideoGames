@@ -1,65 +1,59 @@
-
-
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
+  const Videogame = sequelize.define(
+    "Videogame",
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
 
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-  const Videogame = sequelize.define('Videogame', {
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
 
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    },
+      platforms: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
 
-    name: {
-      type: DataTypes.STRING, 
-      allowNull: false,
-    },
-    
-
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-
-    platforms: {
-      type: DataTypes.ARRAY(DataTypes.STRING),  
-      allowNull: false,
-    },
-
-    image: {
+      image: {
         type: DataTypes.STRING,
       },
 
-        released: {
+      released: {
         type: DataTypes.DATEONLY,
         validate: {
-            isDate: true,
+          isDate: true,
         },
         defaultValue: DataTypes.NOW,
-       },
+      },
 
-        rating: {
+      rating: {
         type: DataTypes.INTEGER,
         validate: {
-            isNumeric: true,
+          isNumeric: true,
         },
         defaultValue: 0,
-       },
+      },
 
-       created: {
+      created: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-       },
-
-  },
-  {
-    timestamps: false,
-  }
-  ); 
+      },
+    },
+    {
+      timestamps: false,
+    }
+  );
   return Videogame;
 };
-
