@@ -145,3 +145,15 @@
 
   align-items: center;
 }
+
+.deleteButton {
+  width: 11em;
+  margin-left: 0.8em;
+  background-color: brown;
+  color: white;
+}
+ 
+.deleteButton:hover {
+  background-color: gray;
+  color: red
+}

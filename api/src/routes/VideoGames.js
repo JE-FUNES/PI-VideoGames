@@ -6,6 +6,7 @@ const {
   getGamesHandler,
   getAllGamesHandler,
   getGameByUIdHandler,
+  deleteGameHandler
 } = require("../handlers/VideogamesHandlers");
 
 const videogamesRouter = Router();

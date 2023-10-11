@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { getDetailsByUUID } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { getDetailsByUUID, deleteGame } from "../../redux/actions";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./DetailNewGame.module.css";
 import android from "../../Images/Platforms/android.png";
@@ -13,6 +13,7 @@ const DetailNewGame = () => {
   const { id } = useParams();
   const gameDetails = useSelector((state) => state.detailNewGame);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDetailsByUUID(id)).then((result) =>
@@ -21,6 +22,21 @@ const DetailNewGame = () => {
   }, [dispatch, id]);
 
   useEffect(() => {}, [gameDetails]); 
+
+  const handleDeleteClick = () => {
+    if (window.confirm("Are you sure you want to delete this game?")) {
+      dispatch(deleteGame(id))
+      .then (() => {
+        alert("Game deleted successfully");
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error deleting game: ", error);
+      });
+    }
+  };
+
+
 
   if (!gameDetails) {
     return <div className={styles.Loading}>Loading...</div>;
@@ -67,6 +83,9 @@ const DetailNewGame = () => {
         <ul>
           <li>{genres ? genres.join(" | ") : "No genres available"}</li>
         </ul>
+        <button className={styles.deleteButton} onClick={handleDeleteClick}>
+          Delete Game
+        </button>
       </div>
     </div>
   );

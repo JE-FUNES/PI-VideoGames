@@ -12,6 +12,7 @@ import {
   FILTER_ORDER,
   SUBMIT_CONTACT_FORM,
   PRELOAD_CARDS,
+  DELETE_GAME,
 } from "./actionTypes.js";
 
 import axios from "axios";
