@@ -6,6 +6,94 @@ const { apiAllCleaner } = require("./utils/utilsApiGames.js");
 require("dotenv").config();
 const { YOUR_API_KEY } = process.env;
 
+const getAllGames = async () => {
+  // vars
+  let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&Limit=100`;
+  let apiGames = []; // almacenará los juegos de la API
+
+  // obtiene los juegos de la base de datos
+  const bdGames = await Videogame.findAll({
+    include: {
+      model: Genre,
+      as: "genres",
+      attributes: ["id", "name"],
+      through: {
+        attributes: [],
+      },
+      order: [["ASC"]],
+    },
+  });
+
+  // obtiene los juegos de la API páginas 1 a 5
+  let nextPage = api; // Inicializa nextPage con la URL de la primera página
+  for (let i = 1; i <= 5; i++) {
+    let response = await axios.get(nextPage);
+    let dataApi = response.data;
+    if (dataApi.results && dataApi.results.length > 0) {
+      const apiG = apiAllCleaner(dataApi);
+      // concatena los juegos de la API
+      apiGames = apiGames.concat(apiG);
+      // actualiza nextPage con la URL de la siguiente página
+      nextPage = dataApi.next;
+    } else {
+      // Si no hay resultados en esta página, termina el bucle
+      break;
+    }
+  }
+
+  // combina los juegos de la API y los de la base de datos
+  return [...bdGames, ...apiGames];
+};
+
+// Get by name
+const getGamesByName = async (name) => {
+  try {
+    // busca en la base de datos
+    const bdGame = await Videogame.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`, // no importa si es mayuscula o minuscula
+        },
+      },
+      include: {
+        model: Genre,
+        as: "genres",
+        attributes: ["id", "name"],
+        through: {
+          // atravez de la tabla intermedia
+          attributes: [],
+        },
+        order: [["ASC"]],
+      },
+    });
+
+    // calcula, segun los juegos de la BD, cuantos puede traer de la api (max 15 total)
+
+    const apiLimit = 100 - bdGame.length;
+    let apiGames = []; // almacenará los juegos de la API
+
+    // ahora va a la api
+
+    if (name && apiLimit > 0) {
+      const url = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&search=${name}`;
+      const dataApi = (await axios.get(url)).data;
+      apiGames = apiAllCleaner(dataApi);
+
+      // limita la respuesta de la api segun el espacio disponible
+      apiGames = apiGames.slice(0, apiLimit);
+    }
+    // combina los juegos de la api y los de la base de datos
+    const response = [...bdGame, ...apiGames];
+
+    if (!response.length) {
+      throw Error(`The name: ${name} does not exist`);
+    }
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Post
 
 const createGame = async (
@@ -45,44 +133,6 @@ const createGame = async (
   }
 };
 
-const getAllGames = async () => {
-  // vars
-  let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&Limit=100`;
-  let apiGames = []; // almacenará los juegos de la API
-
-  // obtiene los juegos de la base de datos
-  const bdGames = await Videogame.findAll({
-    include: {
-      model: Genre,
-      as: "genres",
-      attributes: ["id", "name"],
-      through: {
-        attributes: [],
-      },
-      order: [["ASC"]],
-    },
-  });
-
-  // obtiene los juegos de la API páginas 1 a 5
-  let nextPage = api; // Inicializa nextPage con la URL de la primera página
-  for (let i = 1; i <= 5; i++) {
-    let response = await axios.get(nextPage);
-    let dataApi = response.data;
-    if (dataApi.results && dataApi.results.length > 0) {
-      const apiG = apiAllCleaner(dataApi);
-      // concatena los juegos de la API
-      apiGames = apiGames.concat(apiG);
-      // actualiza nextPage con la URL de la siguiente página
-      nextPage = dataApi.next;
-    } else {
-      // Si no hay resultados en esta página, termina el bucle
-      break;
-    }
-  }
-
-  // combina los juegos de la API y los de la base de datos
-  return [...bdGames, ...apiGames];
-};
 
 // Get by id
 const getGameById = async (id, source) => {
@@ -165,54 +215,7 @@ const getGameBuUId = async (id) => {
   }
 };
 
-// Get by name
-const getGamesByName = async (name) => {
-  try {
-    // busca en la base de datos
-    const bdGame = await Videogame.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`, // no importa si es mayuscula o minuscula
-        },
-      },
-      include: {
-        model: Genre,
-        as: "genres",
-        attributes: ["id", "name"],
-        through: {
-          // atravez de la tabla intermedia
-          attributes: [],
-        },
-        order: [["ASC"]],
-      },
-    });
 
-    // calcula, segun los juegos de la BD, cuantos puede traer de la api (max 15 total)
-
-    const apiLimit = 100 - bdGame.length;
-    let apiGames = []; // almacenará los juegos de la API
-
-    // ahora va a la api
-
-    if (name && apiLimit > 0) {
-      const url = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&search=${name}`;
-      const dataApi = (await axios.get(url)).data;
-      apiGames = apiAllCleaner(dataApi);
-
-      // limita la respuesta de la api segun el espacio disponible
-      apiGames = apiGames.slice(0, apiLimit);
-    }
-    // combina los juegos de la api y los de la base de datos
-    const response = [...bdGame, ...apiGames];
-
-    if (!response.length) {
-      throw Error(`The name: ${name} does not exist`);
-    }
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
 
 // actualiza un juego por id
 

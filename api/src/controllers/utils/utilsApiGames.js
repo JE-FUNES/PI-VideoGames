@@ -22,6 +22,15 @@ const apiAllCleaner = (dataApi) => {
   });
 };
 
+// info de los genres
+
+const apiGenresCleaner = (dataApi) => {
+  let games = dataApi.results;
+
+  const genres = games.map((game) => game.name);
+  return genres;
+};
+
 // info de un game en particular
 
 const apiIdCleaner = (dataApi) => {
@@ -45,14 +54,7 @@ const apiIdCleaner = (dataApi) => {
   };
 };
 
-// info de los genres
 
-const apiGenresCleaner = (dataApi) => {
-  let games = dataApi.results;
-
-  const genres = games.map((game) => game.name);
-  return genres;
-};
 
 module.exports = {
   apiAllCleaner,

@@ -27,12 +27,7 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_GAME:
-      return {
-        ...state,
-        games: [...state.games, action.payload],
-      };
-
+    
     case PRELOAD_CARDS:
       const gamesPreload = state.games;
       return {
@@ -46,6 +41,12 @@ export default function rootReducer(state = initialState, action) {
         games: action.payload,
         gamesCopy: action.payload,
       };
+    case CREATE_GAME:
+      return {
+        ...state,
+        games: [...state.games, action.payload],
+      };
+
 
     case SEARCH_GAMES:
       return {

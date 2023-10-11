@@ -22,6 +22,25 @@ const apiGenres = async () => {
     });
 };
 
+const createGenre = async (name) => {
+  try {
+    // Buscar un género existente con el mismo nombre o crearlo si no existe
+    const [genre, created] = await Genre.findOrCreate({
+      where: { name },
+    });
+
+    if (created) {
+      // El género fue creado porque no existía previamente
+    } else {
+      // El género ya existía en la base de datos
+    }
+
+    return genre;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 const getAllGenres = async (name = null) => {
   let whereCondition = {}; 
@@ -82,24 +101,7 @@ const getGenresByName = async (name) => {
   return getGenres;
 };
 
-const createGenre = async (name) => {
-  try {
-    // Buscar un género existente con el mismo nombre o crearlo si no existe
-    const [genre, created] = await Genre.findOrCreate({
-      where: { name },
-    });
 
-    if (created) {
-      // El género fue creado porque no existía previamente
-    } else {
-      // El género ya existía en la base de datos
-    }
-
-    return genre;
-  } catch (error) {
-    throw error;
-  }
-};
 
 // lo actualiza en la base de datos
 
