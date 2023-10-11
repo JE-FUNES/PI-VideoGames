@@ -23,6 +23,12 @@ function ContactForm() {
         [name]: Number(value),
       });
     } else {
+      if (name === "name" && value.length > 30) {
+        return;
+      }
+      if (name === "reason" && value.length > 200) {
+        return;
+      }
       setFormData({
         ...formData,
         [name]: value,
