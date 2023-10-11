@@ -4,6 +4,7 @@ const {
   getGameById,
   getGamesByName,
   getGameBuUId,
+  deleteGame,
 } = require("../controllers/VideogamesController");
 
 // manejador de ruta Get para traer todos los videojuegos o filtrar por nombre
@@ -68,7 +69,7 @@ const getGameByUIdHandler = async (req, res) => {
 };
 
 // maneja la ruta Delete para eliminar un videojuego por id
-/*
+
 const deleteGameHandler = async (req, res) => {
     const { id } = req.params;
     try {
@@ -77,7 +78,7 @@ const deleteGameHandler = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-};*/
+};
 
 // maneja la ruta para trer todos los videojuegos
 // getAllGames
@@ -98,4 +99,5 @@ module.exports = {
   getGameHandler,
   getAllGamesHandler,
   getGameByUIdHandler,
+  deleteGameHandler,
 };

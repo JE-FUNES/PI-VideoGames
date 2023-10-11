@@ -12,6 +12,7 @@ import {
   FILTER_RATING,
   SUBMIT_CONTACT_FORM,
   PRELOAD_CARDS,
+  DELETE_GAME,
 } from "./actionTypes";
 
 const initialState = {
@@ -27,7 +28,7 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    
+
     case PRELOAD_CARDS:
       const gamesPreload = state.games;
       return {
@@ -163,11 +164,11 @@ export default function rootReducer(state = initialState, action) {
         contactFormData: action.payload,
       };
 
-    /*  case DELETE_GAME:
+   case DELETE_GAME:
             return {
                         ...state,
                         //games: state.games.filter(game => game.id !== action.payload)
-                    }; */
+                    };
     default:
       return state;
   }

@@ -11,4 +11,4 @@ export const FILTER_RATING = 'FILTER_RATING';
 export const FILTER_ORDER = 'FILTER_ORDER';
 export const SUBMIT_CONTACT_FORM = 'SUBMIT_CONTACT_FORM';
 export const PRELOAD_CARDS = 'PRELOAD_CARDS';
-//export const DELETE_GAME = 'DELETE_GAME';
+export const DELETE_GAME = 'DELETE_GAME';

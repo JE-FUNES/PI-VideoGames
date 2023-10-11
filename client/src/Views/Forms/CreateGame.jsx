@@ -24,6 +24,8 @@ const CreateGame = () => {
     platforms: [],
     genres: [],
     image: "",
+    released: "",
+    rating: "",
   });
 
   const handleInputChange = (e) => {
@@ -87,6 +89,8 @@ const CreateGame = () => {
         platforms: [],
         genres: [],
         image: "",
+        released: "",
+        rating: "",
       });
       setGenres([]);
       setPlatforms([]);
@@ -107,10 +111,33 @@ const CreateGame = () => {
               name="name"
               value={input.name}
               onChange={handleInputChange}
-              placeholder="Wtitte your game name here"
+              placeholder="Your game name here"
             />
             {errors.name && <p className={styles.danger}>{errors.name}</p>}
           </div>
+          <div className={styles.formGroupHalf}> 
+          <label className={styles.label}>Rating</label>
+          <input
+            className={styles.input}
+            type="number"
+            name="rating"
+            value={input.rating}
+            onChange={handleInputChange}
+            placeholder="Your game rating here (0 - 5)"
+          />
+           
+            <label className={styles.label}>Released</label>
+            <input
+              className={styles.input}
+              type="date"
+              name="released"
+              value={input.released}
+              onChange={handleInputChange}
+              placeholder="Your game released here"
+            />
+            </div>
+
+
           <div className={styles.formGroup}>
             <label className={styles.label}>Genres</label>
             {errors.genres && <p className={styles.danger2}>{errors.genres}</p>}
@@ -139,7 +166,7 @@ const CreateGame = () => {
               name="description"
               value={input.description}
               onChange={handleInputChange}
-              placeholder="Wtitte your game description here"
+              placeholder="Your game description here"
             />
             {errors.description && (
               <p className={styles.danger}>{errors.description}</p>
@@ -176,7 +203,7 @@ const CreateGame = () => {
               name="image"
               value={input.image}
               onChange={handleInputChange}
-              placeholder="Wtitte your game image route here"
+              placeholder="Your game image route here (http)"
             />
             {errors.image && <p className={styles.danger}>{errors.image}</p>}
           </div>

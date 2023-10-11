@@ -39,10 +39,13 @@ module.exports = (sequelize) => {
 
       rating: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         validate: {
-          isNumeric: true,
+          isInt: true, // Asegura que sea un número entero
+          min: 0,      // Valor mínimo
+          max: 5,      // Valor máximo
         },
-        defaultValue: 0,
+        defaultValue: 0, // Valor predeterminado
       },
 
       created: {

@@ -17,7 +17,6 @@ export const allGenres = [
   
   "Sports",
   "Fighting",
-  "Massively Multiplayer",
   "Board Games",
 ];
 

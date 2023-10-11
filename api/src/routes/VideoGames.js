@@ -18,6 +18,6 @@ videogamesRouter.get("/", getGamesHandler);
 videogamesRouter.get("/all", getAllGamesHandler);
 
 // Delete
-//videogamesRouter.delete('/delete/:id', deleteGameHandler);
+videogamesRouter.delete('/delete/:id', deleteGameHandler);
 
 module.exports = videogamesRouter;

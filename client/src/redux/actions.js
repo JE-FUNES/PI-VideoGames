@@ -198,7 +198,7 @@ export const submitContactForm = (formData) => {
 };
 
 // delete game
-/*
+
 export const deleteGame = (id) => {
     const url = `http://localhost:3001/games/delete/${id}`;
     return async function (dispatch) {
@@ -214,4 +214,4 @@ export const deleteGame = (id) => {
         }
     }
 }
-*/
+

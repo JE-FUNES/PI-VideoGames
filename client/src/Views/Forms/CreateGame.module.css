@@ -33,6 +33,22 @@
   margin-bottom: 1px;
 }
 
+.formGroupHalf {
+  display: flex;
+  justify-content: space-between; /* Colocar los labels uno al lado del otro */
+  align-items: center;
+}
+
+.formGroupHalf label {
+  width: 10%; /* Distribuir el ancho de cada label para que quepan uno al lado del otro */
+  margin-right: 0.5em;
+}
+
+.formGroupHalf input {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
 .formGroup textarea {
   height: 5em;
 }
