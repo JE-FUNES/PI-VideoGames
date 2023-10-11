@@ -6,6 +6,19 @@ const {
   getGameBuUId,
 } = require("../controllers/VideogamesController");
 
+// manejador de ruta Get para traer todos los videojuegos o filtrar por nombre
+
+const getGamesHandler = async (req, res) => {
+  const { name } = req.query;
+
+  try {
+    const response = name ? await getGamesByName(name) : await getAllGames();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 // manejador de ruta Post para crear un nuevo videojuego
 
 const createGameHandler = async (req, res) => {
@@ -27,18 +40,6 @@ const createGameHandler = async (req, res) => {
   }
 };
 
-// manejador de ruta Get para traer todos los videojuegos o filtrar por nombre
-
-const getGamesHandler = async (req, res) => {
-  const { name } = req.query;
-
-  try {
-    const response = name ? await getGamesByName(name) : await getAllGames();
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 
 // manejador de ruta Get para traer un videojuego por id tando de la api como de la base de datos
 const getGameHandler = async (req, res) => {

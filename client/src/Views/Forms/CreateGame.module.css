@@ -30,13 +30,17 @@
 }
 
 .formGroup {
-  margin-bottom: 5px;
+  margin-bottom: 1px;
+}
+
+.formGroup textarea {
+  height: 5em;
 }
 
 .label {
   font-weight: bold;
   color: black;
-  margin-bottom: 0.5em;
+  margin-bottom: 0;
 }
 
 .input {

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createGame } from "../../redux/actions";
 import styles from "./CreateGame.module.css";
-import { allGenres, AllPlatforms, validate } from "./constantesCreateGame";
+import { allGenres, AllPlatforms, validate, validateInput } from "./constantesCreateGame";
 
 const CreateGame = () => {
   const dispatch = useDispatch();
+
+  const [createdGame, setCreatedGame] = useState(null);
+
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
 
@@ -52,40 +57,41 @@ const CreateGame = () => {
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     input.genres = genres;
     input.platforms = platforms;
-
-    // Validar que al menos un género esté seleccionado
-    if (input.genres.length === 0) {
-      setErrors({ ...errors, genres: "Select at least one" });
-      return;
+  
+    const errors = validateInput(input, genres, platforms);
+  
+    setErrors(errors);
+  
+    const hasErrors = Object.values(errors).some((error) => !!error);
+  
+    if (hasErrors) {
+      alert("Please fill in all the required fields.");
     } else {
-      // Si se seleccionó al menos un género, elimina el mensaje de error
-      setErrors({ ...errors, genres: "" });
+      dispatch(createGame(input))
+      .then((response) => {
+        if (response) {
+          setCreatedGame(response);
+          navigate(`/detailnewgame/${response.id}`);
+        }
+      });
+      alert("Game created!");
+      setInput({
+        name: "",
+        description: "",
+        platforms: [],
+        genres: [],
+        image: "",
+      });
+      setGenres([]);
+      setPlatforms([]);
+      
     }
-    // Validar que al menos una plataforma esté seleccionada
-    if (input.platforms.length === 0) {
-      setErrors({ ...errors, platforms: "Select at least one" });
-      return;
-    } else {
-      // Si se seleccionó al menos una plataforma, elimina el mensaje de error
-      setErrors({ ...errors, platforms: "" });
-    }
-
-    dispatch(createGame(input));
-    alert("Game created!");
-    setInput({
-      name: "",
-      description: "",
-      platforms: [],
-      genres: [],
-      image: "",
-    });
-    setGenres([]);
-    setPlatforms([]);
   };
 
   return (

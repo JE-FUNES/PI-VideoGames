@@ -29,6 +29,7 @@ function Filter({ setCurrentPage }) {
 
   const handleFilterClick = (filterName) => {
     setActiveFilter(filterName === activeFilter ? null : filterName);
+    setCurrentPage(1);
   };
 
   return (
