@@ -140,6 +140,12 @@ const NavBar = () => {
               )}
             </NavLink>
           </li>
+
+          <li>
+            <NavLink to="/zuma" className={styles.botonZuma}>
+              Play Zuma Now !
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

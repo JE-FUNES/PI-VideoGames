@@ -10,6 +10,7 @@ import Detail from "./Views/Detail/Detail";
 import DetailNewGame from "./Views/Detail/DetailNewGame";
 import ContactForm from "./Views/Forms/ContactForm";
 import MenuFilterVertical from "./Views/MenuFilterVertical/MenuFilterVertical";
+import PlayZuma from "./Views/PlayZuma/PlayZuma";
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/zuma" element={<PlayZuma />} />
         <Route
           path="/home"
           element={

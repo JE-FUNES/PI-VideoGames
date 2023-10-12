@@ -46,6 +46,13 @@ const Upper = () => {
           </p>
         );
 
+        case "/zuma":
+        return (
+          <p>
+            Play Zuma right now <span className={styles.username}>{userName}</span>!
+          </p>
+        );
+
       default:
         return (
           <p>
