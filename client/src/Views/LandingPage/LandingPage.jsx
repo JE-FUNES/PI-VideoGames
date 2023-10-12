@@ -3,7 +3,7 @@ import styles from "./LandingPage.module.css";
 import LoginForm from "./LoginForm";
 import Titulo from "./Titulo";
 
-export default function LandingPage() {
+export default function LandingPage(login) {
   return (
     <div className={styles.routeContainer}>
       <div className={styles.generalContainer}>

@@ -15,7 +15,7 @@ const Upper = () => {
   }, []);
 
   // Lo oculta en la LandingPage
-  if (location.pathname === "/") {
+  if (location.pathname === "/" || location.pathname === "/privatelogin" || location.pathname === "/listadoContactos") {
     return null;
   }
 

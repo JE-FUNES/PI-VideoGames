@@ -1,5 +1,5 @@
 .contenedorInput {
-  margin: 13em 0 0 75.5em;
+  margin: 38em 0 0 75.5em;
 }
 
 .contenedorInput input {
@@ -80,4 +80,12 @@
 
 .wellcome {
   margin-left: 7.5em;
+}
+
+.divPrivate{
+  margin: 23em 0 0 9em;
+}
+.botonPrivate {
+  background-color: rgb(81, 78, 78);
+  color: white;
 }

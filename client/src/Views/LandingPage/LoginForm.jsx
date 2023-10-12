@@ -73,6 +73,11 @@ function LoginForm({ preloadCards }) {
           data-loading={isLoading ? "true" : "false"}
         />
       </form>
+      <div className={styles.divPrivate}>
+        <button className={styles.botonPrivate} onClick={() => navigate("/privatelogin")}>
+          Private Area
+        </button>
+      </div>
         
     </div>
   );
