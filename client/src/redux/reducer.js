@@ -13,6 +13,7 @@ import {
   SUBMIT_CONTACT_FORM,
   PRELOAD_CARDS,
   DELETE_GAME,
+  GET_CONTACTS,
 } from "./actionTypes";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   detailNewGame: null, // no necesita iniciar con datos porque los obtien cuando los necesita de la base de datos
   gamesFilter: [],
   genresFilter: [],
+  contacts: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -169,6 +171,13 @@ export default function rootReducer(state = initialState, action) {
                         ...state,
                         games: state.games.filter(game => game.id !== action.payload)
                     };
+
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+      };                
+
     default:
       return state;
   }

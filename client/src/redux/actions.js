@@ -13,6 +13,8 @@ import {
   SUBMIT_CONTACT_FORM,
   PRELOAD_CARDS,
   DELETE_GAME,
+  GET_CONTACTS,
+  DELETE_CONTACTS,
 } from "./actionTypes.js";
 
 import axios from "axios";
@@ -216,3 +218,52 @@ export const deleteGame = (id) => {
     }
 }
 
+// get contacts se comunicará con http:localhost:3001/submit/contact para traer toda la información de los contactos
+
+export const getContacts = () => {
+  const url = "http://localhost:3001/submit/contact";
+  return async function (dispatch) {
+    try {
+      const contacts = await axios.get(url);
+      dispatch({
+        type: GET_CONTACTS,
+        payload: contacts.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// delete contacts se comunicará con http:localhost:3001/submit/contact para borrar un contacto por su id
+
+export const deleteContacts = (id) => {
+  const url = `http://localhost:3001/submit/contact/${id}`;
+  return async function (dispatch) {
+    try {
+      await axios.delete(url);
+      return dispatch({
+        type: DELETE_CONTACTS,
+      });
+    } catch (error) {
+      console.log(error);
+      alert("The contact could not be deleted");
+    }
+  };
+};
+
+// verifica si está disponible el nombre del juego. Será para no crear 2 juegos con el mismo nombre
+
+export const checkGameName = async (name) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3001/games?name=${name}`
+    );
+    const games = response.data;
+    const exactMatch = games.find((game) => game.name === name);
+    return !exactMatch;
+  } catch (error) {
+    console.error("Error checking game name:", error);
+    return false;
+  }
+};

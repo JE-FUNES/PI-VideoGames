@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createGame } from "../../redux/actions";
+import { createGame, checkGameName } from "../../redux/actions";
 import styles from "./CreateGame.module.css";
 import { allGenres, AllPlatforms, validate, validateInput } from "./constantesCreateGame";
 
@@ -60,9 +60,16 @@ const CreateGame = () => {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    const isNameAvailable = await checkGameName(input.name);
+
+    if (!isNameAvailable) {
+      alert("This game name is already in use. Please choose another one.");
+      return;
+    }
+
     input.genres = genres;
     input.platforms = platforms;
   

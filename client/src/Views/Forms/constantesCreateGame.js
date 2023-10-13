@@ -4,7 +4,7 @@ export const allGenres = [
   "Adventure",
   "RPG",
   "Strategy",
-  
+
   "Shooter",
   "Casual",
   "Simulation",
@@ -14,7 +14,7 @@ export const allGenres = [
   "Racing",
   "Educational",
   "Card",
-  
+
   "Sports",
   "Fighting",
   "Board Games",
@@ -34,22 +34,23 @@ export const validate = (input) => {
   if (!input.name) {
     errors.name = "Name is required";
   } else if (input.name.length > 15) {
-      errors.name = "Name should be up to 15 characters long";
+    errors.name = "Name should be up to 15 characters long";
+  } else if (!/^[A-Za-z0-9\s]*$/.test(input.name)) {
+    errors.name = "Name can only contain letters, numbers, and spaces";
+  }
+  if (!input.description) {
+    errors.description = "Description is required";
+  } else if (input.description.length > 1000) {
+    errors.description = "Description is too long (maximum 1000 characters).";
+  }
+  if (!input.image) {
+    errors.image = "Image is required";
+  } else {
+    const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if (!urlPattern.test(input.image)) {
+      errors.image = "Invalid URL format.";
     }
-    
-    if (!input.description) {
-      errors.description = "Description is required";
-    } else if (input.description.length > 1000) {
-      errors.description = "Description is too long (maximum 1000 characters).";
-    }
-    if (!input.image) {
-      errors.image = "Image is required";
-    } else {
-      const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-      if (!urlPattern.test(input.image)) {
-        errors.image = "Invalid URL format.";
-      }
-    }
+  }
   if (input.genres.length === 0) {
     errors.genres = "Select at least one";
   }
@@ -59,7 +60,7 @@ export const validate = (input) => {
   return errors;
 };
 
-// validation.js
+
 export const validateInput = (input, genres, platforms) => {
   const errors = {};
 
@@ -85,6 +86,3 @@ export const validateInput = (input, genres, platforms) => {
 
   return errors;
 };
-
-
-
