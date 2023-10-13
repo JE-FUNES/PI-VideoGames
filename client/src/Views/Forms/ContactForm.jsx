@@ -3,10 +3,13 @@ import styles from "./ContactForm.module.css";
 import { submitContactForm } from "../../redux/actions";
 import image from "../../Images/julia_2023_4x4.jpg";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function ContactForm() {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -54,6 +57,7 @@ function ContactForm() {
   const handleFormSubmit = () => {
     dispatch(submitContactForm(formData));
     alert("Form Send!");
+    navigate("/home");
   };
 
   return (
