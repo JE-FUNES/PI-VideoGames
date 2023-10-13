@@ -146,6 +146,11 @@ const NavBar = () => {
               Play Zuma Now !
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/" className={styles.botonInicio}>
+              Go to Start Page
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

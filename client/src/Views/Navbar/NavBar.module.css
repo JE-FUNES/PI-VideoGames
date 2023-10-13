@@ -27,7 +27,8 @@ li {
 }
 
 .boton,
-.botonZuma {
+.botonZuma,
+.botonInicio {
   background-image: url("../../Images/botones/create-your-game.png"); /* Ruta de tu imagen de fondo */
   background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el espacio del enlace */
   /* Otros estilos opcionales */
@@ -39,11 +40,12 @@ li {
   margin-top: -0.3em;
 }
 .boton {
-  margin-right: 2em;
+  margin-right: 0.5em;
 }
 
 .boton:hover,
-.botonZuma:hover {
+.botonZuma:hover,
+.botonInicio:hover {
   background-image: url("../../Images/botones/create-your-game-hover.png");
   background-size: cover;
   color: beige;
@@ -53,6 +55,10 @@ li {
 
 .botonZuma {
   margin-right: 0;
+  margin-left: 1em;
+}
+
+.botonInicio {
   margin-left: 1em;
 }
 
@@ -77,7 +83,7 @@ li {
   height: 4em;
   cursor: pointer;
   border: none;
-  margin-right: 2em;
+  margin-right: 1.5em;
 }
 
 .contact:hover {
@@ -184,3 +190,5 @@ li {
   margin-left: -1.5em;
   font-size: 1em;
 }
+
+
