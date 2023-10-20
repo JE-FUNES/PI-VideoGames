@@ -9,12 +9,12 @@ describe("Videogame GET by ID", () => {
 
   it("should retrieve an existing Videogame by ID", async () => {
     try {
-      const existingVideogameId = "9bc02a4d-ea1b-4efa-9a80-7d6443d5df9f"; 
+      const existingVideogameId = "445c8f2e-14ca-4225-997b-ebc78512aac6"; 
 
       const existingVideogame = await Videogame.findByPk(existingVideogameId);
 
       expect(existingVideogame).to.not.be.null; // Verifica que el videojuego exista en la base de datos.
-      expect(existingVideogame.name).to.equal("Test Game"); // Asegúrate de que coincida con los detalles reales del videojuego.
+      expect(existingVideogame.name).to.equal("Juego de Prueba 1");
     } catch (error) {
       throw error;
     }

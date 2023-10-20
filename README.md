@@ -1,21 +1,28 @@
 # PI-VideoGames : SINGLE PAGE
-Proyecto Individual Full Stack Developer Soy Henry
+<h1>Proyecto Individual Full Stack Developer Soy Henry</h1>
+<img src=./imagen_presentacion.jpg alt= "proyecto" />
 
-Inicio: 23/09/2023 |
-Formulario Corrección: 09/10/2023 |
-Entrega: 11/010/2023.
+Inicio: 23/09/2023
+Entrega: 11/10/2023
+Estado: Aprobado.
 
-A implementar:
-- Front
-- Back
-- Data Bases
+<h2>En este proyecto implementé:</h2>
+<ul>
+<li>Front </li>
+<li>Back</li>
+<li>Data Bases</li>
+</ul>
 
-  Tecnologías:
-* NodeJS,
-* React,
-* Redux,
-* Express,
-* Sequelize,
-* PostgreSQL.
+<h2>Tecnologías:</h2>
+<ul>
+<li>NodeJS,</li>
+<li>React,</li>
+<li>Redux,</li>
+<li>Express,</li>
+<li>Sequelize,</li>
+<li>PostgreSQL.</li>
+</ul>
+
+***************************************************************************
 
   

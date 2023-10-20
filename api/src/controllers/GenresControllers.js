@@ -18,7 +18,7 @@ const apiGenres = async () => {
       for (const genreName of genres) {
         await createGenre(genreName);
       }
-      return "Temperaments of the API saved in the database";
+      return "Genres of the API saved in the database";
     });
 };
 

@@ -6,6 +6,7 @@ const { apiAllCleaner } = require("./utils/utilsApiGames.js");
 require("dotenv").config();
 const { YOUR_API_KEY } = process.env;
 
+
 const getAllGames = async () => {
   // vars
   let api = `https://api.rawg.io/api/games?key=${YOUR_API_KEY}&Limit=100`;
@@ -27,7 +28,7 @@ const getAllGames = async () => {
   // obtiene los juegos de la API páginas 1 a 5
   let nextPage = api; // Inicializa nextPage con la URL de la primera página
   for (let i = 1; i <= 5; i++) {
-    let response = await axios.get(nextPage);
+    let response = await axios.get(nextPage); // ver con promiseAll para dar una demora mas corta
     let dataApi = response.data;
     if (dataApi.results && dataApi.results.length > 0) {
       const apiG = apiAllCleaner(dataApi);
